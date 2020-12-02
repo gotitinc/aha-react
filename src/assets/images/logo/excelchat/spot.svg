@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+    <title>Logos/Excelchat/Spot/Original</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Logos/Excelchat/Spot/Original" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icon">
+            <g>
+                <path d="M9.72009516,39.9961582 C4.32667079,39.8479317 0,35.4292399 0,30 L0,30 L0,10 C0,4.4771525 4.4771525,0 10,0 L30,0 C35.4292399,0 39.8479317,4.32667079 39.9961582,9.72009516 L40,10 L40,40 L10,40 Z" id="Chat-shape" fill="#375DE7"></path>
+                <path d="M8,25 L19.2,25 L19.2,32 L12.8,32 C10.1490332,32 8,29.8509668 8,27.2 L8,25 Z M32,25 L32,27.2 C32,29.8509668 29.8509668,32 27.2,32 L20.8,32 L20.799,25 L32,25 Z M32,23.4 L20.799,23.399 L20.799,16.6 L32,16.6 L32,23.4 Z M8,16.6 L19.2,16.6 L19.2,23.399 L8,23.4 L8,16.6 Z M27.2,8 C29.8509668,8 32,10.1490332 32,12.8 L32,15 L20.799,15 L20.8,8 L27.2,8 Z M19.2,15 L8,15 L8,12.8 C8,10.1490332 10.1490332,8 12.8,8 L19.2,8 L19.2,15 Z" id="Product-icon" fill="#FFFFFF"></path>
+            </g>
+        </g>
+    </g>
+</svg>

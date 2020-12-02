@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="504px" height="504px" viewBox="0 0 504 504" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 60.1 (88133) - https://sketch.com -->
+    <title>Illustrations/Spot Hero/Empty states/History session</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M0,29.5808128 C0,13.3181251 13.182097,0.134611948 29.4472734,0.134611948 L321.472972,0.134611948 C337.736252,0.134611948 350.920245,13.3164542 350.920245,29.5808128 L350.920245,133.878595 C350.920245,150.141283 337.738148,163.324796 321.472972,163.324796 L0,163.324796 L0,29.5808128 Z" id="path-1"></path>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="350.920245" height="163.190184" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+    </defs>
+    <g id="Illustrations/Spot-Hero/Empty-states/History-session" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="empty-chat" transform="translate(52.000000, 119.000000)">
+            <use id="Placeholder" stroke="#DFE1E6" mask="url(#mask-2)" stroke-width="8" fill-opacity="0" fill="#FFFFFF" stroke-dasharray="8,8" xlink:href="#path-1"></use>
+            <path d="M49.0797546,121.605353 C49.0797546,105.342665 62.2618516,92.1591518 78.527028,92.1591518 L370.552727,92.1591518 C386.816007,92.1591518 400,105.340994 400,121.605353 L400,255.349336 L78.527028,255.349336 C62.263748,255.349336 49.0797546,242.167494 49.0797546,225.903135 L49.0797546,121.605353 Z" id="Placeholder" fill="#DFE1E6"></path>
+            <rect id="Rectangle" fill="#FFFFFF" x="83.4355828" y="131.422956" width="283.435583" height="19.6319018" rx="9.81595092"></rect>
+            <rect id="Rectangle-Copy-4" fill="#FFFFFF" x="83.4355828" y="190.318661" width="224.539877" height="19.6319018" rx="9.81595092"></rect>
+        </g>
+    </g>
+</svg>

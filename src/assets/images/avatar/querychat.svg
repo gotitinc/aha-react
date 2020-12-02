@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+    <title>Avatar/Product/Querychat - Inverted mark@svg</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Avatars" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Style-Guide/Avatars" transform="translate(-164.000000, -524.000000)">
+            <g id="Avatar/Product/Querychat---Inverted-mark" transform="translate(164.000000, 524.000000)">
+                <g id="Querychat---Inverted-mark">
+                    <circle id="Oval" fill="#375DE7" cx="12" cy="12" r="12"></circle>
+                    <g id="Logos/Querychat/Spot/White" transform="translate(6.000000, 6.000000)" fill="#FFFFFF">
+                        <path d="M9,0 C10.5976809,0 11.9036609,1.24891996 11.9949073,2.82372721 L12,3 L12,12 L3,12 L2.82372721,11.9949073 C1.30724616,11.9070404 0.0929596233,10.6927538 0.00509269341,9.17627279 L0,9 L0,3 C0,1.34314575 1.34314575,0 3,0 L9,0 Z M9.6,7.05 C9.6,7.62989899 7.9882251,8.1 6,8.1 C4.0117749,8.1 2.4,7.62989899 2.4,7.05 L2.4,7.05 L2.4,8.58 L2.403,8.58 L2.40708256,8.61640365 C2.52453956,9.16536519 4.0882451,9.6 6,9.6 C7.95346592,9.6 9.54352918,9.1461924 9.6,8.58 L9.6,8.58 Z M9.6,4.53 C9.6,5.10989899 7.9882251,5.58 6,5.58 C4.0117749,5.58 2.4,5.10989899 2.4,4.53 L2.4,4.53 L2.4,6.06 L2.403,6.06 L2.40708256,6.09640365 C2.52453956,6.64536519 4.0882451,7.08 6,7.08 C7.95346592,7.08 9.54352918,6.6261924 9.6,6.06 L9.6,6.06 Z M9.6,7.02 L9.596,7.02 L9.599,7.045 L9.6,7.02 Z M9.6,4.5 L9.596,4.5 L9.6,4.53 L9.6,4.5 Z M6,2.4 C4.0117749,2.4 2.4,2.87010101 2.4,3.45 C2.4,4.02989899 4.0117749,4.5 6,4.5 C7.9882251,4.5 9.6,4.02989899 9.6,3.45 C9.6,2.87010101 7.9882251,2.4 6,2.4 Z"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

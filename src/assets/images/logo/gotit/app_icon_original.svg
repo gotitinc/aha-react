@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1024px" height="1024px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61.2 (89653) - https://sketch.com -->
+    <title>Got It - Origianl App icon</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Got-It---Origianl-App-icon" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect fill="#FFFFFF" x="0" y="0" width="1024" height="1024"></rect>
+        <g id="Group" transform="translate(276.000000, 120.000000)">
+            <path d="M236.08532,0 C365.970447,0 472.17064,106.791421 472.17064,235.703922 C472.17064,366.142015 365.970447,472.17064 236.08532,472.17064 C106.200192,472.17064 0,366.142015 0,235.703922 C0,106.791421 106.200192,0 236.08532,0 M236.08532,386.737503 C320.892668,386.737503 388.127322,319.611467 388.127322,234.941126 C388.127322,151.033581 320.892668,83.9075451 236.08532,83.9075451 C152.042002,83.9075451 84.0433178,151.033581 84.0433178,234.941126 C84.0433178,319.611467 152.042002,386.737503 236.08532,386.737503" id="Shape" fill="#000000" fill-rule="nonzero"></path>
+            <polygon id="Combined-Shape" fill="#375DE7" points="236.08532 519.387704 448.562108 729.718262 393.92522 783.803262 236.08532 627.557705 78.2454203 783.803262 23.608532 729.718262"></polygon>
+        </g>
+    </g>
+</svg>

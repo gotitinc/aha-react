@@ -1,0 +1,131 @@
+{
+  "name": "@gotitinc/design-system",
+  "version": "1.12.11",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "files": [
+    "es/*.{js,map}",
+    "lib/*.{js,map}",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "build": "node scripts/build",
+    "prepublishOnly": "yarn build",
+    "bootstrap": "yarn && yarn --cwd www",
+    "start": "yarn --cwd www develop",
+    "build-test": "node scripts/start",
+    "build-docs": "yarn --cwd www build",
+    "format": "eslint --ext js src --fix",
+    "lint": "eslint --ext js src"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "dependencies": {
+    "@restart/hooks": "0.3.14",
+    "@wojtekmaj/predict-input-value": "1.0.0",
+    "@wojtekmaj/react-daterange-picker": "2.5.0",
+    "classnames": "2.2.6",
+    "dom-helpers": "5.1.0",
+    "popper.js": "1.15.0",
+    "prop-types": "15.7.2",
+    "prop-types-extra": "1.1.0",
+    "rc-slider": "^8.7.1",
+    "react-date-picker": "7.10.0",
+    "react-slick": "^0.27.11",
+    "react-split-pane": "^0.1.91",
+    "react-tagsinput": "3.19.0",
+    "react-textarea-autosize": "7.1.2",
+    "react-time-picker": "3.9.0",
+    "react-toastify": "^6.0.5",
+    "react-transition-group": "4.0.0",
+    "slick-carousel": "1.8.1",
+    "uncontrollable": "7.0.2",
+    "warning": "4.0.3"
+  },
+  "devDependencies": {
+    "@babel/core": "7.6.4",
+    "@babel/plugin-proposal-class-properties": "7.5.5",
+    "@babel/plugin-proposal-decorators": "7.6.0",
+    "@babel/plugin-proposal-numeric-separator": "7.2.0",
+    "@babel/plugin-proposal-object-rest-spread": "7.6.2",
+    "@babel/plugin-syntax-dynamic-import": "7.2.0",
+    "@babel/plugin-transform-destructuring": "7.6.0",
+    "@babel/plugin-transform-flow-strip-types": "7.6.3",
+    "@babel/plugin-transform-react-display-name": "7.2.0",
+    "@babel/plugin-transform-runtime": "7.6.2",
+    "@babel/preset-env": "7.6.3",
+    "@babel/preset-react": "7.6.3",
+    "@babel/preset-typescript": "7.6.0",
+    "@babel/runtime": "7.6.3",
+    "autoprefixer": "9.6.1",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "10.0.1",
+    "babel-loader": "7.1.2",
+    "babel-plugin-dynamic-import-node": "2.3.0",
+    "babel-plugin-macros": "2.6.1",
+    "babel-plugin-transform-react-remove-prop-types": "0.4.24",
+    "babel-preset-react-app": "6.1.0",
+    "case-sensitive-paths-webpack-plugin": "2.2.0",
+    "clean-css": "^4.2.3",
+    "css-loader": "3.2.0",
+    "dotenv": "8.2.0",
+    "eslint": "5.12.0",
+    "eslint-config-airbnb": "17.1.0",
+    "eslint-config-react-app": "3.0.6",
+    "eslint-loader": "2.1.1",
+    "eslint-plugin-flowtype": "3.2.0",
+    "eslint-plugin-import": "2.14.0",
+    "eslint-plugin-jsx-a11y": "6.1.2",
+    "eslint-plugin-react": "7.12.3",
+    "faker": "^4.1.0",
+    "file-loader": "4.2.0",
+    "fs-extra": "7.0.1",
+    "holderjs": "^2.9.6",
+    "ignore-emit-webpack-plugin": "^2.0.3",
+    "mini-css-extract-plugin": "^0.11.2",
+    "moment": "^2.24.0",
+    "nested-object-assign": "1.0.3",
+    "node-sass": "4.12.0",
+    "optimize-css-assets-webpack-plugin": "5.0.4",
+    "postcss-loader": "4.0.2",
+    "react": "16.9.0",
+    "react-addons-create-fragment": "15.6.2",
+    "react-dev-utils": "9.0.4",
+    "react-dom": "16.9.0",
+    "react-hot-loader": "^4.12.18",
+    "react-live": "2.2.2",
+    "react-markdown": "4.2.2",
+    "sass-loader": "8.0.0",
+    "style-loader": "^1.2.1",
+    "url-loader": "2.1.0",
+    "webpack": "4.40.2",
+    "webpack-bundle-analyzer": "3.6.0",
+    "webpack-node-externals": "1.7.2"
+  },
+  "peerDependencies": {
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": "eslint --fix"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all"
+  },
+  "author": "Got It, inc.",
+  "homepage": "https://github.com/tutoruniverse/design-system#readme",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tutoruniverse/design-system.git"
+  },
+  "description": "A design system for Got It's frontend projects",
+  "directories": {
+    "lib": "lib"
+  },
+  "bugs": {
+    "url": "https://github.com/tutoruniverse/design-system/issues"
+  }
+}
