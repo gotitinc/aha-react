@@ -156,7 +156,7 @@ Resources:
           - Name: REACT_APP_ENV
             Value: !Sub ${EnvironmentType}
           - Name: NPM_TOKEN
-            Value: '{{resolve:ssm:/SETTING/PROD/FRONTEND/PUBLISH_NPM_TOKEN:1}}'
+            Value: '{{resolve:ssm:/SETTING/PROD/FRONTEND/AHA_UI_PUBLISH_NPM_TOKEN:1}}'
           - Name: NPM_TAG
             Value: !Ref NPMTag
 
