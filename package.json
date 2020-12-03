@@ -77,6 +77,8 @@
     "eslint-plugin-react": "7.12.3",
     "file-loader": "4.2.0",
     "fs-extra": "7.0.1",
+    "husky": ">=4",
+    "lint-staged": "^10.5.2",
     "moment": "^2.24.0",
     "nested-object-assign": "1.0.3",
     "react": "16.9.0",
@@ -90,12 +92,12 @@
     "webpack-node-externals": "1.7.2"
   },
   "peerDependencies": {
+    "@ahaui/css": "^2.0.0",
     "react": "^16.9.0",
-    "react-dom": "^16.9.0",
-    "@ahaui/css": "^2.0.0"
+    "react-dom": "^16.9.0"
   },
   "lint-staged": {
-    "*.{js,ts,tsx}": "eslint --fix"
+    "*.js": "eslint --cache --fix"
   },
   "prettier": {
     "singleQuote": true,
@@ -111,5 +113,10 @@
   "description": "Aha Design System - React",
   "directories": {
     "lib": "lib"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
