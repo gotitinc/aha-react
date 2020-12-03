@@ -14,8 +14,6 @@ Metadata:
           - GitHubBranch
           - GitHubToken
           - ArtifactBucket
-          - StaticFilesS3BucketName
-          - StaticS3WebsiteURL
           - NPMTag
 
 Parameters:
@@ -53,14 +51,6 @@ Parameters:
     AllowedValues:
       - prod
       - alpha
-  StaticFilesS3BucketName:
-    Description: Name of S3 bucket which stores static files
-    Type: String
-    Default: got-it-frontends
-  StaticS3WebsiteURL:
-    Description: S3 website url
-    Type: String
-    Default: got-it-frontends.s3-website.us-east-2.amazonaws.com
   NPMTag:
     Description: Tag for NPM release
     Type: String
@@ -116,15 +106,6 @@ Resources:
                     - - "arn:aws:s3:::"
                       - !Ref ArtifactBucket
                       - "/*"
-                  - !Join
-                    - ""
-                    - - "arn:aws:s3:::"
-                      - !Ref StaticFilesS3BucketName
-                  - !Join
-                    - ""
-                    - - "arn:aws:s3:::"
-                      - !Ref StaticFilesS3BucketName
-                      - "/*"
                 Action:
                   - "s3:DeleteObjectTagging"
                   - "s3:GetObjectRetention"
@@ -175,7 +156,7 @@ Resources:
           - Name: REACT_APP_ENV
             Value: !Sub ${EnvironmentType}
           - Name: NPM_TOKEN
-            Value: '{{resolve:ssm:/SETTING/PROD/FRONTEND/PUBLISH_NPM_TOKEN:1}}'
+            Value: '{{resolve:ssm:/SETTING/PROD/FRONTEND/AHA_UI_PUBLISH_NPM_TOKEN:1}}'
           - Name: NPM_TAG
             Value: !Ref NPMTag
 

@@ -16,7 +16,7 @@
     "lint": "eslint --ext js src"
   },
   "publishConfig": {
-    "access": "restricted"
+    "access": "public"
   },
   "dependencies": {
     "@restart/hooks": "0.3.14",
