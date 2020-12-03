@@ -1,23 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { emptyStates } from '../../constants';
 import createBlock from '../../utils/createBlock';
 
 const propTypes = {
-  /** The EmptyState visual name */
-  name: PropTypes.oneOf([
-    'general',
-    'session',
-    'notification',
-    'searchResult',
-    'inbox',
-  ]),
-  /** Scalable Vector Graphics (*.svg) or Bitmap (*.png) */
-  fileType: PropTypes.oneOf([
-    'svg',
-    'png',
-  ]),
+  /** The EmptyState visual name, should be provide via an AssetPlugin with prefix "emptyState" */
+  name: PropTypes.string,
   /** Providing a `src` will render an `<img>` element */
   src: PropTypes.string,
   /** Providing a alt if `src` exits  */
@@ -28,19 +16,14 @@ const propTypes = {
   height: PropTypes.number,
 };
 const defaultProps = {
-  fileType: 'svg',
-  name: 'general',
   width: 240,
+  alt: 'EmptyState',
 };
 const EmptyState = React.forwardRef(({ className, children, name, src, fileType, alt, height, width, as: Component = 'div', ...props }, ref) => {
-  let nameOri = name;
-  let typeOri;
-  if (nameOri) {
-    typeOri = fileType || 'svg';
-  }
-  if (src) {
-    nameOri = false;
-  }
+  // let nameOri = name;
+  // if (src) {
+  //   nameOri = false;
+  // }
 
   return (
     <Component
@@ -52,9 +35,6 @@ const EmptyState = React.forwardRef(({ className, children, name, src, fileType,
         className && className
       )}
     >
-      {nameOri && (
-        <img width={width} height={height} src={emptyStates[nameOri][typeOri]} alt={emptyStates[nameOri].title} className="u-maxWidthFull" />
-      )}
       {src && (
         <img width={width} height={height} src={src} alt={alt} className="u-maxWidthFull" />
       )}

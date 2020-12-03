@@ -1,6 +1,6 @@
 {
-  "name": "@gotitinc/design-system",
-  "version": "1.12.11",
+  "name": "@ahaui/react",
+  "version": "2.0.0",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
@@ -11,10 +11,7 @@
   "scripts": {
     "build": "node scripts/build",
     "prepublishOnly": "yarn build",
-    "bootstrap": "yarn && yarn --cwd www",
-    "start": "yarn --cwd www develop",
-    "build-test": "node scripts/start",
-    "build-docs": "yarn --cwd www build",
+    "start": "node scripts/start",
     "format": "eslint --ext js src --fix",
     "lint": "eslint --ext js src"
   },
@@ -78,34 +75,24 @@
     "eslint-plugin-import": "2.14.0",
     "eslint-plugin-jsx-a11y": "6.1.2",
     "eslint-plugin-react": "7.12.3",
-    "faker": "^4.1.0",
     "file-loader": "4.2.0",
     "fs-extra": "7.0.1",
-    "holderjs": "^2.9.6",
-    "ignore-emit-webpack-plugin": "^2.0.3",
-    "mini-css-extract-plugin": "^0.11.2",
     "moment": "^2.24.0",
     "nested-object-assign": "1.0.3",
-    "node-sass": "4.12.0",
-    "optimize-css-assets-webpack-plugin": "5.0.4",
-    "postcss-loader": "4.0.2",
     "react": "16.9.0",
     "react-addons-create-fragment": "15.6.2",
     "react-dev-utils": "9.0.4",
     "react-dom": "16.9.0",
     "react-hot-loader": "^4.12.18",
     "react-live": "2.2.2",
-    "react-markdown": "4.2.2",
-    "sass-loader": "8.0.0",
-    "style-loader": "^1.2.1",
-    "url-loader": "2.1.0",
     "webpack": "4.40.2",
     "webpack-bundle-analyzer": "3.6.0",
     "webpack-node-externals": "1.7.2"
   },
   "peerDependencies": {
     "react": "^16.9.0",
-    "react-dom": "^16.9.0"
+    "react-dom": "^16.9.0",
+    "@ahaui/css": "^2.0.0"
   },
   "lint-staged": {
     "*.{js,ts,tsx}": "eslint --fix"
@@ -115,17 +102,14 @@
     "trailingComma": "all"
   },
   "author": "Got It, inc.",
-  "homepage": "https://github.com/tutoruniverse/design-system#readme",
+  "homepage": "https://github.com/gotitinc/aha-react#readme",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tutoruniverse/design-system.git"
+    "url": "git+https://github.com/gotitinc/aha-react.git"
   },
-  "description": "A design system for Got It's frontend projects",
+  "description": "Got It Aha Design System - React",
   "directories": {
     "lib": "lib"
-  },
-  "bugs": {
-    "url": "https://github.com/tutoruniverse/design-system/issues"
   }
 }

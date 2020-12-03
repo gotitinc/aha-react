@@ -1,26 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { avatars } from '../../constants';
 
 const propTypes = {
-  /** The Avatar visual name */
-  name: PropTypes.oneOf([
-    'default',
-    'expert',
-    'expert2',
-    'expert3',
-    'expert4',
-    'asker',
-    'asker2',
-    'asker3',
-    'asker4',
-    'gotit',
-    'excelchat',
-    'expert_ppt',
-    'querychat',
-    'querychat_ai',
-  ]),
+  /** The Avatar visual name, should be provide via an AssetPlugin with prefix "avatar" */
+  name: PropTypes.string,
   /** Avatar size variants */
   size: PropTypes.oneOf([
     'extraSmall',
@@ -51,13 +35,14 @@ const propTypes = {
 const defaultProps = {
   size: 'medium',
   name: 'default',
+  alt: 'Avatar',
 };
 
 const Avatar = React.forwardRef(({ className, size, name, src, alt, height, width, text, as: Component = 'div', ...props }, ref) => {
-  let nameOri = name;
-  if (src || text) {
-    nameOri = false;
-  }
+  // let nameOri = name;
+  // if (src || text) {
+  //   nameOri = false;
+  // }
   const heightStyle = {
     width: width && width,
     height: height && height,
@@ -78,9 +63,6 @@ const Avatar = React.forwardRef(({ className, size, name, src, alt, height, widt
         className && className
       )}
     >
-      {nameOri && (
-        <img src={avatars[nameOri].svg} alt={avatars[nameOri].title} className="u-maxWidthFull u-roundedCircle u-positionAbsolute u-borderNone u-positionFull u-widthFull u-heightFull" />
-      )}
       {src && (
         <img src={src} alt={alt} className="u-maxWidthFull u-roundedCircle u-positionAbsolute u-borderNone u-positionFull u-widthFull u-heightFull" />
       )}

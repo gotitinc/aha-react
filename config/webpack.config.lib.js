@@ -98,14 +98,6 @@ module.exports = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
-      {
-        test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.svg$/],
-        loader: require.resolve('url-loader'),
-        options: {
-          limit: 1,
-          name: 'images/[name].[hash:8].[ext]',
-        },
-      },
     ],
   },
   plugins: [
@@ -125,7 +117,7 @@ module.exports = {
     new WatchMissingNodeModulesPlugin(paths.appNodeModules),
   ],
   optimization: {
-    minimize: false
+    minimize: false,
   },
   // Turn off performance hints during development because we don't do any
   // splitting or minification in interest of speed. These warnings become
@@ -134,6 +126,6 @@ module.exports = {
     hints: false,
   },
   externals: [
-    nodeExternals()
+    nodeExternals(),
   ],
 };
