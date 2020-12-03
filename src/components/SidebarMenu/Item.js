@@ -66,7 +66,7 @@ const Item = React.forwardRef(({ className, disabled, eventKey, children, badge,
     >
       {active && (
         <div className={classNames(
-          'SidebarMenu-itemAfter',
+          'SidebarMenu-itemAfter u-widthTiny u-zIndexPositive',
           'u-positionAbsolute u-positionLeft u-positionTop u-backgroundPrimary u-heightFull',
         )}
         />

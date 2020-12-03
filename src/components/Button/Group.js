@@ -26,7 +26,7 @@ const Group = React.forwardRef(({ className, sizeControl, disabledControl, as: C
         {...props}
         ref={ref}
         className={classNames(
-          'ButtonGroup',
+          'ButtonGroup u-positionRelative u-flexInline',
           className && className,
         )}
       />

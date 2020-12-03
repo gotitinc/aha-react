@@ -68,7 +68,7 @@ const Tab = React.forwardRef(({ className, children, current, fullWidth, onSelec
       >
         {modifiedChildren}
         {direction === 'vertical' && (
-          <div className="Tab--leftLine u-positionAbsolute u-positionLeft u-heightFull u-backgroundLighter" />
+          <div className="Tab--leftLine u-widthExtraTiny u-positionAbsolute u-positionLeft u-heightFull u-backgroundLighter" />
         )}
       </div>
     </TabContext.Provider>

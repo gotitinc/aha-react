@@ -64,7 +64,7 @@ const SubMenu = React.forwardRef(({ level, eventKey, className, isSubItem, title
       {...menuProps}
       onToggle={onClick}
       className={classNames(
-        'TopMenu-subMenu u-alignItemsCenter',
+        'TopMenu-subMenu u-alignItemsCenter u-paddingVerticalExtraTiny',
         isSubItem ? 'u-flex' : 'u-flexInline',
         (index > 0 && !isSubItem) && 'u-marginLeftSmall lg:u-marginLeftLarge',
       )}
@@ -98,12 +98,12 @@ const SubMenu = React.forwardRef(({ level, eventKey, className, isSubItem, title
           {(active && !isSubItem) && (
           <>
             <div className={classNames(
-              'TopMenu-itemBefore',
+              'TopMenu-itemBefore u-heightExtraTiny u-zIndexPosition',
               'u-positionAbsolute u-positionLeft u-positionTop u-backgroundTransparent u-widthFull',
             )}
             />
             <div className={classNames(
-              'TopMenu-itemAfter',
+              'TopMenu-itemAfter u-heightExtraTiny u-zIndexPosition',
               'u-positionAbsolute u-positionLeft u-positionBottom u-backgroundPrimary u-widthFull',
             )}
             />

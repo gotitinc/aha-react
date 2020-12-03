@@ -65,7 +65,7 @@ const SubMenu = React.forwardRef(({ level, eventKey, className, isSubItem, title
       ref={ref}
       {...props}
       className={classNames(
-        'SidebarMenu-subMenu',
+        'SidebarMenu-subMenu u-positionRelative',
         className && className,
         (open || active) && 'is-showing',
         disabled ? 'u-pointerEventsNone u-cursorNotAllow' : 'u-cursorPointer',
@@ -73,7 +73,7 @@ const SubMenu = React.forwardRef(({ level, eventKey, className, isSubItem, title
     >
       {((open || active) && !isSubItem) && (
       <div className={classNames(
-        'SidebarMenu-itemAfter',
+        'SidebarMenu-itemAfter u-widthTiny u-zIndexPositive',
         'u-positionAbsolute u-positionLeft u-positionTop u-backgroundPrimaryLight u-heightFull',
       )}
       />
