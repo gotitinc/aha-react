@@ -44,10 +44,10 @@ const Item = React.forwardRef(({ className, disabled, eventKey, index, fullWidth
     >
       {active && (
         <div className={classNames(
-          'Tab-itemAfter',
+          'Tab-itemAfter u-zIndex2',
           'u-positionAbsolute u-backgroundPrimary',
           visual === 'filled' ? ' u-positionTop' : 'u-positionBottom',
-          direction !== 'vertical' && 'u-widthFull'
+          direction !== 'vertical' ? 'u-heightExtraTiny u-widthFull' : 'u-widthExtraTiny u-heightFull',
         )}
         />
       )}

@@ -198,7 +198,7 @@ const Rating = React.forwardRef(({ className, readOnly, icon, emptyIcon, value: 
       <div className="Rating-item" key={propsItem.value}>
         <label className="Rating-itemLabel u-cursorPointer" htmlFor={id}>
           {container}
-          <span className="Rating-visuallyHidden u-positionAbsolute u-overflowHidden">{getLabelText(propsItem.value)}</span>
+          <span className="Rating-visuallyHidden u-widthMiniscule u-heightMiniscule u-positionAbsolute u-overflowHidden">{getLabelText(propsItem.value)}</span>
         </label>
         <input
           onChange={handleChange}
@@ -209,7 +209,7 @@ const Rating = React.forwardRef(({ className, readOnly, icon, emptyIcon, value: 
           type="radio"
           name={name}
           checked={state.checked}
-          className="Rating-visuallyHidden u-positionAbsolute u-overflowHidden"
+          className="Rating-visuallyHidden u-widthMiniscule u-heightMiniscule u-positionAbsolute u-overflowHidden"
         />
       </div>
     );

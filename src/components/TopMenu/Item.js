@@ -42,7 +42,7 @@ const Item = React.forwardRef(({ className, disabled, eventKey, children, badge,
     <div
       onClick={disabled ? null : onClick}
       className={classNames(
-        'TopMenu-item u-positionRelative',
+        'TopMenu-item u-positionRelative u-paddingVerticalExtraTiny',
         (index > 0 && !isSubItem) && 'u-marginLeftLarge',
         active && 'is-active',
         isSubItem ? 'u-flex hover:u-backgroundLightest u-paddingHorizontalSmall' : 'u-flexInline u-alignItemsCenter',
@@ -52,12 +52,12 @@ const Item = React.forwardRef(({ className, disabled, eventKey, children, badge,
       {(active && !isSubItem) && (
       <>
         <div className={classNames(
-          'TopMenu-itemBefore',
+          'TopMenu-itemBefore u-heightExtraTiny u-zIndexPosition',
           'u-positionAbsolute u-positionLeft u-positionTop u-backgroundTransparent u-widthFull',
         )}
         />
         <div className={classNames(
-          'TopMenu-itemAfter',
+          'TopMenu-itemAfter u-heightExtraTiny u-zIndexPosition',
           'u-positionAbsolute u-positionLeft u-positionBottom u-backgroundPrimary u-widthFull',
         )}
         />

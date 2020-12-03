@@ -173,7 +173,6 @@ const sizes = {
 };
 const styles = {
   svg: {
-    display: 'inline-block',
     verticalAlign: 'middle',
   },
   path: {
@@ -190,6 +189,7 @@ const Icon = React.forwardRef(({ className, size, name, ...props }, ref) => (
     width={`${sizes[size]}px`}
     height={`${sizes[size]}px`}
     className={classNames(
+      'u-inlineBlock',
       className && className
     )}
     viewBox="0 0 24 24"
