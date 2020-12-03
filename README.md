@@ -1,6 +1,6 @@
 <h3 align="center">Aha Design System - React</h3>
 <p align="center">
-  Collection of React Components based on Aha Design System.
+  Collection of React Components for building web applications.
   <br>
   <a href="https://aha.got-it.ai"><strong>Explore Aha docs »</strong></a>
   <br>
@@ -12,12 +12,71 @@
 
 ## Quick start
 
-Several quick start options are available:
+### Installation
+You have to install both `@ahaui/react` and `@ahaui/css`
+```sh
+# With npm
+npm install @ahaui/react @ahaui/css
 
-- Clone the repo: `git clone https://github.com/gotitinc/aha-react.git`
-- Install with [npm](https://www.npmjs.com/): `npm install @aha/react`
-- Install with [yarn](https://yarnpkg.com/): `yarn add @aha/react`
+# Or with yarn
+yarn add @ahaui/react @ahaui/css
+```
 
-## Copyright and license
+### Usage
+```jsx
+import '@ahaui/css/dist/index.min.css';
+import React from 'react';
+import { Button } from '@ahaui/react';
+
+function Example() {
+  const onButtonClick = () => {
+    alert('Aha!');
+  };
+
+  return (
+    <Button
+      onClick={onButtonClick}
+    >
+      Click me!
+    </Button>
+  );
+}
+```
+**Aha!** Just simple as that!
+
+## Customizarion
+
+### Plugins
+You can customize specific Aha React Components via plugins!
+
+For now, to provide your custom assets to [Logo](./src/components/Logo/index.js), [Avatar](./src/components/Avatar/index.js), [EmptyState](./src/components/Logo/index.js), you can use [AssetPlugin](./src/plugins/AssetPlugin.js).
+```jsx
+import { AssetPlugin, Plugins, Logo } from '@ahaui/react';
+
+const LogoAssetsPlugin = new AssetPlugin({
+  prefix: 'logo',
+  assets: {
+    mylogo: require('./assets/images/logo/my-logo.svg').default,
+    foobar: 'https://foo.bar/image.jpg',
+  }
+});
+
+Plugins.loadPlugin(LogoAssetsPlugin);
+
+function Example() {
+  return (
+    <Logo name="mylogo" />
+  );
+}
+```
+
+Various types of plugin will be developed in the future, stay tune!
+
+Plugins could also be published standalone as a npm package (follow the template [here](https://github.com/gotitinc/aha-plugin-example)).
+
+### Custom CSS
+Further instruction could be found in [here](https://github.com/gotitinc/aha-css#custom).
+
+## Copyright and License
 
 Code and documentation copyright 2020 the [Got It, Inc.](https://www.got-it.ai) Code released under the [Apache-2.0 License](https://github.com/gotitinc/aha-react/blob/master/LICENSE).
