@@ -46,7 +46,7 @@ const defaultProps = {
 
 
 const Modal = React.forwardRef(({ children, size, show, onHide, relative, centered, transition: Transition, ...props }, ref) => {
-  const modalContainerId = 'gotit-design-system-modal-backdrop';
+  const modalContainerId = 'aha-design-system-react-modal-backdrop';
   const [modalContainer, setModalContainer] = useState();
   useEffect(() => {
     let modalRoot = document.body.querySelector(`#${modalContainerId}`);
