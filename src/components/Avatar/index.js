@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { PluginType } from '../../constants/common';
+import Plugins from '../../plugins';
 
 const propTypes = {
   /** The Avatar visual name, should be provide via an AssetPlugin with prefix "avatar" */
@@ -34,15 +36,24 @@ const propTypes = {
 
 const defaultProps = {
   size: 'medium',
-  name: 'default',
   alt: 'Avatar',
 };
 
 const Avatar = React.forwardRef(({ className, size, name, src, alt, height, width, text, as: Component = 'div', ...props }, ref) => {
-  // let nameOri = name;
-  // if (src || text) {
-  //   nameOri = false;
-  // }
+  let nameOri = name;
+  let srcOri = src;
+  let textOri = text;
+  if (srcOri) {
+    nameOri = false;
+    textOri = false;
+  } else if (textOri) {
+    nameOri = false;
+  } else if (nameOri) {
+    srcOri = Plugins
+      .getPlugins(PluginType.ASSET)
+      .traverseCall('getAsset', 'avatar', nameOri)
+      .find(asset => !!asset);
+  }
   const heightStyle = {
     width: width && width,
     height: height && height,
@@ -63,11 +74,11 @@ const Avatar = React.forwardRef(({ className, size, name, src, alt, height, widt
         className && className
       )}
     >
-      {src && (
-        <img src={src} alt={alt} className="u-maxWidthFull u-roundedCircle u-positionAbsolute u-borderNone u-positionFull u-widthFull u-heightFull" />
+      {srcOri && (
+        <img src={srcOri} alt={alt} className="u-maxWidthFull u-roundedCircle u-positionAbsolute u-borderNone u-positionFull u-widthFull u-heightFull" />
       )}
-      {text && (
-        <div className="u-lineHeightReset u-positionAbsolute u-positionCenter">{text}</div>
+      {textOri && (
+        <div className="u-lineHeightReset u-positionAbsolute u-positionCenter">{textOri}</div>
       )}
     </Component>
   );

@@ -1,6 +1,6 @@
 {
   "name": "@ahaui/react",
-  "version": "2.0.0",
+  "version": "2.0.0-alpha.1",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
@@ -16,7 +16,7 @@
     "lint": "eslint --ext js src"
   },
   "publishConfig": {
-    "access": "restricted"
+    "access": "public"
   },
   "dependencies": {
     "@restart/hooks": "0.3.14",
@@ -77,6 +77,8 @@
     "eslint-plugin-react": "7.12.3",
     "file-loader": "4.2.0",
     "fs-extra": "7.0.1",
+    "husky": ">=4",
+    "lint-staged": "^10.5.2",
     "moment": "^2.24.0",
     "nested-object-assign": "1.0.3",
     "react": "16.9.0",
@@ -90,26 +92,31 @@
     "webpack-node-externals": "1.7.2"
   },
   "peerDependencies": {
+    "@ahaui/css": "^2.0.0",
     "react": "^16.9.0",
-    "react-dom": "^16.9.0",
-    "@ahaui/css": "^2.0.0"
+    "react-dom": "^16.9.0"
   },
   "lint-staged": {
-    "*.{js,ts,tsx}": "eslint --fix"
+    "*.js": "eslint --cache --fix"
   },
   "prettier": {
     "singleQuote": true,
     "trailingComma": "all"
   },
-  "author": "Got It, inc.",
+  "author": "Got It, Inc.",
   "homepage": "https://github.com/gotitinc/aha-react#readme",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gotitinc/aha-react.git"
   },
-  "description": "Got It Aha Design System - React",
+  "description": "Aha Design System - React",
   "directories": {
     "lib": "lib"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
