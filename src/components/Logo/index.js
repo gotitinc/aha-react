@@ -30,7 +30,6 @@ const Logo = React.forwardRef(({ className, name, src, alt, height, width, as: C
       .traverseCall('getAsset', 'logo', nameOri)
       .find(asset => !!asset);
   }
-  console.log({ srcOri });
   return (
     <Component
       {...props}
