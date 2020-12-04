@@ -1,3 +1,9 @@
+<p align="center">
+  <a href="https://aha.got-it.ai">
+    <img src="https://raw.githubusercontent.com/gotitinc/aha-assets/master/origin/ahaui-logo-trasparent.svg" alt="Aha logo" width="150" height="150">
+  </a>
+</p>
+
 <h3 align="center">Aha Design System - React</h3>
 <p align="center">
   Collection of React Components for building web applications.
@@ -44,7 +50,7 @@ function Example() {
 ```
 **Aha!** Just simple as that!
 
-## Customizarion
+## Customization
 
 ### Plugins
 You can customize specific Aha React Components via plugins!
