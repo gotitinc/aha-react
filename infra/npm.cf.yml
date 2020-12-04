@@ -7,7 +7,6 @@ Metadata:
       - Label:
           default: "Configurations"
         Parameters:
-          - EnvironmentType
           - ApplicationName
           - GitHubOwner
           - GitHubRepo
@@ -39,13 +38,6 @@ Parameters:
     AllowedValues:
       - cf-templates-5bizf5p6pxoh-us-east-2
     Description: Name of existing S3 bucket for storing pipeline artifacts
-  EnvironmentType:
-    Description: Environment Type
-    Type: String
-    Default: prod
-    AllowedValues:
-      - prod
-      - alpha
   NPMTag:
     Description: Tag for NPM release
     Type: String
@@ -134,8 +126,6 @@ Resources:
         Image: aws/codebuild/nodejs:10.14.1
         Type: LINUX_CONTAINER
         EnvironmentVariables:
-          - Name: REACT_APP_ENV
-            Value: !Sub ${EnvironmentType}
           - Name: NPM_TOKEN
             Value: '{{resolve:ssm:/SETTING/PROD/FRONTEND/AHA_UI_PUBLISH_NPM_TOKEN:1}}'
           - Name: NPM_TAG

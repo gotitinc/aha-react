@@ -16,7 +16,7 @@ if (!NODE_ENV) {
 
 // https://github.com/bkeepers/dotenv#what-other-env-files-can-i-use
 const dotenvFiles = [
-  `${paths.dotenv}.${process.env.REACT_APP_ENV}`,
+  `${paths.dotenv}.${process.env.NODE_ENV}`,
   paths.dotenv,
 ].filter(Boolean);
 
