@@ -65,7 +65,7 @@ const TopBanner = React.forwardRef((uncontrolledProps, ref) => {
         <img src={bgImage} alt="" />
       </div>
       )}
-      <div className="u-positionRelative u-flexGrow-1 u-alignSelfCenter u-textCenter">
+      <div className="u-positionRelative u-flexGrow1 u-alignSelfCenter u-textCenter">
         {children}
       </div>
       {dismissible && (

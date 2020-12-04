@@ -128,10 +128,10 @@ const FileAttachment = React.forwardRef((uncontrolledProps, ref) => {
         </button>
       )}
       <div className="FileAttachment-context u-flex u-paddingTiny u-alignItemsCenter">
-        <div className="FileAttachment-iconWrap u-flexShrink-0 u-positionRelative">
+        <div className="FileAttachment-iconWrap u-flexShrink0 u-positionRelative">
           <Icon name={fileType && fileTypeMeta[fileType].icon} size="large" className="FileAttachment-icon u-textPrimary" />
         </div>
-        <div className="FileAttachment-info u-flexGrow-1 u-paddingLeftTiny u-paddingRightExtraSmall u-overflowHidden">
+        <div className="FileAttachment-info u-flexGrow1 u-paddingLeftTiny u-paddingRightExtraSmall u-overflowHidden">
           <div className="FileAttachment-title u-text200 u-fontMedium u-textUppercase">{fileTypeLabel || (fileType && fileTypeMeta[fileType].label)}</div>
           <div className="FileAttachment-description u-text100 u-textLight u-textTruncate">{fileName || 'undefined'}</div>
         </div>

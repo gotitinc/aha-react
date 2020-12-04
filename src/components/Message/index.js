@@ -120,7 +120,7 @@ const Message = React.forwardRef((uncontrolledProps, ref) => {
   );
 });
 const Content = createBlock('Message-content');
-const Container = createBlock('Message-container u-paddingSmall u-flexGrow-1');
+const Container = createBlock('Message-container u-paddingSmall u-flexGrow1');
 Message.Title = Title;
 Message.Content = Content;
 Message.Container = Container;
