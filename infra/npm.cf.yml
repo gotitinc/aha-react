@@ -51,20 +51,6 @@ Parameters:
     Type: String
     Default: latest
 
-Mappings:
-  PublicHostedZones:
-    prod:
-      id: 'Z2SDHRMFXAGDZ4'
-      zone: 'got-it.ai'
-    alpha:
-      id: 'Z2SDHRMFXAGDZ4'
-      zone: 'got-it.ai'
-  ACMCertifficates:
-    prod:
-      arn: "arn:aws:acm:us-east-1:551980366224:certificate/38693dbf-4f98-4b9d-ae09-7f85e09a341a"
-    alpha:
-      arn: "arn:aws:acm:us-east-1:551980366224:certificate/38693dbf-4f98-4b9d-ae09-7f85e09a341a"
-
 Resources:
   CodeBuildRole:
     Type: AWS::IAM::Role
