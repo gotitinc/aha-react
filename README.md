@@ -16,6 +16,13 @@
   <a href="https://github.com/gotitinc/aha-react/issues/new?template=feature_request.md">Request feature</a>
 </p>
 
+## Status
+[![CI](https://github.com/gotitinc/aha-react/workflows/Lint/badge.svg)](https://github.com/gotitinc/aha-react/actions)
+![npm bundle size](https://img.shields.io/bundlephobia/min/@ahaui/react)
+[![npm version](https://img.shields.io/npm/v/@ahaui/react)](https://www.npmjs.com/package/@ahaui/react)
+[![peerDependencies Status](https://img.shields.io/david/peer/gotitinc/aha-react)](https://david-dm.org/gotitinc/aha-react?type=peer)
+[![devDependency Status](https://img.shields.io/david/dev/gotitinc/aha-react)](https://david-dm.org/gotitinc/aha-react?type=dev)
+
 ## Quick start
 
 ### Installation
