@@ -43,7 +43,7 @@ const SessionType = React.forwardRef(({ className, label, leftLabel, variant, as
       className && className
     )}
   >
-    <div className="u-flexShrink-0 u-flex u-alignItemsCenter">
+    <div className="u-flexShrink0 u-flex u-alignItemsCenter">
       <Icon name="informationCircleOutline" />
       {label && (
       <span className="u-text300 u-fontMedium u-marginHorizontalExtraSmall">

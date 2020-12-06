@@ -15,7 +15,7 @@ const ChatBox = React.forwardRef(({ className, ...props }, ref) => (
     {...props}
     className={classNames(
       'ChatBox',
-      'u-flex u-flexColumn u-positionRelative u-flexGrow-1',
+      'u-flex u-flexColumn u-positionRelative u-flexGrow1',
       className && className
     )}
   />
@@ -26,7 +26,7 @@ const List = React.forwardRef(({ className, children, innerClassName, ...props }
     ref={ref}
     {...props}
     className={classNames(
-      'ChatBox-list u-positionRelative u-flexGrow-1 u-flexShrink-1',
+      'ChatBox-list u-positionRelative u-flexGrow1 u-flexShrink1',
       className && className
     )}
   >

@@ -67,12 +67,12 @@ const Item = React.forwardRef(({ className, disabled, eventKey, children, badge,
         ref={ref}
         {...props}
         className={classNames(
-          'u-positionRelative u-flexInline u-flexGrow-1 u-paddingVerticalTiny hover:u-textDecorationNone',
+          'u-positionRelative u-flexInline u-flexGrow1 u-paddingVerticalTiny hover:u-textDecorationNone',
           active ? 'u-textLink' : !disabled && 'u-textDark hover:u-textLink',
           disabled && 'u-textLight'
         )}
       >
-        <div className="u-flexGrow-1">
+        <div className="u-flexGrow1">
           {children}
         </div>
 

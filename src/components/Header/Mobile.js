@@ -123,8 +123,8 @@ HeaderContext.propTypes = {
   /** */
   classNameToggle: PropTypes.string,
 };
-const Brand = createBlock('HeaderMobile-brand u-lineHeightReset u-fontSizeNone u-flexShrink-0 u-marginRightSmall u-paddingVerticalExtraSmall');
-const Main = createBlock('HeaderMobile-main u-flex u-flexGrow-1 u-justifyContentEnd u-paddingVerticalExtraSmall');
+const Brand = createBlock('HeaderMobile-brand u-lineHeightReset u-fontSizeNone u-flexShrink0 u-marginRightSmall u-paddingVerticalExtraSmall');
+const Main = createBlock('HeaderMobile-main u-flex u-flexGrow1 u-justifyContentEnd u-paddingVerticalExtraSmall');
 const AfterContext = createBlock('HeaderMobile-afterContext');
 
 HeaderMobile.Main = Main;
