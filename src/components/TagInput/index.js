@@ -69,7 +69,7 @@ const TagInput = React.forwardRef(({ className, variant, value, size, onChange, 
       className={classNames(
         'TagInput',
         sizeOri && `TagInput--${sizeOri}`,
-        'u-backgroundWhite u-flexGrow-1 u-roundedMedium u-border u-paddingVerticalTiny u-paddingHorizontalExtraSmall u-sizeFill',
+        'u-backgroundWhite u-flexGrow1 u-roundedMedium u-border u-paddingVerticalTiny u-paddingHorizontalExtraSmall u-sizeFill',
         className && className
       )}
       value={value}

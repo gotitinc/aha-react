@@ -78,7 +78,7 @@ const Item = React.forwardRef(({ className, disabled, eventKey, children, badge,
             marginTop: sizeMenu === 'small' ? '2px' : undefined,
           }}
           className={classNames(
-            'u-flexShrink-0',
+            'u-flexShrink0',
             (active && !disabled) ? 'u-textPrimary' : 'u-textDark',
             disabled && 'u-textLight',
           )}
@@ -89,12 +89,12 @@ const Item = React.forwardRef(({ className, disabled, eventKey, children, badge,
         ref={ref}
         {...props}
         className={classNames(
-          'u-flex u-flexGrow-1 u-paddingHorizontalExtraSmall hover:u-textDecorationNone u-textWordWrap',
+          'u-flex u-flexGrow1 u-paddingHorizontalExtraSmall hover:u-textDecorationNone u-textWordWrap',
           active ? 'u-textPrimary u-fontMedium' : !disabled && 'u-textDark hover:u-textDark',
           disabled && 'u-textLight',
         )}
       >
-        <div className="u-flexGrow-1">
+        <div className="u-flexGrow1">
           {children}
         </div>
 

@@ -76,7 +76,7 @@ const Separator = React.forwardRef(({ className, label, lineType, variant, as: C
       <React.Fragment>
         <div className={classNames(
           'Separator-label',
-          'u-flexShrink-0 u-paddingHorizontalExtraSmall u-fontMedium',
+          'u-flexShrink0 u-paddingHorizontalExtraSmall u-fontMedium',
           variant && variantsClassName[variant].label,
         )}
         >

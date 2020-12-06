@@ -98,7 +98,7 @@ const SubMenu = React.forwardRef(({ level, eventKey, className, isSubItem, title
               marginTop: sizeMenu === 'small' ? '2px' : undefined,
             }}
             className={classNames(
-              'u-flexShrink-0',
+              'u-flexShrink0',
               ((open || active) && !disabled) ? 'u-textDark' : 'u-textDark',
               disabled && 'u-textLight',
             )}
@@ -107,12 +107,12 @@ const SubMenu = React.forwardRef(({ level, eventKey, className, isSubItem, title
         )}
         <span
           className={classNames(
-            'u-flex u-flexGrow-1 u-paddingHorizontalExtraSmall hover:u-textDecorationNone',
+            'u-flex u-flexGrow1 u-paddingHorizontalExtraSmall hover:u-textDecorationNone',
           )}
         >
 
           <div className={classNames(
-            'u-flexGrow-1 u-textWordWrap',
+            'u-flexGrow1 u-textWordWrap',
             sizeMenu === 'small' && 'u-text200',
             (open || active) ? 'u-textDark u-fontMedium' : 'u-textDark',
           )}

@@ -34,7 +34,7 @@ const Item = React.forwardRef(({ className, disabled, eventKey, index, fullWidth
       className={classNames(
         'Tab-item u-flex u-positionRelative',
         (index > 0 && !fullWidth && (direction !== 'vertical') && (visual !== 'filled')) && 'u-marginLeftSmall',
-        fullWidth && 'u-flexGrow-1',
+        fullWidth && 'u-flexGrow1',
         (index > 0 && visual === 'filled' && (direction !== 'vertical')) && 'u-borderLeft',
         (index > 0 && visual === 'filled' && (direction === 'vertical')) && 'u-borderTop',
         active && 'is-active',
@@ -55,7 +55,7 @@ const Item = React.forwardRef(({ className, disabled, eventKey, index, fullWidth
         ref={ref}
         {...props}
         className={classNames(
-          'u-flexGrow-1 u-paddingVerticalTiny md:u-paddingVerticalExtraSmall hover:u-textDecorationNone',
+          'u-flexGrow1 u-paddingVerticalTiny md:u-paddingVerticalExtraSmall hover:u-textDecorationNone',
           active ? 'u-textPrimary' : !disabled && 'u-textGray hover:u-textPrimary',
           (visual === 'filled' && active) && 'u-backgroundWhite',
           (visual === 'filled' && !active) && 'u-backgroundLightest',

@@ -69,7 +69,7 @@ const Composer = React.forwardRef(({ className, children, sendButtonIcon, iconLe
     {!disabledAttachButton && (
 
 
-    <div className="u-flexShrink-0 u-marginRightTiny">
+    <div className="u-flexShrink0 u-marginRightTiny">
       {tooltipAttachButton ? (
         <Overlay.Trigger
           placement="top-start"
@@ -143,7 +143,7 @@ const Composer = React.forwardRef(({ className, children, sendButtonIcon, iconLe
           <div
             {...sendButtonProps}
             className={classNames(
-              'u-roundedMedium u-flex u-alignItemsCenter u-justifyContentCenter u-flexShrink-0 u-marginLeftTiny',
+              'u-roundedMedium u-flex u-alignItemsCenter u-justifyContentCenter u-flexShrink0 u-marginLeftTiny',
               sendButtonActive ? 'hover:u-backgroundPrimary hover:u-textWhite u-textPrimary u-cursorPointer' : 'u-textLight u-cursorNotAllow u-pointerEventsNone'
             )}
             style={{
@@ -160,7 +160,7 @@ const Composer = React.forwardRef(({ className, children, sendButtonIcon, iconLe
         <div
           {...sendButtonProps}
           className={classNames(
-            'u-roundedMedium u-flex u-alignItemsCenter u-justifyContentCenter u-flexShrink-0 u-marginLeftTiny',
+            'u-roundedMedium u-flex u-alignItemsCenter u-justifyContentCenter u-flexShrink0 u-marginLeftTiny',
             sendButtonActive ? 'hover:u-backgroundPrimary hover:u-textWhite u-textPrimary u-cursorPointer' : 'u-textLight u-cursorNotAllow u-pointerEventsNone'
           )}
           style={{

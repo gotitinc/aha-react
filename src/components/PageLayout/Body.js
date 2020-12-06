@@ -15,7 +15,7 @@ export const PageLayoutBody = React.forwardRef(({ className, children, ...props 
       {...mergeProps}
       className={classNames(
         'PageLayout-body',
-        'u-flex u-flexGrow-1',
+        'u-flex u-flexGrow1',
         className && className,
         bodyProps.className && bodyProps.className
       )}

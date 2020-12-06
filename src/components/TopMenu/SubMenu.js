@@ -81,7 +81,7 @@ const SubMenu = React.forwardRef(({ level, eventKey, className, isSubItem, title
         )}
         >
           <span className={classNames(
-            isSubItem && 'u-flexGrow-1'
+            isSubItem && 'u-flexGrow1'
           )}
           >
             {title}
@@ -94,7 +94,7 @@ const SubMenu = React.forwardRef(({ level, eventKey, className, isSubItem, title
               }
             </span>
           )}
-          <Icon name={isSubItem ? 'arrowForward' : 'arrowDown'} size="tiny" className="u-marginLeftExtraSmall SidebarMenu-iconAppend u-flexShrink-0" style={{ marginTop: isSubItem && 6 }} />
+          <Icon name={isSubItem ? 'arrowForward' : 'arrowDown'} size="tiny" className="u-marginLeftExtraSmall SidebarMenu-iconAppend u-flexShrink0" style={{ marginTop: isSubItem && 6 }} />
           {(active && !isSubItem) && (
           <>
             <div className={classNames(
