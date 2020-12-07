@@ -115,7 +115,7 @@ const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant,
           {(avatar && type !== 'inbound') && (
             <div className="u-flexShrink0 u-marginRightExtraSmall u-marginTopExtraSmall">
               {
-                typeof (avatar) === 'function' ? avatar() : <Avatar src={avatar} size="small" />
+                typeof (avatar) === 'function' ? avatar() : <Avatar name={avatar} size="small" />
               }
             </div>
           )}
@@ -223,7 +223,7 @@ const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant,
           {(avatar && (type !== 'outbound' && type !== 'system')) && (
             <div className="u-flexShrink0 u-marginLeftExtraSmall u-marginTopExtraSmall">
               {
-              typeof (avatar) === 'function' ? avatar() : <Avatar src={avatar} size="small" />
+              typeof (avatar) === 'function' ? avatar() : <Avatar name={avatar} size="small" />
             }
             </div>
           )}
