@@ -49,11 +49,9 @@ const defaultProps = {
   attachButtonProps: {},
   disabledAttachButton: false,
   disabledSendButton: true,
-  tooltipAttachButton: false,
   sendButtonProps: {},
   sendButtonActive: false,
   sendButtonIcon: 'send',
-  tooltipSendButton: false,
 };
 
 const Composer = React.forwardRef(({ className, children, sendButtonIcon, iconLeft, label, number, inputProps, disabledAttachButton, tooltipAttachButton, attachButtonProps, sendButtonProps, disabledSendButton, sendButtonActive, tooltipSendButton, as: Component = 'div', ...props }, ref) => (
