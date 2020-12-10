@@ -105,7 +105,7 @@ const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant,
     else if (type === 'outbound') variantOri = 'light';
   }
   const context = useMemo(() => ({ type }), [type]);
-  console.log({variantOri})
+  console.log({ variantOri });
   return (
     <Context.Provider value={context}>
       <div
