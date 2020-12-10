@@ -71,12 +71,18 @@ const defaultProps = {
   type: 'inbound',
 };
 
+const variantTextClassNames = {
+  primary: 'u-textWhite',
+  dark: 'u-textWhite',
+  transparentDark: 'u-textWhite',
+};
+
 const variantClassNames = {
-  primary: 'u-backgroundPrimary u-textWhite',
+  primary: 'u-backgroundPrimary',
   primaryLight: 'u-backgroundPrimaryLight',
   light: 'u-backgroundLightest',
-  dark: 'u-backgroundSemiDark u-textWhite',
-  transparentDark: 'u-backgroundTransparent u-textWhite',
+  dark: 'u-backgroundSemiDark',
+  transparentDark: 'u-backgroundTransparent',
   transparentLight: 'u-backgroundTransparent',
 };
 
@@ -93,7 +99,13 @@ const typeRadiusClassNames = {
 };
 
 const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant, time, avatar, options, currentOption, onSelectOption, disabledOption, children, onClickText, actionBar, actionBarClassName, textClassName, ...props }, ref) => {
+  let variantOri = variant;
+  if (variant === undefined) {
+    if (type === 'inbound') variantOri = 'primary';
+    else if (type === 'outbound') variantOri = 'light';
+  }
   const context = useMemo(() => ({ type }), [type]);
+  console.log({variantOri})
   return (
     <Context.Provider value={context}>
       <div
@@ -140,8 +152,7 @@ const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant,
                     'BubbleChat-typing',
                     'u-paddingExtraSmall u-positionRelative',
                     type && typeThemeClassNames[type],
-                    (type === 'inbound' && !variant) ? variantClassNames.primary : variantClassNames[variant],
-                    (type === 'outbound' && !variant) ? variantClassNames.light : variantClassNames[variant],
+                    variantOri && variantClassNames[variantOri],
                   )}
                 >
                   <div className="BubbleChat-typingContext u-positionRelative u-fontSizeNone" style={{ width: 32, height: 10 }} />
@@ -172,9 +183,9 @@ const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant,
                         'BubbleChat-text',
                         'u-paddingVerticalExtraSmall u-paddingHorizontalSmall u-textPreLine',
                         type && typeThemeClassNames[type],
-                        textClassName && textClassName,
-                        (type === 'inbound' && !variant) ? variantClassNames.primary : variantClassNames[variant],
-                        (type === 'outbound' && !variant) ? variantClassNames.light : variantClassNames[variant],
+                        ((variantOri === 'primary' || variantOri === 'dark' || variantOri === 'transparentDark') && textClassName) ? textClassName : variantTextClassNames[variantOri],
+                        variantOri && variantClassNames[variantOri],
+
                       )}
                       onClick={onClickText}
                     >
@@ -192,10 +203,13 @@ const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant,
                           onClick={disabledOption ? null : () => onSelectOption(option.id)}
                           className={classNames(
                             'u-paddingExtraSmall u-textCenter',
+                            `Op-${variantOri}`,
                             (idx !== 0) && 'u-borderTop u-borderUltraLight',
                             disabledOption ? 'u-cursorNotAllow' : 'u-cursorPointer',
                             (!disabledOption && option.id !== currentOption) && 'hover:u-backgroundLightest',
-                            (option.id === currentOption) && 'u-backgroundPrimary u-textWhite'
+                            (option.id === currentOption) && 'u-backgroundPrimary',
+                            (option.id === currentOption && !textClassName) && 'u-textWhite',
+                            (option.id === currentOption && textClassName) && textClassName
                           )}
                         >
                           {option.name}
