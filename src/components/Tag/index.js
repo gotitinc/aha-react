@@ -20,6 +20,11 @@ const propTypes = {
     'negative',
     'negative_subtle',
   ]),
+  /** Fixed className for text color, just available for variant: `primary`, `primary_subtle`, `accent`, `accent_subtle` */
+  textClassName: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+  ]),
   /**
    * You can use a custom element type for this component.
    * @default span
@@ -28,6 +33,15 @@ const propTypes = {
 };
 const defaultProps = {
   variant: 'primary',
+  textClassName: false,
+};
+
+
+const variantsTextClassName = {
+  primary: 'u-textWhite hover:u-textWhite',
+  primary_subtle: 'u-textPrimary hover:u-textPrimary',
+  accent: 'u-textWhite hover:u-textWhite ',
+  accent_subtle: 'u-textDark hover:u-textDark ',
 };
 
 const variantsClassName = {
@@ -37,8 +51,8 @@ const variantsClassName = {
   primary_subtle: 'u-textDark hover:u-textDark u-backgroundPrimaryLighter',
   information: 'u-textWhite hover:u-textWhite u-backgroundInformation',
   information_subtle: 'u-textInformation hover:u-textInformation u-backgroundInformationLighter',
-  accent: 'u-textWhite hover:u-textWhite u-backgroundAccent',
-  accent_subtle: 'u-textDark hover:u-textDark u-backgroundAccentLighter',
+  accent: 'u-backgroundAccent',
+  accent_subtle: 'u-backgroundAccentLighter',
   warning: 'u-textDark hover:u-textDark u-backgroundWarning',
   warning_subtle: 'u-textDark hover:u-textDark u-backgroundWarningLighter',
   positive: 'u-textWhite hover:u-textWhite u-backgroundPositive',
@@ -47,7 +61,7 @@ const variantsClassName = {
   negative_subtle: 'u-textDark hover:u-textDark u-backgroundNegativeLighter',
 };
 
-const Tag = React.forwardRef(({ className, variant, as: Component = 'span', ...props }, ref) => (
+const Tag = React.forwardRef(({ className, textClassName, variant, as: Component = 'span', ...props }, ref) => (
   <Component
     {...props}
     ref={ref}
@@ -55,6 +69,7 @@ const Tag = React.forwardRef(({ className, variant, as: Component = 'span', ...p
       'Tag',
       'u-flexInline u-alignItemsCenter u-textCenter u-textNoWrap u-roundedMedium u-text200 hover:u-textDecorationNone',
       variant && variantsClassName[variant],
+      ((variant === 'primary' || variant === 'accent' || variant === 'primary_subtle' || variant === 'accent_subtle') && textClassName) ? textClassName : variantsTextClassName[variant],
       className && className
     )}
   />

@@ -13,7 +13,9 @@
     "prepublishOnly": "yarn build",
     "start": "node scripts/start",
     "format": "eslint --ext js src --fix",
-    "lint": "eslint --ext js src"
+    "lint": "eslint --ext js src",
+    "prepack": "clean-package -rm devDependencies scripts",
+    "postpack": "clean-package restore"
   },
   "publishConfig": {
     "access": "public"
@@ -36,7 +38,6 @@
     "react-time-picker": "3.9.0",
     "react-toastify": "^6.0.5",
     "react-transition-group": "4.0.0",
-    "slick-carousel": "1.8.1",
     "uncontrollable": "7.0.2",
     "warning": "4.0.3"
   },
@@ -65,6 +66,7 @@
     "babel-preset-react-app": "6.1.0",
     "case-sensitive-paths-webpack-plugin": "2.2.0",
     "clean-css": "^4.2.3",
+    "clean-package": "^1.0.1",
     "css-loader": "3.2.0",
     "dotenv": "8.2.0",
     "eslint": "5.12.0",
