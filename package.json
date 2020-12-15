@@ -21,7 +21,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@restart/hooks": "0.3.14",
+    "@restart/hooks": "0.3.25",
     "@wojtekmaj/predict-input-value": "1.0.0",
     "@wojtekmaj/react-daterange-picker": "2.5.0",
     "classnames": "2.2.6",
@@ -38,7 +38,7 @@
     "react-time-picker": "3.9.0",
     "react-toastify": "^6.0.5",
     "react-transition-group": "4.0.0",
-    "uncontrollable": "7.0.2",
+    "uncontrollable": "7.1.1",
     "warning": "4.0.3"
   },
   "devDependencies": {
