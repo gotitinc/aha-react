@@ -11,6 +11,10 @@ const propTypes = {
    */
   href: PropTypes.string,
   /**
+   * Non-render the SafeAnchor
+   */
+  noHref: PropTypes.bool,
+  /**
    * `title` attribute for the inner `a` element
    */
   title: PropTypes.node,
@@ -24,8 +28,8 @@ const defaultProps = {
 
 };
 
-const Item = React.forwardRef(({ className, children, position, schema, isLast, ...props }, ref) => {
-  const Component = isLast ? 'span' : SafeAnchor;
+const Item = React.forwardRef(({ className, children, noHref, position, schema, isLast, ...props }, ref) => {
+  const Component = isLast || noHref ? 'span' : SafeAnchor;
   return (
     <li
       ref={ref}
@@ -39,7 +43,8 @@ const Item = React.forwardRef(({ className, children, position, schema, isLast, 
           <SafeAnchor
             {...props}
             className={classNames(
-              !isLast && 'u-textGray hover:u-textLink'
+              !isLast && 'u-textGray',
+              (!isLast && !noHref) && 'hover:u-textLink'
             )}
             itemProp="item"
           >
@@ -51,7 +56,8 @@ const Item = React.forwardRef(({ className, children, position, schema, isLast, 
         <Component
           {...props}
           className={classNames(
-            !isLast && 'u-textGray hover:u-textLink'
+            !isLast && 'u-textGray',
+            (!isLast && !noHref) && 'hover:u-textLink'
           )}
         >
           {children}
