@@ -47,7 +47,7 @@ const ToastContainer = React.forwardRef(({ position, dismissible, autoDismiss, .
     pauseOnHover
     newestOnTop
     bodyClassName="u-text200"
-    closeButton={dismissible ? <Icon name="close" size="tiny" className="Toastify__close-button u-flexShrink0" /> : false}
+    closeButton={dismissible ? ({ closeToast }) => <Icon onClick={closeToast} name="close" size="tiny" className="Toastify__close-button u-flexShrink0" /> : false}
   />
 ));
 export const toast = toastBase;
