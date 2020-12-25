@@ -105,7 +105,6 @@ const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant,
     else if (type === 'outbound') variantOri = 'light';
   }
   const context = useMemo(() => ({ type }), [type]);
-  console.log({ variantOri });
   return (
     <Context.Provider value={context}>
       <div
@@ -174,7 +173,7 @@ const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant,
                     </div>
                   )}
                   <div className={classNames(
-                    'u-overflowHidden',
+                    'u-overflowHidden u-flexInline u-flexColumn',
                     type && typeRadiusClassNames[type]
                   )}
                   >
