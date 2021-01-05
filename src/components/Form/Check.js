@@ -89,7 +89,7 @@ const Check = React.forwardRef(({ className, sizeInput, type, id, label, inline,
       />
       <label
         className={classNames(
-          'FormCheck-label u-marginBottomNone',
+          'FormCheck-label u-marginBottomNone u-block',
           disabledOri ? 'u-cursorNotAllow u-pointerEventsNone u-textLight' : 'u-cursorPointer'
         )}
         htmlFor={idSet}
