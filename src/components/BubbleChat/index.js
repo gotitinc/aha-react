@@ -200,7 +200,7 @@ const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant,
                       {options.map((option, idx) => (
                         <div
                           key={option.id}
-                          onClick={disabledOption ? null : () => onSelectOption(option.id)}
+                          onClick={disabledOption || option.id === currentOption ? null : () => onSelectOption(option.id)}
                           className={classNames(
                             'u-paddingExtraSmall u-textCenter',
                             `Op-${variantOri}`,
