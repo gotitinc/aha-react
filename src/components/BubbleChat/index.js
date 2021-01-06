@@ -198,22 +198,23 @@ const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant,
                     )}
                     >
                       {options.map((option, idx) => (
-                        <div
+                        <button
                           key={option.id}
+                          type="button"
                           onClick={disabledOption || option.id === currentOption ? null : () => onSelectOption(option.id)}
                           className={classNames(
-                            'u-paddingExtraSmall u-textCenter',
+                            'Button u-borderNone u-paddingExtraSmall u-textCenter',
                             `Op-${variantOri}`,
                             (idx !== 0) && 'u-borderTop u-borderUltraLight',
                             disabledOption ? 'u-cursorNotAllow' : 'u-cursorPointer',
                             (!disabledOption && option.id !== currentOption) && 'hover:u-backgroundLightest',
-                            (option.id === currentOption) && 'u-backgroundPrimary',
+                            (option.id === currentOption) ? 'u-backgroundPrimary' : 'u-backgroundWhite',
                             (option.id === currentOption && !textClassName) && 'u-textWhite',
                             (option.id === currentOption && textClassName) && textClassName
                           )}
                         >
                           {option.name}
-                        </div>
+                        </button>
                       ))}
                     </div>
                     )}
