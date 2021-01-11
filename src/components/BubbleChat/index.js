@@ -191,31 +191,38 @@ const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant,
                       {text}
                     </div>
                     {options && (
-                    <div className={classNames(
-                      'u-flex u-flexColumn u-border u-borderUltraLight u-roundedBottomExtraLarge u-text200 u-overflowHidden',
-                      disabledOption ? 'u-backgroundLighter u-textGray' : 'u-backgroundWhite u-textPrimary',
-                    )}
-                    >
-                      {options.map((option, idx) => (
-                        <button
-                          key={option.id}
-                          type="button"
-                          onClick={disabledOption || option.id === currentOption ? null : () => onSelectOption(option.id)}
-                          className={classNames(
-                            'Button u-borderNone u-paddingExtraSmall u-textCenter',
-                            `Op-${variantOri}`,
-                            (idx !== 0) && 'u-borderTop u-borderUltraLight',
-                            disabledOption && 'u-cursorNotAllow',
-                            option.id !== currentOption && 'u-cursorPointer',
-                            (!disabledOption && option.id !== currentOption) && 'hover:u-backgroundLightest',
-                            (option.id === currentOption) ? 'u-backgroundPrimary' : 'u-backgroundWhite',
-                            (option.id === currentOption && !textClassName) && 'u-textWhite',
-                            (option.id === currentOption && textClassName) && textClassName
-                          )}
-                        >
-                          {option.name}
-                        </button>
-                      ))}
+                    <div className="u-flex u-flexColumn u-border u-borderUltraLight u-roundedBottomExtraLarge u-text200 u-overflowHidden">
+                      {options.map((option, idx) => {
+                        let cn;
+                        let handleClick;
+
+                        if (disabledOption) {
+                          cn = 'u-backgroundLighter u-textGray u-cursorNotAllow';
+                          handleClick = null;
+                        } else if (option.id === currentOption) {
+                          cn = `u-backgroundPrimary ${textClassName || 'u-textWhite'}`;
+                          handleClick = null;
+                        } else {
+                          cn = 'u-backgroundWhite hover:u-backgroundLightest u-textPrimary u-cursorPointer';
+                          handleClick = () => onSelectOption(option.id);
+                        }
+
+                        return (
+                          <button
+                            key={option.id}
+                            type="button"
+                            onClick={handleClick}
+                            className={classNames(
+                              'Button u-borderNone u-paddingExtraSmall u-textCenter',
+                              `Op-${variantOri}`,
+                              (idx !== 0) && 'u-borderTop u-borderUltraLight',
+                              cn,
+                            )}
+                          >
+                            {option.name}
+                          </button>
+                        );
+                      })}
                     </div>
                     )}
                   </div>
