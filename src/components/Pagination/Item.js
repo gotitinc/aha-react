@@ -23,7 +23,6 @@ export const PageItem = React.forwardRef(({ className, active, safeItem, disable
     variant = 'default';
   }
   const Component = active || disabled || safeItem ? 'span' : SafeAnchor;
-  console.log({ displayName });
   return (
     <li
       className={classNames(

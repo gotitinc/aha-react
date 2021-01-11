@@ -66,7 +66,7 @@ const variantsTextClassName = {
 const variantsClassName = {
   primary: 'u-backgroundPrimary hover:u-backgroundPrimaryDark u-border u-borderPrimary',
   primary_outline: 'u-backgroundTransparent hover:u-backgroundPrimaryLighter u-border u-borderPrimary',
-  secondary: 'u-textDark hover:u-textDark u-backgroundLightest hover:u-backgroundUltraLight u-border',
+  secondary: 'u-textDark hover:u-textDark u-backgroundWhite hover:u-backgroundLightest u-border',
   accent: 'u-backgroundAccent hover:u-backgroundAccentDark u-border u-borderAccent',
   accent_outline: 'u-backgroundTransparent hover:u-backgroundAccentLighter u-border u-borderAccent',
   positive: 'u-textWhite hover:u-textWhite u-backgroundPositive hover:u-backgroundPositiveDark u-border u-borderPositive',
