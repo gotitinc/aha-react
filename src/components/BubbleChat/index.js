@@ -196,11 +196,11 @@ const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant,
                         let cn;
                         let handleClick;
 
-                        if (disabledOption) {
-                          cn = 'u-backgroundLighter u-textGray u-cursorNotAllow';
-                          handleClick = null;
-                        } else if (option.id === currentOption) {
+                        if (option.id === currentOption) {
                           cn = `u-backgroundPrimary ${textClassName || 'u-textWhite'}`;
+                          handleClick = null;
+                        } else if (disabledOption) {
+                          cn = 'u-backgroundLighter u-textGray u-cursorNotAllow';
                           handleClick = null;
                         } else {
                           cn = 'u-backgroundWhite hover:u-backgroundLightest u-textPrimary u-cursorPointer';
