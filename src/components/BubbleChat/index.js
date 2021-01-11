@@ -214,9 +214,9 @@ const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant,
                             disabled={disabledOption}
                             onClick={handleClick}
                             className={classNames(
-                              'u-paddingExtraSmall u-transitionColors u-easeInOut u-duration150 u-borderNone u-textCenter',
+                              'u-paddingExtraSmall u-transitionColors u-easeInOut u-duration150 u-textCenter',
                               `Op-${variantOri}`,
-                              (idx !== 0) && 'u-borderTop u-borderUltraLight',
+                              (idx !== 0) ? 'u-borderTop u-borderBottomNone u-borderLeftNone u-borderRightNone u-borderUltraLight' : 'u-borderNone',
                               cn,
                             )}
                           >
