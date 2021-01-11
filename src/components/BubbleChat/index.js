@@ -89,7 +89,7 @@ const variantClassNames = {
 const typeThemeClassNames = {
   inbound: 'u-roundedBottomRightNone',
   outbound: 'u-roundedBottomLeftNone',
-  system: 'u-backgroundPrimaryLight',
+  system: '',
 };
 
 const typeRadiusClassNames = {
@@ -103,6 +103,7 @@ const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant,
   if (variant === undefined) {
     if (type === 'inbound') variantOri = 'primary';
     else if (type === 'outbound') variantOri = 'light';
+    else if (type === 'system') variantOri = 'primaryLight';
   }
   const context = useMemo(() => ({ type }), [type]);
   return (
