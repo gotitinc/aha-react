@@ -154,7 +154,7 @@ const FileAttachment = React.forwardRef((uncontrolledProps, ref) => {
               actionRight && 'u-borderRight u-borderUltraLight'
             )}
             >
-              <div className="u-flex u-justifyContentCenter u-paddingTiny hover:u-backgroundLightest u-cursorPointer">
+              <div className="u-flex u-justifyContentCenter hover:u-backgroundLightest u-cursorPointer">
                 {typeof (actionLeft) === 'function'
                   ? actionLeft()
                   : actionLeft
@@ -164,7 +164,7 @@ const FileAttachment = React.forwardRef((uncontrolledProps, ref) => {
           )}
           {actionRight && (
             <div className="u-sizeFill">
-              <div className="u-flex u-justifyContentCenter u-paddingTiny hover:u-backgroundLightest u-cursorPointer">
+              <div className="u-flex u-justifyContentCenter hover:u-backgroundLightest u-cursorPointer">
                 {typeof (actionRight) === 'function'
                   ? actionRight()
                   : actionRight
@@ -176,7 +176,7 @@ const FileAttachment = React.forwardRef((uncontrolledProps, ref) => {
       )}
     </div>
   );
-  if (!Transition) return show ? alert : null;
+  if (!Transition) return show ? fileAttachment : null;
   return (
     <Transition unmountOnExit ref={ref} {...props} in={show}>
       {fileAttachment}
