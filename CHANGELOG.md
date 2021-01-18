@@ -1,4 +1,4 @@
-## Release 2.0.2 - January 16, 2021
+## Release 2.0.2 - January 18, 2021
 ### Fixed
 * Button: modified variant `secondary`, fixed ActionBar
 * FileAttachment: modified prop `fileTypeLabel`
