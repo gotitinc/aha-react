@@ -88,7 +88,9 @@ module.exports = {
           cacheDirectory: true,
           presets: ['react-app'],
           plugins: [
-            'dynamic-import-node',
+            '@babel/plugin-syntax-dynamic-import',
+            '@babel/plugin-syntax-class-properties',
+            '@babel/plugin-syntax-optional-chaining',
           ],
         },
       },

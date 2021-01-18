@@ -88,6 +88,10 @@ module.exports = {
           // directory for faster rebuilds.
           cacheDirectory: true,
           presets: ['react-app'],
+          plugins: [
+            '@babel/plugin-syntax-optional-chaining',
+            '@babel/plugin-syntax-class-properties',
+          ],
           babelrc: false,
         },
       },
