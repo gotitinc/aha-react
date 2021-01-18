@@ -1,6 +1,6 @@
 {
   "name": "@ahaui/react",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
@@ -29,14 +29,14 @@
     "popper.js": "1.15.0",
     "prop-types": "15.7.2",
     "prop-types-extra": "1.1.0",
-    "rc-slider": "^8.7.1",
+    "rc-slider": "8.7.1",
     "react-date-picker": "7.10.0",
-    "react-slick": "^0.27.11",
-    "react-split-pane": "^0.1.91",
+    "react-slick": "0.27.13",
+    "react-split-pane": "0.1.92",
     "react-tagsinput": "3.19.0",
     "react-textarea-autosize": "7.1.2",
     "react-time-picker": "3.9.0",
-    "react-toastify": "^6.0.5",
+    "react-toastify": "6.2.0",
     "react-transition-group": "4.0.0",
     "uncontrollable": "7.1.1",
     "warning": "4.0.3"

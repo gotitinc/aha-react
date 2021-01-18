@@ -42,6 +42,7 @@ const propTypes = {
     'card',
     'chatExtension',
     'chatBubbles',
+    'bubbles',
     'code',
     'create',
     'earth',
@@ -139,6 +140,8 @@ const propTypes = {
     'flash',
     'aim',
     'fileTrayFull',
+    'fileImport',
+    'fileExport',
     'objects',
     'reply',
     'bot',
@@ -154,6 +157,10 @@ const propTypes = {
     'extraLargePlus',
     'huge',
   ]),
+  /**
+   * Path of SVG
+   */
+  path: PropTypes.string,
 };
 
 const defaultProps = {
@@ -181,28 +188,35 @@ const styles = {
 };
 
 
-const Icon = React.forwardRef(({ className, size, name, ...props }, ref) => (
-  <svg
-    ref={ref}
-    {...props}
-    style={{ ...styles.svg, ...props.style }}
-    width={`${sizes[size]}px`}
-    height={`${sizes[size]}px`}
-    className={classNames(
-      'u-inlineBlock',
-      className && className
-    )}
-    viewBox="0 0 24 24"
-    xmlns="http://www.w3.org/2000/svg"
-    aria-hidden="true"
-    focusable="false"
-  >
-    <path
-      style={styles.path}
-      d={icons[name]}
-    />
-  </svg>
-));
+const Icon = React.forwardRef(({ className, path, size, name, ...props }, ref) => {
+  const pathOri = path;
+  let nameOri = name;
+  if (pathOri) {
+    nameOri = false;
+  }
+  return (
+    <svg
+      ref={ref}
+      {...props}
+      style={{ ...styles.svg, ...props.style }}
+      width={`${sizes[size]}px`}
+      height={`${sizes[size]}px`}
+      className={classNames(
+        'u-inlineBlock',
+        className && className
+      )}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path
+        style={styles.path}
+        d={nameOri ? icons[name] : pathOri}
+      />
+    </svg>
+  );
+});
 
 
 Icon.displayName = 'Icon';

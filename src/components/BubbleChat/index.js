@@ -89,7 +89,7 @@ const variantClassNames = {
 const typeThemeClassNames = {
   inbound: 'u-roundedBottomRightNone',
   outbound: 'u-roundedBottomLeftNone',
-  system: 'u-backgroundPrimaryLight',
+  system: '',
 };
 
 const typeRadiusClassNames = {
@@ -103,9 +103,9 @@ const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant,
   if (variant === undefined) {
     if (type === 'inbound') variantOri = 'primary';
     else if (type === 'outbound') variantOri = 'light';
+    else if (type === 'system') variantOri = 'primaryLight';
   }
   const context = useMemo(() => ({ type }), [type]);
-  console.log({ variantOri });
   return (
     <Context.Provider value={context}>
       <div
@@ -174,7 +174,7 @@ const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant,
                     </div>
                   )}
                   <div className={classNames(
-                    'u-overflowHidden',
+                    'u-overflowHidden u-flexInline u-flexColumn',
                     type && typeRadiusClassNames[type]
                   )}
                   >
@@ -192,29 +192,38 @@ const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant,
                       {text}
                     </div>
                     {options && (
-                    <div className={classNames(
-                      'u-flex u-flexColumn u-border u-borderUltraLight u-roundedBottomExtraLarge u-text200 u-overflowHidden',
-                      disabledOption ? 'u-backgroundLighter u-textGray' : 'u-backgroundWhite u-textPrimary',
-                    )}
-                    >
-                      {options.map((option, idx) => (
-                        <div
-                          key={option.id}
-                          onClick={disabledOption ? null : () => onSelectOption(option.id)}
-                          className={classNames(
-                            'u-paddingExtraSmall u-textCenter',
-                            `Op-${variantOri}`,
-                            (idx !== 0) && 'u-borderTop u-borderUltraLight',
-                            disabledOption ? 'u-cursorNotAllow' : 'u-cursorPointer',
-                            (!disabledOption && option.id !== currentOption) && 'hover:u-backgroundLightest',
-                            (option.id === currentOption) && 'u-backgroundPrimary',
-                            (option.id === currentOption && !textClassName) && 'u-textWhite',
-                            (option.id === currentOption && textClassName) && textClassName
-                          )}
-                        >
-                          {option.name}
-                        </div>
-                      ))}
+                    <div className="u-flex u-flexColumn u-border u-borderUltraLight u-roundedBottomExtraLarge u-text200 u-overflowHidden">
+                      {options.map((option, idx) => {
+                        let cn;
+                        let handleClick;
+
+                        if (option.id === currentOption) {
+                          cn = `u-backgroundPrimary ${textClassName || 'u-textWhite'} ${disabledOption ? 'u-cursorNotAllow' : ''}`;
+                          handleClick = null;
+                        } else if (disabledOption) {
+                          cn = 'u-backgroundLighter u-textGray u-cursorNotAllow';
+                          handleClick = null;
+                        } else {
+                          cn = 'u-backgroundWhite hover:u-backgroundLightest u-textPrimary u-cursorPointer';
+                          handleClick = () => onSelectOption(option.id);
+                        }
+
+                        return (
+                          <button
+                            key={option.id}
+                            type="button"
+                            disabled={disabledOption}
+                            onClick={handleClick}
+                            className={classNames(
+                              'u-paddingExtraSmall u-transitionColors u-easeInOut u-duration150 u-textCenter',
+                              (idx !== 0) ? 'u-borderTop u-borderBottomNone u-borderLeftNone u-borderRightNone u-borderUltraLight' : 'u-borderNone',
+                              cn,
+                            )}
+                          >
+                            {option.name}
+                          </button>
+                        );
+                      })}
                     </div>
                     )}
                   </div>

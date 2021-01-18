@@ -51,7 +51,10 @@ const propTypes = {
     'powerpoint',
   ]),
   /** Custom type label  */
-  fileTypeLabel: PropTypes.string,
+  fileTypeLabel: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
   /** File name  */
   fileName: PropTypes.string,
   /** Controls the visual state of the File Attachment. */
@@ -107,6 +110,7 @@ const FileAttachment = React.forwardRef((uncontrolledProps, ref) => {
       className={classNames(
         'FileAttachment',
         'u-flex u-flexColumn u-backgroundOpaline u-border u-borderUltraLight u-roundedMedium u-positionRelative',
+        className && className,
       )}
     >
       {closeButton && (
@@ -132,7 +136,16 @@ const FileAttachment = React.forwardRef((uncontrolledProps, ref) => {
           <Icon name={fileType && fileTypeMeta[fileType].icon} size="large" className="FileAttachment-icon u-textPrimary" />
         </div>
         <div className="FileAttachment-info u-flexGrow1 u-paddingLeftTiny u-paddingRightExtraSmall u-overflowHidden">
-          <div className="FileAttachment-title u-text200 u-fontMedium u-textUppercase">{fileTypeLabel || (fileType && fileTypeMeta[fileType].label)}</div>
+          <div className="FileAttachment-title u-text200 u-fontMedium u-textUppercase">
+            {fileTypeLabel && (
+              typeof (fileTypeLabel) === 'function'
+                ? fileTypeLabel()
+                : fileTypeLabel
+            )}
+            {!fileTypeLabel && (
+              fileTypeMeta[fileType]?.label
+            )}
+          </div>
           <div className="FileAttachment-description u-text100 u-textLight u-textTruncate">{fileName || 'undefined'}</div>
         </div>
       </div>
@@ -144,7 +157,7 @@ const FileAttachment = React.forwardRef((uncontrolledProps, ref) => {
               actionRight && 'u-borderRight u-borderUltraLight'
             )}
             >
-              <div className="u-flex u-justifyContentCenter u-paddingTiny hover:u-backgroundLightest u-cursorPointer">
+              <div className="u-flex u-justifyContentCenter hover:u-backgroundLightest u-cursorPointer">
                 {typeof (actionLeft) === 'function'
                   ? actionLeft()
                   : actionLeft
@@ -154,7 +167,7 @@ const FileAttachment = React.forwardRef((uncontrolledProps, ref) => {
           )}
           {actionRight && (
             <div className="u-sizeFill">
-              <div className="u-flex u-justifyContentCenter u-paddingTiny hover:u-backgroundLightest u-cursorPointer">
+              <div className="u-flex u-justifyContentCenter hover:u-backgroundLightest u-cursorPointer">
                 {typeof (actionRight) === 'function'
                   ? actionRight()
                   : actionRight
@@ -166,7 +179,7 @@ const FileAttachment = React.forwardRef((uncontrolledProps, ref) => {
       )}
     </div>
   );
-  if (!Transition) return show ? alert : null;
+  if (!Transition) return show ? fileAttachment : null;
   return (
     <Transition unmountOnExit ref={ref} {...props} in={show}>
       {fileAttachment}
