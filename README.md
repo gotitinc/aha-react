@@ -27,13 +27,13 @@
 ## Quick start
 
 ### Installation
-You have to install both `@ahaui/react` and `@ahaui/css`
+You have to install both `@ahaui/react` and `@ahaui/css`. Aha Icons are served seperately at `@ahaui/icons` (optional but highly recommended).
 ```sh
 # With npm
-npm install @ahaui/react @ahaui/css
+npm install @ahaui/react @ahaui/css @ahaui/icons
 
 # Or with yarn
-yarn add @ahaui/react @ahaui/css
+yarn add @ahaui/react @ahaui/css @ahaui/icons
 ```
 
 ### Usage
@@ -58,12 +58,29 @@ function Example() {
 ```
 **Aha!** Just simple as that!
 
+If you also want to use Aha Icons, load it via [Aha Plugins](#Plugins)
+```jsx
+import React from 'react';
+import { Plugins, Icon } from '@ahaui/react';
+import { createIconAssetsPlugin } from '@ahaui/icons';
+
+const IconAssetsPlugin = createIconAssetsPlugin();
+
+Plugins.loadPlugin(IconAssetsPlugin);
+
+function ExampleIcon() {
+  return (
+    <Icon name="contact">
+  );
+}
+```
+
 ## Customization
 
 ### Plugins
 You can customize specific Aha React Components via plugins!
 
-For now, to provide your custom assets to [Logo](./src/components/Logo/index.js), [Avatar](./src/components/Avatar/index.js), [EmptyState](./src/components/Logo/index.js), you can use [AssetPlugin](./src/plugins/AssetPlugin.js).
+For now, to provide your custom assets to [Logo](./src/components/Logo/index.js), [Avatar](./src/components/Avatar/index.js), [EmptyState](./src/components/Logo/index.js) or [Icon](./src/components/Icon/index.js), you can use [AssetPlugin](./src/plugins/AssetPlugin.js).
 ```jsx
 import { AssetPlugin, Plugins, Logo } from '@ahaui/react';
 
