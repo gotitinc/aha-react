@@ -1,151 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { icons } from '../../constants';
+import { PluginType } from '../../constants/common';
+import Plugins from '../../plugins';
 
 const propTypes = {
-  /** The icon visual name */
+  /** The icon visual name, should be provide via an AssetPlugin with prefix "icon" */
   // eslint-disable-next-line no-sparse-arrays
-  name: PropTypes.oneOf([
-    'rotate',
-    'gitBranch',
-    'options',
-    'apps',
-    'fastForward',
-    'mail',
-    'trash',
-    'helpCircle',
-    'helpCircleOutline',
-    'cloudUpload',
-    'location',
-    'send',
-    'share',
-    'unlock',
-    'volumeHigh',
-    'volumeOff',
-    'zoomIn',
-    'zoomOut',
-    'expand',
-    'minus',
-    'plus',
-    'column',
-    'data',
-    'table',
-    'cart',
-    'store',
-    'workflow',
-    'bill',
-    'bag',
-    'funnel',
-    'playCircle',
-    'pin',
-    'card',
-    'chatExtension',
-    'chatBubbles',
-    'bubbles',
-    'code',
-    'create',
-    'earth',
-    'flag',
-    'journal',
-    'levelBeginner',
-    'levelImmediate',
-    'levelAdvanced',
-    'list',
-    'lock',
-    'moneyBag',
-    'multipleSkills',
-    'power',
-    'refresh',
-    'replace',
-    'search',
-    'setting',
-    'speedometer',
-    'starOutline',
-    'starHalf',
-    'star',
-    'thumbsDown',
-    'thumbsUp',
-    'alert',
-    'informationCircle',
-    'informationCircleOutline',
-    'notification',
-    'warning',
-    'attach',
-    'attachSpreadsheet',
-    'attachImage',
-    'attachPpt',
-    'attachTxt',
-    'attachSql',
-    'attachUndefined',
-    'attachCode',
-    'cloud',
-    'cloudDownload',
-    'copy',
-    'document',
-    'images',
-    'videoCam',
-    'arrowBack',
-    'arrowDown',
-    'arrowDropdownCircle',
-    'arrowDropdown',
-    'arrowDropleftCircle',
-    'arrowDropleft',
-    'arrowDroprightCircle',
-    'arrowDropright',
-    'arrowDropupCircle',
-    'arrowDropup',
-    'arrowForward',
-    'arrowRoundBack',
-    'arrowRoundDown',
-    'arrowRoundForward',
-    'arrowRoundUp',
-    'arrowUp',
-    'checkmark',
-    'checkmarkCircle',
-    'checkmarkCircleOutline',
-    'close',
-    'closeCircle',
-    'closeCircleOutline',
-    'menu',
-    'more',
-    'facebook',
-    'google',
-    'instagram',
-    'linkedin',
-    'twitter',
-    'youtube',
-    'hourglass',
-    'time',
-    'timer',
-    'contact',
-    'people',
-    'mic',
-    'calendar',,
-    'micOff',
-    'videoCamOff',
-    'camera',
-    'airplane',
-    'screen',
-    'screenOff',
-    'map',
-    'raiseHand',
-    'editOff',
-    'edit',
-    'cursor',
-    'eraser',
-    'font',
-    'colorPalette',
-    'save',
-    'flash',
-    'aim',
-    'fileTrayFull',
-    'fileImport',
-    'fileExport',
-    'objects',
-    'reply',
-    'bot',
-  ]),
+  name: PropTypes.string,
   /** Icon size variants */
   size: PropTypes.oneOf([
     'tiny',
@@ -189,10 +51,17 @@ const styles = {
 
 
 const Icon = React.forwardRef(({ className, path, size, name, ...props }, ref) => {
-  const pathOri = path;
+  let pathOri = path;
   let nameOri = name;
   if (pathOri) {
     nameOri = false;
+  } else if (nameOri) {
+    pathOri = Plugins
+      .getPlugins(PluginType.ASSET)
+      .traverseCall('getAsset', 'icon', nameOri)
+      .slice()
+      .reverse()
+      .find(asset => !!asset);
   }
   return (
     <svg
@@ -212,7 +81,7 @@ const Icon = React.forwardRef(({ className, path, size, name, ...props }, ref) =
     >
       <path
         style={styles.path}
-        d={nameOri ? icons[name] : pathOri}
+        d={pathOri}
       />
     </svg>
   );
