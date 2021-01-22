@@ -52,6 +52,8 @@ const Avatar = React.forwardRef(({ className, size, name, src, alt, height, widt
     srcOri = Plugins
       .getPlugins(PluginType.ASSET)
       .traverseCall('getAsset', 'avatar', nameOri)
+      .slice()
+      .reverse()
       .find(asset => !!asset);
   }
   const heightStyle = {

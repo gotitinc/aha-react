@@ -28,6 +28,8 @@ const Logo = React.forwardRef(({ className, name, src, alt, height, width, as: C
     srcOri = Plugins
       .getPlugins(PluginType.ASSET)
       .traverseCall('getAsset', 'logo', nameOri)
+      .slice()
+      .reverse()
       .find(asset => !!asset);
   }
   return (

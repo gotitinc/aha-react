@@ -30,6 +30,8 @@ const EmptyState = React.forwardRef(({ className, children, name, src, fileType,
     srcOri = Plugins
       .getPlugins(PluginType.ASSET)
       .traverseCall('getAsset', 'emptyState', nameOri)
+      .slice()
+      .reverse()
       .find(asset => !!asset);
   }
   return (
