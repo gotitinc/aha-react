@@ -137,11 +137,14 @@ const FileAttachment = React.forwardRef((uncontrolledProps, ref) => {
         </div>
         <div className="FileAttachment-info u-flexGrow1 u-paddingLeftTiny u-paddingRightExtraSmall u-overflowHidden">
           <div className="FileAttachment-title u-text200 u-fontMedium u-textUppercase">
-            {
-           (typeof (fileTypeLabel) === 'function'
-             ? fileTypeLabel()
-             : fileTypeLabel)
-           || (fileType && fileTypeMeta[fileType].label)}
+            {fileTypeLabel && (
+              typeof (fileTypeLabel) === 'function'
+                ? fileTypeLabel()
+                : fileTypeLabel
+            )}
+            {!fileTypeLabel && (
+              fileTypeMeta[fileType]?.label
+            )}
           </div>
           <div className="FileAttachment-description u-text100 u-textLight u-textTruncate">{fileName || 'undefined'}</div>
         </div>
