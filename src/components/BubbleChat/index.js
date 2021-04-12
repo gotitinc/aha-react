@@ -152,6 +152,7 @@ const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant,
                     'BubbleChat-typing',
                     'u-paddingExtraSmall u-positionRelative',
                     type && typeThemeClassNames[type],
+                    variantOri && variantTextClassNames[variantOri],
                     variantOri && variantClassNames[variantOri],
                   )}
                 >
