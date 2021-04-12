@@ -95,20 +95,6 @@ const SubMenu = React.forwardRef(({ level, eventKey, className, isSubItem, title
             </span>
           )}
           <Icon name={isSubItem ? 'arrowForward' : 'arrowDown'} size="tiny" className="u-marginLeftExtraSmall SidebarMenu-iconAppend u-flexShrink0" style={{ marginTop: isSubItem && 6 }} />
-          {(active && !isSubItem) && (
-          <>
-            <div className={classNames(
-              'TopMenu-itemBefore u-heightExtraTiny u-zIndexPosition',
-              'u-positionAbsolute u-positionLeft u-positionTop u-backgroundTransparent u-widthFull',
-            )}
-            />
-            <div className={classNames(
-              'TopMenu-itemAfter u-heightExtraTiny u-zIndexPosition',
-              'u-positionAbsolute u-positionLeft u-positionBottom u-backgroundPrimary u-widthFull',
-            )}
-            />
-          </>
-          )}
         </span>
       </Dropdown.Toggle>
       <Dropdown.Container className={classNames(
@@ -118,6 +104,20 @@ const SubMenu = React.forwardRef(({ level, eventKey, className, isSubItem, title
       >
         {modifiedChildren}
       </Dropdown.Container>
+      {(active && !isSubItem) && (
+      <>
+        <div className={classNames(
+          'TopMenu-itemBefore u-heightExtraTiny u-zIndexPosition',
+          'u-positionAbsolute u-positionLeft u-positionTop u-backgroundTransparent u-widthFull',
+        )}
+        />
+        <div className={classNames(
+          'TopMenu-itemAfter u-heightExtraTiny u-zIndexPosition',
+          'u-positionAbsolute u-positionLeft u-positionBottom u-backgroundPrimary u-widthFull',
+        )}
+        />
+      </>
+      )}
     </Dropdown>
   );
 });
