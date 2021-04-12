@@ -1,3 +1,7 @@
+## Release 2.0.3 - Unreleased
+### Fixed
+* TopMenu: TopMenu-itemAfter of TopMenu-subMenu has wrong position (need CSS changes)
+
 ## Release 2.0.2 - January 18, 2021
 ### Fixed
 * Button: modified variant `secondary`, fixed ActionBar
