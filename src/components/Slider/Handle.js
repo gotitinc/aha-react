@@ -1,13 +1,15 @@
 import React from 'react';
 import { Handle as HandleBase } from 'rc-slider';
 
-const Handle = React.forwardRef((props, ref) => (
-  <HandleBase
-    ref={ref}
-    {...props}
-  />
-));
-Handle.displayName = 'Slider.Handle';
-Handle.propTypes = {};
-Handle.defaultProps = {};
-export default Handle;
+function SliderHandle (props, ref) {
+  return (
+    <HandleBase
+      ref={ref}
+      {...props}
+    />
+  );
+}
+SliderHandle.displayName = 'SliderHandle';
+SliderHandle.propTypes = {};
+SliderHandle.defaultProps = {};
+export default SliderHandle;

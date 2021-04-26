@@ -1,9 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, { forwardRef, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import useEventCallback from '@restart/hooks/useEventCallback';
-import Icon from '../Icon';
-import ModalContext from './Context';
+import { ModalContext } from 'utils/Context';
+import Icon from 'components/Icon';
 
 
 const propTypes = {
@@ -17,7 +17,7 @@ const defaultProps = {
   closeButton: false,
 };
 
-const Header = React.forwardRef(({ className, children, closeButton, onHide, ...props }, ref) => {
+function ModalHeader({ className, children, closeButton, onHide, ...props }, ref) {
   const context = useContext(ModalContext);
   const [closeHover, setCloseHover] = useState(false);
   const handleClick = useEventCallback(() => {
@@ -50,9 +50,9 @@ const Header = React.forwardRef(({ className, children, closeButton, onHide, ...
       )}
     </div>
   );
-});
+}
 
-Header.displayName = 'ModalHeader';
-Header.defaultProps = defaultProps;
-Header.propTypes = propTypes;
-export default Header;
+ModalHeader.displayName = 'ModalHeader';
+ModalHeader.defaultProps = defaultProps;
+ModalHeader.propTypes = propTypes;
+export default forwardRef(ModalHeader);

@@ -1,13 +1,13 @@
-import React, { useContext } from 'react';
+import React, { forwardRef, useContext } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import DatePickerBase from 'react-date-picker/dist/entry.nostyle';
+import { FormContext } from 'utils/Context';
+import Icon from 'components/Icon';
 import DatePickerBaseV2 from './v2/DatePicker/DatePicker';
-import Icon from '../Icon';
-import Context from '../Form/Context';
 
-const DatePicker = React.forwardRef(({ className, noClearIcon, size, version, calendarClassName, ...props }, ref) => {
-  const { sizeControl } = useContext(Context);
+function DatePicker ({ className, noClearIcon, size, version, calendarClassName, ...props }, ref) {
+  const { sizeControl } = useContext(FormContext);
   const sizeOri = size || sizeControl;
   const BaseClass = (version === 2) ? DatePickerBaseV2 : DatePickerBase;
   return (
@@ -28,7 +28,7 @@ const DatePicker = React.forwardRef(({ className, noClearIcon, size, version, ca
       )}
     />
   );
-});
+}
 
 DatePicker.displayName = 'DatePicker';
 DatePicker.defaultProps = {
@@ -61,4 +61,4 @@ DatePicker.propTypes = {
   calendarClassName: PropTypes.string,
 };
 
-export default DatePicker;
+export default forwardRef(DatePicker);

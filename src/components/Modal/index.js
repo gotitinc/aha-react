@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { forwardRef, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { elementType } from 'prop-types-extra';
-import createBlock from '../../utils/createBlock';
-import Header from './Header';
+import { ModalContext } from 'utils/Context';
+import Fade from 'utils/Fade';
+import createBlock from 'utils/createBlock';
+import ModalHeader from './Header';
 import Inside from './Inside';
-import ModalContext from './Context';
-import Fade from '../../utils/Fade';
 
 const propTypes = {
   /**
@@ -45,7 +45,7 @@ const defaultProps = {
 };
 
 
-const Modal = React.forwardRef(({ children, size, show, onHide, relative, centered, transition: Transition, ...props }, ref) => {
+function Modal({ children, size, show, onHide, relative, centered, transition: Transition, ...props }, ref) {
   const modalContainerId = 'aha-design-system-react-modal-backdrop';
   const [modalContainer, setModalContainer] = useState();
   useEffect(() => {
@@ -137,19 +137,19 @@ const Modal = React.forwardRef(({ children, size, show, onHide, relative, center
       {dialog}
     </ModalContext.Provider>
   ), modalContainer);
-});
+}
 
 
-const Title = createBlock('Modal-title u-text600 u-fontMedium u-textCenter');
-const Body = createBlock('Modal-body u-paddingHorizontalMedium u-backgroundWhite u-paddingTopSmall u-paddingBottomMedium');
-const Footer = createBlock('Modal-footer u-backgroundLightest u-paddingMedium u-flex u-alignItemsCenter u-justifyContentEnd');
-Modal.Title = Title;
-Modal.Header = Header;
+const ModalTitle = createBlock('Modal-title u-text600 u-fontMedium u-textCenter');
+const ModalBody = createBlock('Modal-body u-paddingHorizontalMedium u-backgroundWhite u-paddingTopSmall u-paddingBottomMedium');
+const ModalFooter = createBlock('Modal-footer u-backgroundLightest u-paddingMedium u-flex u-alignItemsCenter u-justifyContentEnd');
+Modal.Title = ModalTitle;
+Modal.Header = ModalHeader;
 Modal.Inside = Inside;
-Modal.Body = Body;
-Modal.Footer = Footer;
+Modal.Body = ModalBody;
+Modal.Footer = ModalFooter;
 Modal.defaultProps = defaultProps;
 Modal.displayName = 'Modal';
 Modal.propTypes = propTypes;
 
-export default Modal;
+export default forwardRef(Modal);

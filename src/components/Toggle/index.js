@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -23,33 +23,32 @@ const defaultProps = {
   textLabelOff: 'Off',
 };
 
-const Toggle = React.forwardRef(({ className, checked, disabled, nonLabel, textLabelOn, textLabelOff, as: Component = 'button', ...props }, ref) => (
-  <div
-    className={classNames(
-      'u-flexInline u-alignItemsCenter',
-      className && className
-    )}
-    {...props}
-    ref={ref}
-  >
-    <Component
+function Toggle({ className, checked, disabled, nonLabel, textLabelOn, textLabelOff, as: Component = 'button', ...props }, ref) {
+  return (
+    <div
       className={classNames(
-        'Toggle',
-        'u-positionRelative u-backgroundSemiLight u-textDark u-paddingNone u-borderNone u-cursorPointer',
-        checked && 'checked u-backgroundPrimary',
-        disabled && 'is-disabled u-cursorNotAllow u-pointerEventsNone',
+        'u-flexInline u-alignItemsCenter',
+        className && className
       )}
-      // data-label-on={!nonLabel ? textLabelOn : undefined}
-      // data-label-off={!nonLabel ? textLabelOff : undefined}
-      disabled={(Component === 'button') ? disabled : undefined}
+      {...props}
+      ref={ref}
     >
-      <div className={classNames(
-        'Toggle-handle',
-        'u-positionAbsolute u-backgroundWhite'
-      )}
-      />
-    </Component>
-    {!nonLabel && (
+      <Component
+        className={classNames(
+          'Toggle',
+          'u-positionRelative u-backgroundSemiLight u-textDark u-paddingNone u-borderNone u-cursorPointer',
+          checked && 'checked u-backgroundPrimary',
+          disabled && 'is-disabled u-cursorNotAllow u-pointerEventsNone',
+        )}
+        disabled={(Component === 'button') ? disabled : undefined}
+      >
+        <div className={classNames(
+          'Toggle-handle',
+          'u-positionAbsolute u-backgroundWhite'
+        )}
+        />
+      </Component>
+      {!nonLabel && (
       <div className={classNames(
         'u-marginLeftExtraSmall',
         disabled && 'u-textLight'
@@ -57,10 +56,11 @@ const Toggle = React.forwardRef(({ className, checked, disabled, nonLabel, textL
       >
         {checked ? textLabelOn : textLabelOff}
       </div>
-    )}
-  </div>
-));
+      )}
+    </div>
+  );
+}
 Toggle.displayName = 'Toggle';
 Toggle.defaultProps = defaultProps;
 Toggle.propTypes = propTypes;
-export default Toggle;
+export default forwardRef(Toggle);

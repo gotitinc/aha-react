@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
+import React, { forwardRef, useContext } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import SafeAnchor from '../../utils/SafeAnchor';
-import Badge from '../Badge';
-import TopMenuContext from './Context';
+import SafeAnchor from 'utils/SafeAnchor';
+import Badge from 'components/Badge';
+import { TopMenuContext } from 'utils/Context';
 
 const propTypes = {
   /** A key that associates the TopMenu with it's controlling TopMenu.Item.*/
@@ -22,11 +22,12 @@ const propTypes = {
 const defaultProps = {
 };
 
-const Item = React.forwardRef(({ className, disabled, eventKey, children, badge, isSubItem, level, index, path, ...props }, ref) => {
+function TopMenuItem({ className, disabled, eventKey, children, badge, isSubItem, level, index, path, ...props }, ref) {
   let active;
 
   const context = useContext(TopMenuContext);
 
+  // eslint-disable-next-line react/destructuring-assignment
   if (path === context.current) {
     active = true;
   }
@@ -87,9 +88,9 @@ const Item = React.forwardRef(({ className, disabled, eventKey, children, badge,
       </Component>
     </div>
   );
-});
+}
 
-Item.defaultProps = defaultProps;
-Item.displayName = 'TopMenuItem';
-Item.propTypes = propTypes;
-export default Item;
+TopMenuItem.defaultProps = defaultProps;
+TopMenuItem.displayName = 'TopMenuItem';
+TopMenuItem.propTypes = propTypes;
+export default forwardRef(TopMenuItem);

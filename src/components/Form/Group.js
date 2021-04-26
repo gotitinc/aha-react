@@ -1,7 +1,7 @@
-import React, { useMemo } from 'react';
+import React, { forwardRef, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Context from './Context';
+import { FormContext } from 'utils/Context';
 
 const propTypes = {
   /** Sets id on `<Form.Input>` and htmlFor on `<Form.Label>`. */
@@ -27,10 +27,10 @@ const propTypes = {
 const defaultProps = {
 };
 
-const Group = React.forwardRef(({ className, controlId, sizeControl, disabledControl, requiredControl, as: Component = 'div', ...props }, ref) => {
+function FormGroup({ className, controlId, sizeControl, disabledControl, requiredControl, as: Component = 'div', ...props }, ref) {
   const context = useMemo(() => ({ controlId, sizeControl, requiredControl, disabledControl }), [controlId, sizeControl, requiredControl, disabledControl]);
   return (
-    <Context.Provider value={context}>
+    <FormContext.Provider value={context}>
       <Component
         {...props}
         ref={ref}
@@ -40,11 +40,10 @@ const Group = React.forwardRef(({ className, controlId, sizeControl, disabledCon
           className && className,
         )}
       />
-    </Context.Provider>
+    </FormContext.Provider>
   );
 }
-);
-Group.displayName = 'FormGroup';
-Group.propTypes = propTypes;
-Group.defaultProps = defaultProps;
-export default Group;
+FormGroup.displayName = 'FormGroup';
+FormGroup.propTypes = propTypes;
+FormGroup.defaultProps = defaultProps;
+export default forwardRef(FormGroup);

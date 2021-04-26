@@ -1,7 +1,7 @@
-import React, { useContext, cloneElement } from 'react';
+import { useContext, cloneElement, forwardRef } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import AccordionContext, { SelectableContext } from './Context';
+import { AccordionContext } from 'utils/Context';
 
 const propTypes = {
   /**
@@ -17,16 +17,15 @@ const propTypes = {
   children: PropTypes.element.isRequired,
 };
 export function useAccordionToggle(eventKey, onClick) {
-  const contextEventKey = useContext(AccordionContext);
-  const onSelect = useContext(SelectableContext);
+  const { eventKeyControl, onSelect } = useContext(AccordionContext);
   return (e) => {
-    const eventKeyPassed = eventKey === contextEventKey ? null : eventKey;
+    const eventKeyPassed = eventKey === eventKeyControl ? null : eventKey;
     onSelect(eventKeyPassed, e);
     if (onClick) onClick(e);
   };
 }
 
-const AccordionToggle = React.forwardRef(({ className, eventKey, onClick, children, disabled, ...props }, ref) => {
+function AccordionToggle({ className, eventKey, onClick, children, disabled, ...props }, ref) {
   const onAccordionClick = useAccordionToggle(eventKey, onClick);
   return cloneElement(children, {
     className: classNames(
@@ -39,8 +38,8 @@ const AccordionToggle = React.forwardRef(({ className, eventKey, onClick, childr
     ref,
     children,
   });
-});
+}
 AccordionToggle.propTypes = propTypes;
 AccordionToggle.defaultProps = {};
 AccordionToggle.displayName = 'AccordionToggle';
-export default AccordionToggle;
+export default forwardRef(AccordionToggle);

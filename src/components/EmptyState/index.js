@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createBlock from '../../utils/createBlock';
-import { PluginType } from '../../constants/common';
-import Plugins from '../../plugins';
+import createBlock from 'utils/createBlock';
+import { PluginType } from 'constants/common';
+import Plugins from 'plugins';
 
 const propTypes = {
   /** The EmptyState visual name, should be provide via an AssetPlugin with prefix "emptyState" */
@@ -21,7 +21,7 @@ const defaultProps = {
   width: 240,
   alt: 'EmptyState',
 };
-const EmptyState = React.forwardRef(({ className, children, name, src, fileType, alt, height, width, as: Component = 'div', ...props }, ref) => {
+function EmptyState ({ className, children, name, src, fileType, alt, height, width, as: Component = 'div', ...props }, ref) {
   let nameOri = name;
   let srcOri = src;
   if (srcOri) {
@@ -48,14 +48,14 @@ const EmptyState = React.forwardRef(({ className, children, name, src, fileType,
       {children}
     </Component>
   );
-});
+}
 
-const Heading = createBlock('EmptyState-heading u-marginTopSmall u-text600 u-fontMedium u-textLight');
-const Description = createBlock('EmptyState-description u-marginBottomSmall u-textLight');
+const EmptyStateHeading = createBlock('EmptyState-heading u-marginTopSmall u-text600 u-fontMedium u-textLight');
+const EmptyStateDescription = createBlock('EmptyState-description u-marginBottomSmall u-textLight');
 
-EmptyState.Heading = Heading;
-EmptyState.Description = Description;
+EmptyState.Heading = EmptyStateHeading;
+EmptyState.Description = EmptyStateDescription;
 EmptyState.displayName = 'EmptyState';
 EmptyState.defaultProps = defaultProps;
 EmptyState.propTypes = propTypes;
-export default EmptyState;
+export default forwardRef(EmptyState);

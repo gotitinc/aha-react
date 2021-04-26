@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
+import React, { forwardRef, useContext } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import TimePickerBase from 'react-time-picker/dist/entry.nostyle';
-import Icon from '../Icon';
-import Context from '../Form/Context';
+import { FormContext } from 'utils/Context';
+import Icon from 'components/Icon';
 
-const TimePicker = React.forwardRef(({ className, noClearIcon, size, ...props }, ref) => {
-  const { sizeControl } = useContext(Context);
+function TimePicker ({ className, noClearIcon, size, ...props }, ref) {
+  const { sizeControl } = useContext(FormContext);
   const sizeOri = size || sizeControl; return (
     <TimePickerBase
       ref={ref}
@@ -24,7 +24,7 @@ const TimePicker = React.forwardRef(({ className, noClearIcon, size, ...props },
       )}
     />
   );
-});
+}
 
 TimePicker.displayName = 'TimePicker';
 TimePicker.defaultProps = {
@@ -44,4 +44,4 @@ TimePicker.propTypes = {
   size: PropTypes.oneOf(['small', 'medium', 'large']),
 };
 
-export default TimePicker;
+export default forwardRef(TimePicker);

@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
+import React, { forwardRef, useContext } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import Context from './Context';
-import createBlock from '../../utils/createBlock';
+import { FormContext } from 'utils/Context';
+import createBlock from 'utils/createBlock';
 
 const propTypes = {
   /**
@@ -15,8 +15,8 @@ const propTypes = {
 const defaultProps = {
 };
 
-const InputGroup = React.forwardRef(({ className, as: Component = 'div', ...props }, ref) => {
-  const { sizeControl } = useContext(Context);
+function FormInputGroup({ className, as: Component = 'div', ...props }, ref) {
+  const { sizeControl } = useContext(FormContext);
   return (
     <Component
       ref={ref}
@@ -29,16 +29,16 @@ const InputGroup = React.forwardRef(({ className, as: Component = 'div', ...prop
       )}
     />
   );
-});
+}
 
 const Append = createBlock('FormInputGroup-append u-flex');
 const Prepend = createBlock('FormInputGroup-prepend u-flex ');
 const Text = createBlock('FormInputGroup-text u-flex u-alignItemsCenter u-textGray u-textCenter u-backgroundLightest u-textNoWrap');
 
-InputGroup.Text = Text;
-InputGroup.Append = Append;
-InputGroup.Prepend = Prepend;
-InputGroup.displayName = 'FormInputGroup';
-InputGroup.defaultProps = defaultProps;
-InputGroup.propTypes = propTypes;
-export default InputGroup;
+FormInputGroup.Text = Text;
+FormInputGroup.Append = Append;
+FormInputGroup.Prepend = Prepend;
+FormInputGroup.displayName = 'FormInputGroup';
+FormInputGroup.defaultProps = defaultProps;
+FormInputGroup.propTypes = propTypes;
+export default forwardRef(FormInputGroup);

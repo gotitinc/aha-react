@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React, { forwardRef, useContext } from 'react';
 import classNames from 'classnames';
-import Context from './Context';
+import { PageLayoutContext } from 'utils/Context';
 
 
-export const PageLayoutBody = React.forwardRef(({ className, children, ...props }, ref) => {
-  const { bodyProps } = useContext(Context);
+function PageLayoutBody ({ className, children, ...props }, ref) {
+  const { bodyProps } = useContext(PageLayoutContext);
   const mergeProps = {
     ref,
     ...bodyProps,
@@ -23,9 +23,9 @@ export const PageLayoutBody = React.forwardRef(({ className, children, ...props 
       {children}
     </div>
   );
-});
+}
 
-PageLayoutBody.displayName = 'PageLayout.Body';
+PageLayoutBody.displayName = 'PageLayoutBody';
 PageLayoutBody.propTypes = {};
 PageLayoutBody.defaultProps = {};
-export default PageLayoutBody;
+export default forwardRef(PageLayoutBody);

@@ -1,10 +1,10 @@
-import React, { useContext, useState } from 'react';
+import React, { forwardRef, useContext, useState } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import Badge from '../Badge';
-import Dropdown from '../Dropdown';
-import Icon from '../Icon';
-import TopMenuContext from './Context';
+import { TopMenuContext } from 'utils/Context';
+import Badge from 'components/Badge';
+import Dropdown from 'components/Dropdown';
+import Icon from 'components/Icon';
 
 const propTypes = {
   /** A key that associates the TopMenu with it's controlling TopMenu.SubMenu.*/
@@ -27,10 +27,11 @@ const propTypes = {
 const defaultProps = {
 };
 
-const SubMenu = React.forwardRef(({ level, eventKey, className, isSubItem, title, disabled, children, badge, icon, path, index, ...props }, ref) => {
+function TopMenuSubMenu({ level, eventKey, className, isSubItem, title, disabled, children, badge, icon, path, index, ...props }, ref) {
   let active;
   const context = useContext(TopMenuContext);
 
+  // eslint-disable-next-line react/destructuring-assignment
   if (context.current !== '' && context.current.startsWith(path)) {
     active = true;
   }
@@ -120,9 +121,9 @@ const SubMenu = React.forwardRef(({ level, eventKey, className, isSubItem, title
       </Dropdown.Container>
     </Dropdown>
   );
-});
+}
 
-SubMenu.defaultProps = defaultProps;
-SubMenu.displayName = 'TopMenuSubMenu';
-SubMenu.propTypes = propTypes;
-export default SubMenu;
+TopMenuSubMenu.defaultProps = defaultProps;
+TopMenuSubMenu.displayName = 'TopMenuSubMenu';
+TopMenuSubMenu.propTypes = propTypes;
+export default forwardRef(TopMenuSubMenu);

@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import classNames from 'classnames';
-import createBlock from '../../utils/createBlock';
+import createBlock from 'utils/createBlock';
 
 const propTypes = {
 
@@ -9,16 +9,19 @@ const defaultProps = {
 
 };
 
-const AskBox = React.forwardRef(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    {...props}
-    className={classNames(
-      'AskBox',
-      className && className
-    )}
-  />
-));
+function AskBox ({ className, ...props }, ref) {
+  return (
+    <div
+      ref={ref}
+      {...props}
+      className={classNames(
+        'AskBox',
+        className && className
+      )}
+    />
+  );
+}
+
 
 const Title = createBlock('AskBox-title u-text400 lg:u-text500');
 const Header = createBlock('AskBox-header u-paddingHorizontalSmall lg:u-paddingHorizontalLarge u-paddingTopSmall lg:u-paddingTopMedium u-paddingBottomSmall');
@@ -35,4 +38,4 @@ AskBox.displayName = 'AskBox';
 AskBox.defaultProps = defaultProps;
 AskBox.propTypes = propTypes;
 
-export default AskBox;
+export default forwardRef(AskBox);

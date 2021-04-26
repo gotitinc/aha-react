@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -21,20 +21,22 @@ const defaultProps = {
   visible: false,
 };
 
-const Feedback = React.forwardRef(({ className, type, visible, as: Component = 'div', ...props }, ref) => (
-  <Component
-    {...props}
-    ref={ref}
-    className={classNames(
-      'u-marginTopTiny u-widthFull u-text100',
-      className && className,
-      type && `${type}-feedback`,
-      visible && 'is-visible'
-    )}
-  />
-));
-Feedback.displayName = 'FormFeedback';
-Feedback.propTypes = propTypes;
-Feedback.defaultProps = defaultProps;
+function FormFeedback({ className, type, visible, as: Component = 'div', ...props }, ref) {
+  return (
+    <Component
+      {...props}
+      ref={ref}
+      className={classNames(
+        'u-marginTopTiny u-widthFull u-text100',
+        className && className,
+        type && `${type}-feedback`,
+        visible && 'is-visible'
+      )}
+    />
+  );
+}
+FormFeedback.displayName = 'FormFeedback';
+FormFeedback.propTypes = propTypes;
+FormFeedback.defaultProps = defaultProps;
 
-export default Feedback;
+export default forwardRef(FormFeedback);

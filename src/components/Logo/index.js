@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { PluginType } from '../../constants/common';
-import Plugins from '../../plugins';
+import Plugins from 'plugins';
+import { PluginType } from 'constants/common';
 
 const propTypes = {
   /** The Logo visual name, should be provide via an AssetPlugin with prefix "logo" */
@@ -19,7 +19,7 @@ const propTypes = {
 const defaultProps = {
   alt: 'Logo',
 };
-const Logo = React.forwardRef(({ className, name, src, alt, height, width, as: Component = 'div', ...props }, ref) => {
+function Logo({ className, name, src, alt, height, width, as: Component = 'div', ...props }, ref) {
   let nameOri = name;
   let srcOri = src;
   if (srcOri) {
@@ -45,10 +45,10 @@ const Logo = React.forwardRef(({ className, name, src, alt, height, width, as: C
       )}
     </Component>
   );
-});
+}
 
 
 Logo.displayName = 'Logo';
 Logo.defaultProps = defaultProps;
 Logo.propTypes = propTypes;
-export default Logo;
+export default forwardRef(Logo);

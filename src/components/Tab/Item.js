@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import React, { forwardRef, useContext } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import TabContext from './Context';
+import { TabContext } from 'utils/Context';
 
 const propTypes = {
   /** A key that associates the Tab with it's controlling Tab.Item.*/
@@ -16,10 +16,11 @@ const propTypes = {
 const defaultProps = {
 };
 
-const Item = React.forwardRef(({ className, disabled, eventKey, index, fullWidth, direction, children, path, visual, as: Component = 'div', ...props }, ref) => {
+function TabItem({ className, disabled, eventKey, index, fullWidth, direction, children, path, visual, as: Component = 'div', ...props }, ref) {
   let active;
 
   const context = useContext(TabContext);
+  // eslint-disable-next-line react/destructuring-assignment
   if (path === context.current) {
     active = true;
   }
@@ -70,9 +71,9 @@ const Item = React.forwardRef(({ className, disabled, eventKey, index, fullWidth
 
     </div>
   );
-});
+}
 
-Item.defaultProps = defaultProps;
-Item.displayName = 'TabItem';
-Item.propTypes = propTypes;
-export default Item;
+TabItem.defaultProps = defaultProps;
+TabItem.displayName = 'TabItem';
+TabItem.propTypes = propTypes;
+export default forwardRef(TabItem);

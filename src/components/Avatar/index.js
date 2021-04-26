@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { PluginType } from '../../constants/common';
-import Plugins from '../../plugins';
+import { PluginType } from 'constants/common';
+import Plugins from 'plugins';
 
 const propTypes = {
   /** The Avatar visual name, should be provide via an AssetPlugin with prefix "avatar" */
@@ -39,7 +39,7 @@ const defaultProps = {
   alt: 'Avatar',
 };
 
-const Avatar = React.forwardRef(({ className, size, name, src, alt, height, width, text, as: Component = 'div', ...props }, ref) => {
+function Avatar ({ className, size, name, src, alt, height, width, text, style, as: Component = 'div', ...props }, ref) {
   let nameOri = name;
   let srcOri = src;
   let textOri = text;
@@ -60,7 +60,7 @@ const Avatar = React.forwardRef(({ className, size, name, src, alt, height, widt
   };
   const mergeProps = {
     ref,
-    style: { ...props.style, ...heightStyle },
+    style: { style, ...heightStyle },
     ...props,
   };
   return (
@@ -82,10 +82,10 @@ const Avatar = React.forwardRef(({ className, size, name, src, alt, height, widt
       )}
     </Component>
   );
-});
+}
 
 
 Avatar.displayName = 'Avatar';
 Avatar.defaultProps = defaultProps;
 Avatar.propTypes = propTypes;
-export default Avatar;
+export default forwardRef(Avatar);

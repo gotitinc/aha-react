@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
+import React, { forwardRef, useContext } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import DateRangePickerBase from '@wojtekmaj/react-daterange-picker/dist/entry.nostyle';
-import Icon from '../Icon';
-import Context from '../Form/Context';
+import { FormContext } from 'utils/Context';
+import Icon from 'components/Icon';
 
-const DateRangePicker = React.forwardRef(({ className, noClearIcon, size, ...props }, ref) => {
-  const { sizeControl } = useContext(Context);
+function DateRangePicker ({ className, noClearIcon, size, ...props }, ref) {
+  const { sizeControl } = useContext(FormContext);
   const sizeOri = size || sizeControl;
   return (
     <DateRangePickerBase
@@ -25,7 +25,7 @@ const DateRangePicker = React.forwardRef(({ className, noClearIcon, size, ...pro
       )}
     />
   );
-});
+}
 
 DateRangePicker.displayName = 'DateRangePicker';
 DateRangePicker.defaultProps = {
@@ -45,4 +45,4 @@ DateRangePicker.propTypes = {
   size: PropTypes.oneOf(['small', 'medium', 'large']),
 };
 
-export default DateRangePicker;
+export default forwardRef(DateRangePicker);

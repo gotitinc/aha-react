@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { forwardRef, useMemo } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { useUncontrolled } from 'uncontrollable';
-import AccordionContext, { SelectableContext } from './Context';
+import { AccordionContext } from 'utils/Context';
 import Toggle from './Toggle';
 import Collapse from './Collapse';
 
@@ -20,7 +20,7 @@ const defaultProps = {
 
 };
 
-const Accordion = React.forwardRef(({ className, as: Component = 'div', ...props }, ref) => {
+function Accordion({ className, as: Component = 'div', ...props }, ref) {
   const {
     activeKey,
     onSelect,
@@ -28,26 +28,24 @@ const Accordion = React.forwardRef(({ className, as: Component = 'div', ...props
   } = useUncontrolled(props, {
     activeKey: 'onSelect',
   });
-
+  const context = useMemo(() => ({ onSelect, eventKeyControl: activeKey }), [onSelect, activeKey]);
   return (
-    <AccordionContext.Provider value={activeKey}>
-      <SelectableContext.Provider value={onSelect}>
-        <Component
-          ref={ref}
-          {...controlledProps}
-          className={classNames(
-            'Accordion',
-            className && className
-          )}
-        />
-      </SelectableContext.Provider>
+    <AccordionContext.Provider value={context}>
+      <Component
+        ref={ref}
+        {...controlledProps}
+        className={classNames(
+          'Accordion',
+          className && className
+        )}
+      />
     </AccordionContext.Provider>
   );
-});
+}
 
 Accordion.displayName = 'Accordion';
 Accordion.defaultProps = defaultProps;
 Accordion.propTypes = propTypes;
 Accordion.Toggle = Toggle;
 Accordion.Collapse = Collapse;
-export default Accordion;
+export default forwardRef(Accordion);

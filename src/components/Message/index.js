@@ -1,16 +1,15 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, forwardRef } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { useUncontrolled } from 'uncontrollable';
 import useEventCallback from '@restart/hooks/useEventCallback';
 import { elementType } from 'prop-types-extra';
-
-import Icon from '../Icon';
-import Fade from '../../utils/Fade';
-import Context from './Context';
-import Title from './Title';
-import createBlock from '../../utils/createBlock';
-import { messagesVariants } from '../../constants';
+import { MessageContext } from 'utils/Context';
+import messagesVariants from 'constants/messages';
+import createBlock from 'utils/createBlock';
+import Fade from 'utils/Fade';
+import Icon from 'components/Icon';
+import MessageTitle from './Title';
 
 const propTypes = {
   /** The Message visual type */
@@ -57,7 +56,7 @@ const defaultProps = {
 const controllables = {
   show: 'onClose',
 };
-const Message = React.forwardRef((uncontrolledProps, ref) => {
+function Message(uncontrolledProps, ref) {
   const {
     className,
     variant,
@@ -112,19 +111,19 @@ const Message = React.forwardRef((uncontrolledProps, ref) => {
   if (!Transition) return show ? alert : null;
 
   return (
-    <Context.Provider value={context}>
+    <MessageContext.Provider value={context}>
       <Transition unmountOnExit ref={ref} {...props} in={show}>
         {alert}
       </Transition>
-    </Context.Provider>
+    </MessageContext.Provider>
   );
-});
-const Content = createBlock('Message-content');
-const Container = createBlock('Message-container u-paddingSmall u-flexGrow1');
-Message.Title = Title;
-Message.Content = Content;
-Message.Container = Container;
+}
+const MessageContent = createBlock('Message-content');
+const MessageContainer = createBlock('Message-container u-paddingSmall u-flexGrow1');
+Message.Title = MessageTitle;
+Message.Content = MessageContent;
+Message.Container = MessageContainer;
 Message.displayName = 'Message';
 Message.defaultProps = defaultProps;
 Message.propTypes = propTypes;
-export default Message;
+export default forwardRef(Message);

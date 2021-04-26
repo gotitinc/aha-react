@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
+import React, { forwardRef, useContext } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import warning from 'warning';
-import Context from './Context';
+import { FormContext } from 'utils/Context';
 
 const propTypes = {
   /**
@@ -31,8 +31,8 @@ const labelSizes = {
   medium: '',
   large: '',
 };
-const Label = React.forwardRef(({ className, sizeLabel, required, htmlFor, as: Component = 'label', ...props }, ref) => {
-  const { controlId, sizeControl, requiredControl } = useContext(Context);
+function FormLabel({ className, sizeLabel, required, htmlFor, as: Component = 'label', ...props }, ref) {
+  const { controlId, sizeControl, requiredControl } = useContext(FormContext);
 
   warning(
     controlId == null || !htmlFor,
@@ -56,9 +56,9 @@ const Label = React.forwardRef(({ className, sizeLabel, required, htmlFor, as: C
       {...props}
     />
   );
-});
-Label.displayName = 'FormLabel';
-Label.propTypes = propTypes;
-Label.defaultProps = defaultProps;
+}
+FormLabel.displayName = 'FormLabel';
+FormLabel.propTypes = propTypes;
+FormLabel.defaultProps = defaultProps;
 
-export default Label;
+export default forwardRef(FormLabel);

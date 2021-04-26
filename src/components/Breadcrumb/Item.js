@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import SafeAnchor from '../../utils/SafeAnchor';
+import SafeAnchor from 'utils/SafeAnchor';
 
 const propTypes = {
 
@@ -28,7 +28,7 @@ const defaultProps = {
 
 };
 
-const Item = React.forwardRef(({ className, children, noHref, position, schema, isLast, ...props }, ref) => {
+function BreadcrumbItem ({ className, children, noHref, position, schema, isLast, ...props }, ref) {
   const Component = isLast || noHref ? 'span' : SafeAnchor;
   return (
     <li
@@ -65,9 +65,9 @@ const Item = React.forwardRef(({ className, children, noHref, position, schema, 
       )}
     </li>
   );
-});
+}
 
-Item.displayName = 'BreadcrumbItem';
-Item.defaultProps = defaultProps;
-Item.propTypes = propTypes;
-export default Item;
+BreadcrumbItem.displayName = 'BreadcrumbItem';
+BreadcrumbItem.defaultProps = defaultProps;
+BreadcrumbItem.propTypes = propTypes;
+export default forwardRef(BreadcrumbItem);

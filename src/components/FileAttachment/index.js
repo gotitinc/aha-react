@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
+import React, { forwardRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useUncontrolled } from 'uncontrollable';
 import { elementType } from 'prop-types-extra';
 import useEventCallback from '@restart/hooks/useEventCallback';
-
-import Fade from '../../utils/Fade';
-
-import Icon from '../Icon';
+import Fade from 'utils/Fade';
+import Icon from 'components/Icon';
 
 const fileTypeMeta = {
   undefined: {
@@ -86,7 +84,7 @@ const defaultProps = {
 const controllables = {
   show: 'onClose',
 };
-const FileAttachment = React.forwardRef((uncontrolledProps, ref) => {
+function FileAttachment (uncontrolledProps, ref) {
   const {
     className,
     fileType,
@@ -186,9 +184,8 @@ const FileAttachment = React.forwardRef((uncontrolledProps, ref) => {
     </Transition>
   );
 }
-);
 
 FileAttachment.displayName = 'FileAttachment';
 FileAttachment.propTypes = propTypes;
 FileAttachment.defaultProps = defaultProps;
-export default FileAttachment;
+export default forwardRef(FileAttachment);

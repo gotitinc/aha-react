@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Icon from '../Icon';
+import Icon from 'components/Icon';
 
 const propTypes = {
   /** The Counter visual variant */
@@ -72,17 +72,18 @@ const variantsClassName = {
   },
 };
 
-const Counter = React.forwardRef(({ className, children, iconLeft, label, number, variant, as: Component = 'div', ...props }, ref) => (
-  <Component
-    ref={ref}
-    {...props}
-    className={classNames(
-      'Counter',
-      'u-flex u-alignItemsCenter u-lineHeightReset',
-      className && className
-    )}
-  >
-    {iconLeft && (
+function Counter ({ className, children, iconLeft, label, number, variant, as: Component = 'div', ...props }, ref) {
+  return (
+    <Component
+      ref={ref}
+      {...props}
+      className={classNames(
+        'Counter',
+        'u-flex u-alignItemsCenter u-lineHeightReset',
+        className && className
+      )}
+    >
+      {iconLeft && (
       <span className="u-marginRightTiny">
         {typeof (iconLeft) === 'function'
           ? iconLeft()
@@ -97,23 +98,23 @@ const Counter = React.forwardRef(({ className, children, iconLeft, label, number
           )
         }
       </span>
-    )}
+      )}
 
-    {label && (
-      typeof (label) === 'function'
-        ? label()
-        : (
-          <span className={classNames(
-            'u-text500',
-            variant ? variantsClassName[variant].text : 'u-textDark'
-          )}
-          >
-            {label}
-          </span>
-        )
+      {label && (
+        typeof (label) === 'function'
+          ? label()
+          : (
+            <span className={classNames(
+              'u-text500',
+              variant ? variantsClassName[variant].text : 'u-textDark'
+            )}
+            >
+              {label}
+            </span>
+          )
 
-    )}
-    {number && (
+      )}
+      {number && (
       <span className="u-marginHorizontalExtraSmall">
         {typeof (number) === 'function'
           ? number()
@@ -128,13 +129,14 @@ const Counter = React.forwardRef(({ className, children, iconLeft, label, number
           )
         }
       </span>
-    )}
-    {children}
-  </Component>
-));
+      )}
+      {children}
+    </Component>
+  );
+}
 
 
 Counter.displayName = 'Counter';
 Counter.defaultProps = defaultProps;
 Counter.propTypes = propTypes;
-export default Counter;
+export default forwardRef(Counter);

@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-
-import TabContext from './Context';
-import Item from './Item';
+import { TabContext } from 'utils/Context';
+import TabItem from './Item';
 
 const propTypes = {
   /**
@@ -31,7 +30,7 @@ const defaultProps = {
   direction: 'horizontal',
   visual: 'default',
 };
-const Tab = React.forwardRef(({ className, children, current, fullWidth, onSelect, direction, visual, ...props }, ref) => {
+function Tab ({ className, children, current, fullWidth, onSelect, direction, visual, ...props }, ref) {
   const modifiedChildren = React.Children.map(children, (child, index) => {
     if (!child) {
       return null;
@@ -73,10 +72,10 @@ const Tab = React.forwardRef(({ className, children, current, fullWidth, onSelec
       </div>
     </TabContext.Provider>
   );
-});
+}
 
-Tab.Item = Item;
+Tab.Item = TabItem;
 Tab.defaultProps = defaultProps;
 Tab.displayName = 'Tab';
 Tab.propTypes = propTypes;
-export default Tab;
+export default forwardRef(Tab);

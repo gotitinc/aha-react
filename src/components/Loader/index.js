@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -22,7 +22,7 @@ const sizes = {
   large: 64,
 };
 
-const Loader = React.forwardRef(({ className, size, duration, ...props }, ref) => {
+function Loader({ className, size, duration, ...props }, ref) {
   const styles = {
     width: sizes[size] || sizes.medium,
     height: sizes[size] || sizes.medium,
@@ -42,9 +42,9 @@ const Loader = React.forwardRef(({ className, size, duration, ...props }, ref) =
     />
 
   );
-});
+}
 
 Loader.displayName = 'Loader';
 Loader.defaultProps = defaultProps;
 Loader.propTypes = propTypes;
-export default Loader;
+export default forwardRef(Loader);

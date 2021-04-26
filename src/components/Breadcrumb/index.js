@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Item from './Item';
@@ -11,7 +11,7 @@ const defaultProps = {
   schema: false,
 };
 
-const Breadcrumb = React.forwardRef(({ className, schema, children, ...props }, ref) => {
+function Breadcrumb ({ className, schema, children, ...props }, ref) {
   let schemasList;
   let schemasItem;
   if (schema) {
@@ -52,10 +52,10 @@ const Breadcrumb = React.forwardRef(({ className, schema, children, ...props }, 
       {modifiedChildren}
     </ul>
   );
-});
+}
 
 Breadcrumb.displayName = 'Breadcrumb';
 Breadcrumb.defaultProps = defaultProps;
 Breadcrumb.propTypes = propTypes;
 Breadcrumb.Item = Item;
-export default Breadcrumb;
+export default forwardRef(Breadcrumb);

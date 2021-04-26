@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import isRequiredForA11y from 'prop-types-extra/lib/isRequiredForA11y';
@@ -68,7 +68,7 @@ const variantsClassName = {
   black: 'u-textWhite u-backgroundBlack',
   white: 'u-textDark u-backgroundWhite u-border',
 };
-const Tooltip = React.forwardRef(({
+function Tooltip({
   className,
   show,
   variant,
@@ -76,48 +76,52 @@ const Tooltip = React.forwardRef(({
   noArrow,
   arrowProps,
   styleTooltip,
+  style,
   placement,
   scheduleUpdate: _,
   outOfBoundaries: _1,
   ...props
-}, ref) => (
-  <div
-    ref={ref}
-    {...props}
-    style={styleTooltip}
-    x-placement={placement}
-    className={classNames(
-      'Tooltip',
-      variant && `Tooltip--${variant}`,
-      'u-positionAbsolute u-zIndexTooltip u-roundedMedium',
-      show ? 'u-opacityReset u-visibilityVisible' : 'u-opacityNone u-visibilityHidden',
-      placement && `Tooltip--${placement}`,
-      variant && variantsClassName[variant],
-      className && className
-    )}
-  >
-    {!noArrow && (
+}, ref) {
+  return (
     <div
+      ref={ref}
+      {...props}
+      style={styleTooltip}
+      x-placement={placement}
       className={classNames(
-        'Tooltip-arrow',
-        'u-positionAbsolute',
-      )}
-      {...arrowProps}
-    />
-    )}
-    <div
-      style={{ ...props.style }}
-      className={classNames(
-        'Tooltip-body',
-        'u-text200 u-paddingExtraSmall',
+        'Tooltip',
+        variant && `Tooltip--${variant}`,
+        'u-positionAbsolute u-zIndexTooltip u-roundedMedium',
+        show ? 'u-opacityReset u-visibilityVisible' : 'u-opacityNone u-visibilityHidden',
+        placement && `Tooltip--${placement}`,
+        variant && variantsClassName[variant],
+        className && className
       )}
     >
-      {children}
+      {!noArrow && (
+      <div
+        className={classNames(
+          'Tooltip-arrow',
+          'u-positionAbsolute',
+        )}
+        {...arrowProps}
+      />
+      )}
+      <div
+        // eslint-disable-next-line react/destructuring-assignment
+        style={{ ...style }}
+        className={classNames(
+          'Tooltip-body',
+          'u-text200 u-paddingExtraSmall',
+        )}
+      >
+        {children}
+      </div>
     </div>
-  </div>
-));
+  );
+}
 
 Tooltip.displayName = 'Tooltip';
 Tooltip.defaultProps = defaultProps;
 Tooltip.propTypes = propTypes;
-export default Tooltip;
+export default forwardRef(Tooltip);

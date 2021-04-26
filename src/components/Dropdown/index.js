@@ -1,15 +1,15 @@
-import React, { useMemo, useRef, useCallback } from 'react';
+import React, { useMemo, useRef, useCallback, forwardRef } from 'react';
 import classNames from 'classnames';
 import { useUncontrolled } from 'uncontrollable';
 import useCallbackRef from '@restart/hooks/useCallbackRef';
 import useForceUpdate from '@restart/hooks/useForceUpdate';
 import PropTypes from 'prop-types';
-import DropButton from './Button';
-import Toggle from './Toggle';
-import Container from './Container';
-import DropdownContext from './Context';
+import { DropdownContext } from 'utils/Context';
+import createBlock from 'utils/createBlock';
+import DropdownButton from './Button';
+import DropdownToggle from './Toggle';
+import DropdownContainer from './Container';
 
-import createBlock from '../../utils/createBlock';
 
 const propTypes = {
   /**
@@ -64,7 +64,7 @@ const propTypes = {
 const defaultProps = {
 
 };
-const Dropdown = React.forwardRef((uncontrolledProps, ref) => {
+function Dropdown (uncontrolledProps, ref) {
   const {
     drop,
     show,
@@ -128,13 +128,13 @@ const Dropdown = React.forwardRef((uncontrolledProps, ref) => {
       />
     </DropdownContext.Provider>
   );
-});
-const Item = createBlock('Dropdown-item u-flex u-paddingHorizontalSmall u-paddingVerticalTiny hover:u-backgroundLightest');
-Dropdown.Item = Item;
-Dropdown.Container = Container;
-Dropdown.Button = DropButton;
-Dropdown.Toggle = Toggle;
+}
+const DropdownItem = createBlock('Dropdown-item u-flex u-paddingHorizontalSmall u-paddingVerticalTiny hover:u-backgroundLightest');
+Dropdown.Item = DropdownItem;
+Dropdown.Container = DropdownContainer;
+Dropdown.Button = DropdownButton;
+Dropdown.Toggle = DropdownToggle;
 Dropdown.propTypes = propTypes;
 Dropdown.defaultProps = defaultProps;
 Dropdown.displayName = 'Dropdown';
-export default Dropdown;
+export default forwardRef(Dropdown);

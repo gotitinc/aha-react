@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React, { forwardRef, useContext } from 'react';
 import PropTypes from 'prop-types';
-import AccordionContext from './Context';
+import { AccordionContext } from 'utils/Context';
 import CollapseBase from '../Collapse';
 
 const propTypes = {
@@ -12,22 +12,20 @@ const propTypes = {
   children: PropTypes.element.isRequired,
 };
 
-const Collapse = React.forwardRef(
-  ({ children, eventKey, ...props }, ref) => {
-    const contextEventKey = useContext(AccordionContext);
-    return (
-      <CollapseBase
-        ref={ref}
-        className="Accordion-collapse"
-        in={contextEventKey === eventKey}
-        {...props}
-      >
-        <div>{React.Children.only(children)}</div>
-      </CollapseBase>
-    );
-  },
-);
-Collapse.displayName = 'AccordionCollapse';
-Collapse.defaultProps = {};
-Collapse.propTypes = propTypes;
-export default Collapse;
+function AccordionCollapse({ children, eventKey, ...props }, ref) {
+  const { eventKeyControl } = useContext(AccordionContext);
+  return (
+    <CollapseBase
+      ref={ref}
+      className="Accordion-collapse"
+      in={eventKeyControl === eventKey}
+      {...props}
+    >
+      <div>{React.Children.only(children)}</div>
+    </CollapseBase>
+  );
+}
+AccordionCollapse.displayName = 'AccordionCollapse';
+AccordionCollapse.defaultProps = {};
+AccordionCollapse.propTypes = propTypes;
+export default forwardRef(AccordionCollapse);

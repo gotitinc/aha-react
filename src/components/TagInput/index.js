@@ -1,10 +1,9 @@
-import React, { useContext } from 'react';
+import React, { forwardRef, useContext } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import TagsInput from 'react-tagsinput';
-import Tag from '../Tag';
-import Context from '../Form/Context';
-
+import { FormContext } from 'utils/Context';
+import Tag from 'components/Tag';
 
 const propTypes = {
   /** The visual style of the tag */
@@ -33,8 +32,8 @@ const defaultProps = {
   variant: 'primary_subtle',
 };
 
-const TagInput = React.forwardRef(({ className, variant, value, size, onChange, tagProps = {}, inputProps = {}, renderInput, ...props }, ref) => {
-  const { sizeControl } = useContext(Context);
+function TagInput({ className, variant, value, size, onChange, tagProps = {}, inputProps = {}, renderInput, ...props }, ref) {
+  const { sizeControl } = useContext(FormContext);
   const sizeOri = size || sizeControl;
 
   const tagInputProps = {
@@ -80,11 +79,11 @@ const TagInput = React.forwardRef(({ className, variant, value, size, onChange, 
       renderInput={renderInput}
     />
   );
-});
+}
 
 
 TagInput.displayName = 'TagInput';
 TagInput.defaultProps = defaultProps;
 TagInput.propTypes = propTypes;
 
-export default TagInput;
+export default forwardRef(TagInput);

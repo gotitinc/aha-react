@@ -1,5 +1,5 @@
 /* eslint-disable no-return-assign */
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import css from 'dom-helpers/css';
@@ -11,8 +11,8 @@ import Transition, {
   EXITING,
 } from 'react-transition-group/Transition';
 
-import createChainedFunction from '../../utils/createChainedFunction';
-import triggerBrowserReflow from '../../utils/triggerBrowserReflow';
+import createChainedFunction from 'utils/createChainedFunction';
+import triggerBrowserReflow from 'utils/triggerBrowserReflow';
 
 const MARGINS = {
   height: ['marginTop', 'marginBottom'],
@@ -75,7 +75,7 @@ const defaultProps = {
   getDimensionValue,
 };
 
-const Collapse = React.forwardRef(({ className, eventKey, timeout, children, dimension, getDimensionValue, ...props }, ref) => {
+function Collapse ({ className, eventKey, timeout, children, dimension, getDimensionValue, ...props }, ref) {
   const getDimension = () => (typeof dimension === 'function'
     ? dimension()
     : dimension);
@@ -126,8 +126,8 @@ const Collapse = React.forwardRef(({ className, eventKey, timeout, children, dim
       }
     </Transition>
   );
-});
+}
 Collapse.displayName = 'Collapse';
 Collapse.defaultProps = defaultProps;
 Collapse.propTypes = propTypes;
-export default Collapse;
+export default forwardRef(Collapse);

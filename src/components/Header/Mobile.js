@@ -1,10 +1,11 @@
-import React, { useMemo, useCallback, useContext } from 'react';
+import React, { useMemo, useCallback, useContext, forwardRef } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { useUncontrolled } from 'uncontrollable';
 import useCallbackRef from '@restart/hooks/useCallbackRef';
-import Icon from '../Icon';
-import createBlock from '../../utils/createBlock';
+import createBlock from 'utils/createBlock';
+import Icon from 'components/Icon';
+import { HeaderMobileContext as HeaderContext } from 'utils/Context';
 
 const propTypes = {
   /** Whether or not the Header is visible. */
@@ -18,11 +19,7 @@ const defaultProps = {
   show: true,
 };
 
-const HeaderMobileContext = React.createContext({
-  onToggle() {},
-  showMenu: null,
-});
-const HeaderMobile = React.forwardRef((uncontrolledProps, ref) => {
+function HeaderMobile (uncontrolledProps, ref) {
   const { show, className, showMenu, hasDropContext, onToggle, children, ...props } = useUncontrolled(uncontrolledProps, { showMenu: 'onToggle' });
   const [toggleElement, setToggle] = useCallbackRef();
   const toggle = useCallback(
@@ -49,7 +46,7 @@ const HeaderMobile = React.forwardRef((uncontrolledProps, ref) => {
   );
   if (!show) return null;
   return (
-    <HeaderMobileContext.Provider value={context}>
+    <HeaderContext.Provider value={context}>
       <div
         ref={ref}
         {...props}
@@ -66,13 +63,13 @@ const HeaderMobile = React.forwardRef((uncontrolledProps, ref) => {
           </div>
         </div>
       </div>
-    </HeaderMobileContext.Provider>
+    </HeaderContext.Provider>
   );
-});
+}
 
 
-const HeaderContext = React.forwardRef(({ className, children, classNameToggle, ...props }, ref) => {
-  const { showMenu, hasDropContext, toggle, setToggle } = useContext(HeaderMobileContext);
+function HeaderMobileContext({ className, children, classNameToggle, ...props }, ref) {
+  const { showMenu, hasDropContext, toggle, setToggle } = useContext(HeaderContext);
   return (
     <div
       ref={ref}
@@ -98,10 +95,11 @@ const HeaderContext = React.forwardRef(({ className, children, classNameToggle, 
       {children}
     </div>
   );
-});
+}
 
-const DropContext = React.forwardRef(({ className, children, ...props }, ref) => {
-  const context = useContext(HeaderMobileContext);
+function HeaderMobileDropContext({ className, children, ...props }, ref) {
+  const context = useContext(HeaderContext);
+  // eslint-disable-next-line react/destructuring-assignment
   if (!context.showMenu) {
     return null;
   }
@@ -117,23 +115,23 @@ const DropContext = React.forwardRef(({ className, children, ...props }, ref) =>
       {children}
     </div>
   );
-});
+}
 
-HeaderContext.propTypes = {
+HeaderMobileContext.propTypes = {
   /** */
   classNameToggle: PropTypes.string,
 };
-const Brand = createBlock('HeaderMobile-brand u-lineHeightReset u-fontSizeNone u-flexShrink0 u-marginRightSmall u-paddingVerticalExtraSmall');
-const Main = createBlock('HeaderMobile-main u-flex u-flexGrow1 u-justifyContentEnd u-paddingVerticalExtraSmall');
-const AfterContext = createBlock('HeaderMobile-afterContext');
+const HeaderMobileBrand = createBlock('HeaderMobile-brand u-lineHeightReset u-fontSizeNone u-flexShrink0 u-marginRightSmall u-paddingVerticalExtraSmall');
+const HeaderMobileMain = createBlock('HeaderMobile-main u-flex u-flexGrow1 u-justifyContentEnd u-paddingVerticalExtraSmall');
+const HeaderMobileAfterContext = createBlock('HeaderMobile-afterContext');
 
-HeaderMobile.Main = Main;
-HeaderMobile.Brand = Brand;
-HeaderMobile.AfterContext = AfterContext;
-HeaderMobile.Context = HeaderContext;
-HeaderMobile.DropContext = DropContext;
+HeaderMobile.Main = HeaderMobileMain;
+HeaderMobile.Brand = HeaderMobileBrand;
+HeaderMobile.AfterContext = HeaderMobileAfterContext;
+HeaderMobile.Context = forwardRef(HeaderMobileContext);
+HeaderMobile.DropContext = forwardRef(HeaderMobileDropContext);
 HeaderMobile.displayName = 'HeaderMobile';
 HeaderMobile.defaultProps = defaultProps;
 HeaderMobile.propTypes = propTypes;
 
-export default HeaderMobile;
+export default forwardRef(HeaderMobile);

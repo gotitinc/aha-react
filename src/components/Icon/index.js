@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { icons } from '../../constants';
+import icons from 'constants/icons';
 
 const propTypes = {
   /** The icon visual name */
@@ -188,7 +188,7 @@ const styles = {
 };
 
 
-const Icon = React.forwardRef(({ className, path, size, name, ...props }, ref) => {
+function Icon ({ className, path, size, name, style, ...props }, ref) {
   const pathOri = path;
   let nameOri = name;
   if (pathOri) {
@@ -198,7 +198,7 @@ const Icon = React.forwardRef(({ className, path, size, name, ...props }, ref) =
     <svg
       ref={ref}
       {...props}
-      style={{ ...styles.svg, ...props.style }}
+      style={{ ...styles.svg, ...style }}
       width={`${sizes[size]}px`}
       height={`${sizes[size]}px`}
       className={classNames(
@@ -216,10 +216,10 @@ const Icon = React.forwardRef(({ className, path, size, name, ...props }, ref) =
       />
     </svg>
   );
-});
+}
 
 
 Icon.displayName = 'Icon';
 Icon.defaultProps = defaultProps;
 Icon.propTypes = propTypes;
-export default Icon;
+export default forwardRef(Icon);

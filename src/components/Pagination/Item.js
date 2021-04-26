@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Button from '../Button';
-import Icon from '../Icon';
-import SafeAnchor from '../../utils/SafeAnchor';
+import SafeAnchor from 'utils/SafeAnchor';
+import Button from 'components/Button';
+import Icon from 'components/Icon';
 
 const propTypes = {
   /** Styles PageItem as active, and renders a `<span>` instead of an `<a>`. */
@@ -17,7 +17,8 @@ const defaultProps = {
   disabled: false,
 };
 
-export const PageItem = React.forwardRef(({ className, active, safeItem, disabled, children, displayName, ...props }, ref) => {
+
+function PaginationItem({ className, active, safeItem, disabled, children, displayName, ...props }, ref) {
   let variant = active ? 'primary' : 'secondary';
   if (safeItem) {
     variant = 'default';
@@ -45,11 +46,7 @@ export const PageItem = React.forwardRef(({ className, active, safeItem, disable
       </Component>
     </li>
   );
-});
-
-PageItem.displayName = 'PaginationItem';
-PageItem.propTypes = propTypes;
-PageItem.defaultProps = defaultProps;
+}
 
 function createButton(name, defaultValue, safeItem, className) {
   return class extends React.Component {
@@ -59,13 +56,20 @@ function createButton(name, defaultValue, safeItem, className) {
       const { children, ...props } = this.props;
       delete props.active;
       return (
-        <PageItem {...props} safeItem={safeItem} displayName className={className}>
+        <PaginationItem {...props} safeItem={safeItem} displayName className={className}>
           {children || defaultValue}
-        </PageItem>
+        </PaginationItem>
       );
     }
   };
 }
-export const Prev = createButton('Prev', <Button.Icon><Icon className="u-textLight" name="arrowBack" size="extraSmall" /></Button.Icon>, false, 'Pagination-prev');
-export const Ellipsis = createButton('Ellipsis', <Button.Icon><Icon name="more" className="u-textLight" size="extraSmall" /></Button.Icon>, true);
-export const Next = createButton('Next', <Button.Icon><Icon name="arrowForward" className="u-textLight" size="extraSmall" /></Button.Icon>, false, 'Pagination-next');
+export const PaginationPrev = createButton('Prev', <Button.Icon><Icon className="u-textLight" name="arrowBack" size="extraSmall" /></Button.Icon>, false, 'Pagination-prev');
+export const PaginationEllipsis = createButton('Ellipsis', <Button.Icon><Icon name="more" className="u-textLight" size="extraSmall" /></Button.Icon>, true);
+export const PaginationNext = createButton('Next', <Button.Icon><Icon name="arrowForward" className="u-textLight" size="extraSmall" /></Button.Icon>, false, 'Pagination-next');
+
+
+PaginationItem.displayName = 'PaginationItem';
+PaginationItem.propTypes = propTypes;
+PaginationItem.defaultProps = defaultProps;
+
+export default forwardRef(PaginationItem);

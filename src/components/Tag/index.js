@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -61,23 +61,25 @@ const variantsClassName = {
   negative_subtle: 'u-textDark hover:u-textDark u-backgroundNegativeLighter',
 };
 
-const Tag = React.forwardRef(({ className, textClassName, variant, as: Component = 'span', ...props }, ref) => (
-  <Component
-    {...props}
-    ref={ref}
-    className={classNames(
-      'Tag',
-      'u-flexInline u-alignItemsCenter u-textCenter u-textNoWrap u-roundedMedium u-text200 hover:u-textDecorationNone',
-      variant && variantsClassName[variant],
-      ((variant === 'primary' || variant === 'accent' || variant === 'primary_subtle' || variant === 'accent_subtle') && textClassName) ? textClassName : variantsTextClassName[variant],
-      className && className
-    )}
-  />
-));
+function Tag({ className, textClassName, variant, as: Component = 'span', ...props }, ref) {
+  return (
+    <Component
+      {...props}
+      ref={ref}
+      className={classNames(
+        'Tag',
+        'u-flexInline u-alignItemsCenter u-textCenter u-textNoWrap u-roundedMedium u-text200 hover:u-textDecorationNone',
+        variant && variantsClassName[variant],
+        ((variant === 'primary' || variant === 'accent' || variant === 'primary_subtle' || variant === 'accent_subtle') && textClassName) ? textClassName : variantsTextClassName[variant],
+        className && className
+      )}
+    />
+  );
+}
 
 Tag.displayName = 'Tag';
 Tag.defaultProps = defaultProps;
 Tag.propTypes = propTypes;
 Tag.variantsClassName = variantsClassName;
 
-export default Tag;
+export default forwardRef(Tag);

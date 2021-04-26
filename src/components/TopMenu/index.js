@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import Item from './Item';
-import SubMenu from './SubMenu';
-import TopMenuContext from './Context';
+import { TopMenuContext } from 'utils/Context';
+import TopMenuItem from './Item';
+import TopMenuSubMenu from './SubMenu';
 
 const propTypes = {
   /**
@@ -15,7 +15,7 @@ const propTypes = {
   onSelect: PropTypes.func,
 };
 
-const TopMenu = React.forwardRef(({ className, children, current, onSelect, ...props }, ref) => {
+function TopMenu({ className, children, current, onSelect, ...props }, ref) {
   const modifiedChildren = React.Children.map(children, (child, index) => {
     if (!child) {
       return null;
@@ -55,11 +55,11 @@ const TopMenu = React.forwardRef(({ className, children, current, onSelect, ...p
       </div>
     </TopMenuContext.Provider>
   );
-});
+}
 
-TopMenu.Item = Item;
-TopMenu.SubMenu = SubMenu;
+TopMenu.Item = TopMenuItem;
+TopMenu.SubMenu = TopMenuSubMenu;
 TopMenu.defaultProps = {};
 TopMenu.displayName = 'TopMenu';
 TopMenu.propTypes = propTypes;
-export default TopMenu;
+export default forwardRef(TopMenu);

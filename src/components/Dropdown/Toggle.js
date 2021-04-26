@@ -1,8 +1,7 @@
-import React, { useContext, cloneElement } from 'react';
+import { useContext, cloneElement, forwardRef } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-
-import DropdownContext from './Context';
+import { DropdownContext } from 'utils/Context';
 
 const propTypes = {
   /** Set a custom element for this component */
@@ -23,7 +22,7 @@ export function useToggle() {
   ];
 }
 
-const Toggle = React.forwardRef(({ className, children, disabled, ...props }, ref) => {
+function DropdownToggle ({ className, children, disabled, ...props }, ref) {
   const [toggleProps, { toggle }] = useToggle();
 
   return cloneElement(children, {
@@ -38,9 +37,9 @@ const Toggle = React.forwardRef(({ className, children, disabled, ...props }, re
     ...toggleProps,
     children,
   });
-});
+}
 
-Toggle.displayName = 'DropdownToggle';
-Toggle.defaultProps = {};
-Toggle.propTypes = propTypes;
-export default Toggle;
+DropdownToggle.displayName = 'DropdownToggle';
+DropdownToggle.defaultProps = {};
+DropdownToggle.propTypes = propTypes;
+export default forwardRef(DropdownToggle);

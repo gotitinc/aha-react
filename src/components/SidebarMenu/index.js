@@ -1,11 +1,10 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-
-import Item from './Item';
-import SubMenu from './SubMenu';
-import createBlock from '../../utils/createBlock';
-import SidebarContext from './Context';
+import { SidebarMenuContext } from 'utils/Context';
+import createBlock from 'utils/createBlock';
+import SidebarMenuItem from './Item';
+import SidebarMenuSubMenu from './SubMenu';
 
 const propTypes = {
   /**
@@ -38,7 +37,7 @@ const SidebarMenu = React.forwardRef(({ className, children, current, onSelect, 
     );
   });
   return (
-    <SidebarContext.Provider
+    <SidebarMenuContext.Provider
       value={{
         current,
         onSelect,
@@ -62,17 +61,17 @@ const SidebarMenu = React.forwardRef(({ className, children, current, onSelect, 
           {modifiedChildren}
         </div>
       </div>
-    </SidebarContext.Provider>
+    </SidebarMenuContext.Provider>
   );
 });
 
-const Divider = createBlock('SidebarMenu-divider u-borderTop u-marginVerticalExtraSmall');
-const Header = createBlock('SidebarMenu-header u-textLight u-text200 u-fontMedium u-paddingHorizontalSmall u-marginVerticalTiny md:u-marginVerticalExtraSmall lg:u-marginVerticalSmall');
+const SidebarMenuDivider = createBlock('SidebarMenu-divider u-borderTop u-marginVerticalExtraSmall');
+const SidebarMenuHeader = createBlock('SidebarMenu-header u-textLight u-text200 u-fontMedium u-paddingHorizontalSmall u-marginVerticalTiny md:u-marginVerticalExtraSmall lg:u-marginVerticalSmall');
 
-SidebarMenu.Item = Item;
-SidebarMenu.SubMenu = SubMenu;
-SidebarMenu.Divider = Divider;
-SidebarMenu.Header = Header;
+SidebarMenu.Item = SidebarMenuItem;
+SidebarMenu.SubMenu = SidebarMenuSubMenu;
+SidebarMenu.Divider = SidebarMenuDivider;
+SidebarMenu.Header = SidebarMenuHeader;
 SidebarMenu.defaultProps = defaultProps;
 SidebarMenu.displayName = 'SidebarMenu';
 SidebarMenu.propTypes = propTypes;

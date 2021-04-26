@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -54,7 +54,7 @@ const variantsClassName = {
   },
 };
 
-const Separator = React.forwardRef(({ className, label, lineType, variant, as: Component = 'div', ...props }, ref) => {
+function Separator({ className, label, lineType, variant, as: Component = 'div', ...props }, ref) {
   const lineClass = classNames(
     'Separator-line u-border u-sizeFill',
     'u-border u-borderRightNone u-borderBottomNone u-borderLeftNone',
@@ -87,9 +87,9 @@ const Separator = React.forwardRef(({ className, label, lineType, variant, as: C
       )}
     </Component>
   );
-});
+}
 
 Separator.displayName = 'Separator';
 Separator.defaultProps = defaultProps;
 Separator.propTypes = propTypes;
-export default Separator;
+export default forwardRef(Separator);

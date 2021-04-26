@@ -131,7 +131,7 @@ function handleBlurVisible() {
   }, 100);
 }
 
-export function useIsFocusVisible() {
+function useIsFocusVisible() {
   const ref = React.useCallback((instance) => {
     // eslint-disable-next-line react/no-find-dom-node
     const node = ReactDOM.findDOMNode(instance);
@@ -142,3 +142,5 @@ export function useIsFocusVisible() {
 
   return { isFocusVisible, onBlurVisible: handleBlurVisible, ref };
 }
+
+export default useIsFocusVisible;

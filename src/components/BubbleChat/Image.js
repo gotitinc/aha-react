@@ -1,10 +1,9 @@
-import React, { useContext } from 'react';
+import React, { forwardRef, useContext } from 'react';
 import classNames from 'classnames';
-import Context from './Context';
+import { BubbleChatContext } from 'utils/Context';
 
-
-const BubbleChatImage = React.forwardRef(({ className, ...props }, ref) => {
-  const { type } = useContext(Context);
+function BubbleChatImage ({ className, ...props }, ref) {
+  const { type } = useContext(BubbleChatContext);
   return (
     <div
       ref={ref}
@@ -18,9 +17,9 @@ const BubbleChatImage = React.forwardRef(({ className, ...props }, ref) => {
       <img {...props} className="u-roundedMedium u-border u-maxWidthFull" alt="" />
     </div>
   );
-});
+}
 
 BubbleChatImage.displayName = 'BubbleChat.Image';
 BubbleChatImage.defaultProps = {};
 BubbleChatImage.propTypes = {};
-export default BubbleChatImage;
+export default forwardRef(BubbleChatImage);

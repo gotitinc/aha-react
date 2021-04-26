@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import { ToastContainer as ToastContainerBase, toast as toastBase } from 'react-toastify';
-import Icon from '../Icon';
+import Icon from 'components/Icon';
 
 const propTypes = {
   /**
@@ -37,21 +37,23 @@ const defaultProps = {
   hideProgressBar: false,
 };
 
-const ToastContainer = React.forwardRef(({ position, dismissible, autoDismiss, ...props }, ref) => (
-  <ToastContainerBase
-    ref={ref}
-    {...props}
-    autoClose={autoDismiss}
-    position={position}
-    closeOnClick
-    pauseOnHover
-    newestOnTop
-    bodyClassName="u-text200"
-    closeButton={dismissible ? ({ closeToast }) => <Icon onClick={closeToast} name="close" size="tiny" className="Toastify__close-button u-flexShrink0" /> : false}
-  />
-));
+function ToastContainer({ position, dismissible, autoDismiss, ...props }, ref) {
+  return (
+    <ToastContainerBase
+      ref={ref}
+      {...props}
+      autoClose={autoDismiss}
+      position={position}
+      closeOnClick
+      pauseOnHover
+      newestOnTop
+      bodyClassName="u-text200"
+      closeButton={dismissible ? ({ closeToast }) => <Icon onClick={closeToast} name="close" size="tiny" className="Toastify__close-button u-flexShrink0" /> : false}
+    />
+  );
+}
 export const toast = toastBase;
 ToastContainer.displayName = 'ToastContainer';
 ToastContainer.defaultProps = defaultProps;
 ToastContainer.propTypes = propTypes;
-export default ToastContainer;
+export default forwardRef(ToastContainer);

@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import classNames from 'classnames';
-import createBlock from '../../utils/createBlock';
+import createBlock from 'utils/createBlock';
 
 const propTypes = {
 
@@ -9,63 +9,70 @@ const defaultProps = {
 
 };
 
-const ChatBox = React.forwardRef(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    {...props}
-    className={classNames(
-      'ChatBox',
-      'u-flex u-flexColumn u-positionRelative u-flexGrow1',
-      className && className
-    )}
-  />
-));
-
-const List = React.forwardRef(({ className, children, innerClassName, ...props }, ref) => (
-  <div
-    ref={ref}
-    {...props}
-    className={classNames(
-      'ChatBox-list u-positionRelative u-flexGrow1 u-flexShrink1',
-      className && className
-    )}
-  >
+function ChatBox ({ className, ...props }, ref) {
+  return (
     <div
+      ref={ref}
+      {...props}
       className={classNames(
-        'ChatBox-listInner u-overflowVerticalAuto u-paddingExtraSmall u-positionAbsolute u-positionFull u-webkitScrollbar',
-        innerClassName && innerClassName
+        'ChatBox',
+        'u-flex u-flexColumn u-positionRelative u-flexGrow1',
+        className && className
+      )}
+    />
+  );
+}
+
+function ChatBoxList ({ className, children, innerClassName, ...props }, ref) {
+  return (
+    <div
+      ref={ref}
+      {...props}
+      className={classNames(
+        'ChatBox-list u-positionRelative u-flexGrow1 u-flexShrink1',
+        className && className
       )}
     >
-      {children}
+      <div
+        className={classNames(
+          'ChatBox-listInner u-overflowVerticalAuto u-paddingExtraSmall u-positionAbsolute u-positionFull u-webkitScrollbar',
+          innerClassName && innerClassName
+        )}
+      >
+        {children}
+      </div>
     </div>
-  </div>
-));
+  );
+}
 
-const Context = createBlock('ChatBox-context u-positionRelative');
-const Notice = React.forwardRef(({ className, children, ...props }, ref) => (
-  <div
-    ref={ref}
-    {...props}
-    className={classNames(
-      'ChatBox-notice u-positionAbsolute u-widthFull u-positionBottom-100 u-marginBottomSmall',
-      className && className
-    )}
-  >
-    <div className="u-flex u-justifyContentCenter">
-      {children}
+const ChatBoxContext = createBlock('ChatBox-context u-positionRelative');
+
+function ChatBoxNotice ({ className, children, ...props }, ref) {
+  return (
+    <div
+      ref={ref}
+      {...props}
+      className={classNames(
+        'ChatBox-notice u-positionAbsolute u-widthFull u-positionBottom-100 u-marginBottomSmall',
+        className && className
+      )}
+    >
+      <div className="u-flex u-justifyContentCenter">
+        {children}
+      </div>
     </div>
-  </div>
-));
+  );
+}
 
-const Info = createBlock('ChatBox-info');
-const Attachment = createBlock('ChatBox-attachment u-paddingExtraSmall u-borderTop');
-ChatBox.List = List;
-ChatBox.Attachment = Attachment;
-ChatBox.Info = Info;
-ChatBox.Context = Context;
-ChatBox.Notice = Notice;
+const ChatBoxInfo = createBlock('ChatBox-info');
+const ChatBoxAttachment = createBlock('ChatBox-attachment u-paddingExtraSmall u-borderTop');
+ChatBox.List = forwardRef(ChatBoxList);
+ChatBox.Attachment = ChatBoxAttachment;
+ChatBox.Info = ChatBoxInfo;
+ChatBox.Context = ChatBoxContext;
+ChatBox.Notice = forwardRef(ChatBoxNotice);
 ChatBox.displayName = 'ChatBox';
 ChatBox.defaultProps = defaultProps;
 ChatBox.propTypes = propTypes;
 
-export default ChatBox;
+export default forwardRef(ChatBox);

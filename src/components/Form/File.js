@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
+import React, { forwardRef, useContext } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import warning from 'warning';
-import Context from './Context';
+import { FormContext } from 'utils/Context';
 
 const propTypes = {
   /**
@@ -48,10 +48,11 @@ const defaultProps = {
   placeholder: '',
 };
 
-const File = React.forwardRef(({ className, sizeInput, id, fileName, placeholder, browseText, isValid, isInvalid, isBorderNone, isBackgroundReset, as: Component = 'div', ...props }, ref) => {
-  const { sizeControl, controlId } = useContext(Context);
+function FormFile ({ className, sizeInput, id, fileName, placeholder, browseText, isValid, isInvalid, isBorderNone, isBackgroundReset, disabled, as: Component = 'div', ...props }, ref) {
+  const { sizeControl, controlId, disabledControl } = useContext(FormContext);
   const sizeInputSet = sizeInput || sizeControl;
   const idSet = id || controlId;
+  const disabledOri = disabled || disabledControl;
 
   warning(
     controlId == null || !id,
@@ -64,7 +65,7 @@ const File = React.forwardRef(({ className, sizeInput, id, fileName, placeholder
         'u-positionRelative u-flex u-alignItemsCenter u-overflowHidden',
         sizeInputSet && `FormInput--${sizeInputSet}`,
         sizeInputSet === 'small' && 'u-text200',
-        props.disabled ? 'u-cursorNotAllow u-textLight u-pointerEventsNone' : 'u-cursorPointer',
+        disabledOri ? 'u-cursorNotAllow u-textLight u-pointerEventsNone' : 'u-cursorPointer',
         fileName && 'is-selected',
         isValid && 'is-valid',
         isInvalid && 'is-invalid',
@@ -83,7 +84,7 @@ const File = React.forwardRef(({ className, sizeInput, id, fileName, placeholder
       <label
         className={classNames(
           'FormInput-label u-marginBottomNone u-heightFull u-widthFull',
-          props.disabled ? 'u-cursorNotAllow' : 'u-cursorPointer',
+          disabledOri ? 'u-cursorNotAllow' : 'u-cursorPointer',
         )}
         data-browse={browseText}
         htmlFor={idSet}
@@ -96,9 +97,9 @@ const File = React.forwardRef(({ className, sizeInput, id, fileName, placeholder
 
     </Component>
   );
-});
+}
 
-File.displayName = 'FormFile';
-File.defaultProps = defaultProps;
-File.propTypes = propTypes;
-export default File;
+FormFile.displayName = 'FormFile';
+FormFile.defaultProps = defaultProps;
+FormFile.propTypes = propTypes;
+export default forwardRef(FormFile);

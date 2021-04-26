@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -57,21 +57,23 @@ const variantsClassName = {
   negative_subtle: 'u-textNegative hover:u-textNegative u-backgroundNegativeLighter',
 };
 
-const Badge = React.forwardRef(({ className, textClassName, variant, as: Component = 'span', ...props }, ref) => (
-  <Component
-    {...props}
-    ref={ref}
-    className={classNames(
-      'Badge',
-      'u-inlineBlock u-textCenter u-text200 u-fontMedium u-textNoWrap u-roundedInfinity hover:u-textDecorationNone',
-      variant && variantsClassName[variant],
-      ((variant === 'primary' || variant === 'primary_subtle') && textClassName) ? textClassName : variantsTextClassName[variant],
-      className && className
-    )}
-  />
-));
+function Badge ({ className, textClassName, variant, as: Component = 'span', ...props }, ref) {
+  return (
+    <Component
+      {...props}
+      ref={ref}
+      className={classNames(
+        'Badge',
+        'u-inlineBlock u-textCenter u-text200 u-fontMedium u-textNoWrap u-roundedInfinity hover:u-textDecorationNone',
+        variant && variantsClassName[variant],
+        ((variant === 'primary' || variant === 'primary_subtle') && textClassName) ? textClassName : variantsTextClassName[variant],
+        className && className
+      )}
+    />
+  );
+}
 
 Badge.displayName = 'Badge';
 Badge.defaultProps = defaultProps;
 Badge.propTypes = propTypes;
-export default Badge;
+export default forwardRef(Badge);

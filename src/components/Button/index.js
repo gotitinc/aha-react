@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
+import React, { forwardRef, useContext } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Group from './Group';
-import Context from '../Form/Context';
-import createBlock from '../../utils/createBlock';
+import { FormContext } from 'utils/Context';
+import createBlock from 'utils/createBlock';
+import ButtonGroup from './Group';
 
 const propTypes = {
   /** The Button visual variant */
@@ -77,8 +77,8 @@ const variantsClassName = {
   white_outline: 'u-textWhite hover:u-textPrimary u-backgroundTransparent hover:u-backgroundWhite u-border u-borderWhite',
   link: 'u-textPrimary hover:u-textPrimaryDark hover:u-textUnderline u-backgroundTransparent u-border u-borderTransparent', //Button--link
 };
-const Button = React.forwardRef(({ className, variant, textClassName, children, size, disabled, width, nonUppercase, onlyIcon, isFocus, as: Component = 'button', ...props }, ref) => {
-  const { sizeControl, disabledControl } = useContext(Context);
+function Button({ className, variant, textClassName, children, size, disabled, width, nonUppercase, onlyIcon, isFocus, as: Component = 'button', ...props }, ref) {
+  const { sizeControl, disabledControl } = useContext(FormContext);
   const sizeOri = size || sizeControl;
   const disabledOri = disabled || disabledControl;
   return (
@@ -106,14 +106,14 @@ const Button = React.forwardRef(({ className, variant, textClassName, children, 
       {children}
     </Component>
   );
-});
+}
 
-const Icon = createBlock('Button-icon u-inlineBlock', { Component: 'span' });
-const Label = createBlock('Button-label u-inlineBlock', { Component: 'span' });
-Button.Icon = Icon;
-Button.Label = Label;
-Button.Group = Group;
+const ButtonIcon = createBlock('Button-icon u-inlineBlock', { Component: 'span' });
+const ButtonLabel = createBlock('Button-label u-inlineBlock', { Component: 'span' });
+Button.Icon = ButtonIcon;
+Button.Label = ButtonLabel;
+Button.Group = ButtonGroup;
 Button.displayName = 'Button';
 Button.propTypes = propTypes;
 Button.defaultProps = defaultProps;
-export default Button;
+export default forwardRef(Button);

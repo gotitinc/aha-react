@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -24,9 +24,9 @@ const aspectRatios = {
   cinema: 'Media--21by9',
 };
 
-const Media = React.forwardRef(({ className, aspectRatio, width, height, style, as: Component = 'embed', ...props }, ref) => {
+function Media ({ className, aspectRatio, width, height, style, as: Component = 'embed', ...props }, ref) {
   const mergeStyle = {
-    ...props.style,
+    ...style,
     width: width || undefined,
     height: height || undefined,
   };
@@ -49,9 +49,9 @@ const Media = React.forwardRef(({ className, aspectRatio, width, height, style, 
       />
     </div>
   );
-});
+}
 
 Media.displayName = 'Media';
 Media.defaultProps = defaultProps;
 Media.propTypes = propTypes;
-export default Media;
+export default forwardRef(Media);

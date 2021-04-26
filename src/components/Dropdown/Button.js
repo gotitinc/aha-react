@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React, { forwardRef, useContext } from 'react';
 import classNames from 'classnames';
 import useMergedRefs from '@restart/hooks/useMergedRefs';
 import PropTypes from 'prop-types';
-import Button from '../Button';
-import Icon from '../Icon';
-import DropdownContext from './Context';
+import { DropdownContext } from 'utils/Context';
+import Button from 'components/Button';
+import Icon from 'components/Icon';
 import { useToggle } from './Toggle';
 
 const propTypes = {
@@ -19,7 +19,7 @@ const propTypes = {
 const defaultProps = {
   as: Button,
 };
-const DropButton = React.forwardRef(({ className, children, caret, as: Component, ...props }, ref) => {
+function DropButton({ className, children, caret, as: Component, ...props }, ref) {
   const [toggleProps, { toggle }] = useToggle();
   const { drop } = useContext(DropdownContext);
   toggleProps.ref = useMergedRefs(toggleProps.ref, ref);
@@ -52,9 +52,9 @@ const DropButton = React.forwardRef(({ className, children, caret, as: Component
       )}
     </Component>
   );
-});
+}
 
 DropButton.displayName = 'DropdownButton';
 DropButton.propTypes = propTypes;
 DropButton.defaultProps = defaultProps;
-export default DropButton;
+export default forwardRef(DropButton);

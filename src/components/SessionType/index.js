@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Icon from '../Icon';
+import Icon from 'components/Icon';
 
 const propTypes = {
   /** Custom label */
@@ -32,36 +32,38 @@ const variantsClassName = {
   warning: 'u-textDark hover:u-textDark u-backgroundWarning hover:u-backgroundWarningDark',
   accent: 'u-textWhite hover:u-textWhite u-backgroundAccent hover:u-backgroundAccentDark',
 };
-const SessionType = React.forwardRef(({ className, label, leftLabel, variant, as: Component = 'div', ...props }, ref) => (
-  <Component
-    ref={ref}
-    {...props}
-    className={classNames(
-      'SessionType',
-      'u-roundedMedium u-paddingExtraSmall u-flex u-alignItemsCenter u-justifyContentBetween u-cursorPointer',
-      variant && variantsClassName[variant],
-      className && className
-    )}
-  >
-    <div className="u-flexShrink0 u-flex u-alignItemsCenter">
-      <Icon name="informationCircleOutline" />
-      {label && (
-      <span className="u-text300 u-fontMedium u-marginHorizontalExtraSmall">
-        {typeof (label) === 'function'
-          ? label()
-          : label
-            }
-      </span>
+function SessionType({ className, label, leftLabel, variant, as: Component = 'div', ...props }, ref) {
+  return (
+    <Component
+      ref={ref}
+      {...props}
+      className={classNames(
+        'SessionType',
+        'u-roundedMedium u-paddingExtraSmall u-flex u-alignItemsCenter u-justifyContentBetween u-cursorPointer',
+        variant && variantsClassName[variant],
+        className && className
       )}
-    </div>
-    <span className="u-flex u-alignItemsCenter u-textUppercase u-text100">
-      {leftLabel}
-      <Icon name="arrowRoundForward" className="u-marginLeftTiny" size="tiny" />
-    </span>
-  </Component>
-));
+    >
+      <div className="u-flexShrink0 u-flex u-alignItemsCenter">
+        <Icon name="informationCircleOutline" />
+        {label && (
+        <span className="u-text300 u-fontMedium u-marginHorizontalExtraSmall">
+          {typeof (label) === 'function'
+            ? label()
+            : label
+            }
+        </span>
+        )}
+      </div>
+      <span className="u-flex u-alignItemsCenter u-textUppercase u-text100">
+        {leftLabel}
+        <Icon name="arrowRoundForward" className="u-marginLeftTiny" size="tiny" />
+      </span>
+    </Component>
+  );
+}
 
 SessionType.displayName = 'SessionType';
 SessionType.defaultProps = defaultProps;
 SessionType.propTypes = propTypes;
-export default SessionType;
+export default forwardRef(SessionType);

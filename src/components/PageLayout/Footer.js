@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React, { forwardRef, useContext } from 'react';
 import classNames from 'classnames';
-import Context from './Context';
+import { PageLayoutContext } from 'utils/Context';
 
 
-export const PageLayoutFooter = React.forwardRef(({ className, children, ...props }, ref) => {
-  const { footerProps } = useContext(Context);
+function PageLayoutFooter ({ className, children, ...props }, ref) {
+  const { footerProps } = useContext(PageLayoutContext);
   const mergeProps = {
     ref,
     ...footerProps,
@@ -23,9 +23,9 @@ export const PageLayoutFooter = React.forwardRef(({ className, children, ...prop
       {children}
     </div>
   );
-});
+}
 
-PageLayoutFooter.displayName = 'PageLayout.Footer';
+PageLayoutFooter.displayName = 'PageLayoutFooter';
 PageLayoutFooter.propTypes = {};
 PageLayoutFooter.defaultProps = {};
-export default PageLayoutFooter;
+export default forwardRef(PageLayoutFooter);

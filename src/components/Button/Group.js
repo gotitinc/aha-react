@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Context from '../Form/Context';
+import { FormContext } from '../../utils/Context';
 
 const propTypes = {
   /**
@@ -21,7 +21,7 @@ const defaultProps = {
 const Group = React.forwardRef(({ className, sizeControl, disabledControl, as: Component = 'div', ...props }, ref) => {
   const context = useMemo(() => ({ sizeControl, disabledControl }), [sizeControl, disabledControl]);
   return (
-    <Context.Provider value={context}>
+    <FormContext.Provider value={context}>
       <Component
         {...props}
         ref={ref}
@@ -30,7 +30,7 @@ const Group = React.forwardRef(({ className, sizeControl, disabledControl, as: C
           className && className,
         )}
       />
-    </Context.Provider>
+    </FormContext.Provider>
   );
 }
 );

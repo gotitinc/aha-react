@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
+import React, { forwardRef, useContext } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import warning from 'warning';
-import Context from './Context';
+import { FormContext } from 'utils/Context';
 
 const propTypes = {
   /** The HTML input type, which is only relevant if as is 'input' (the default). */
@@ -68,8 +68,8 @@ const propTypes = {
 
 const defaultProps = {
 };
-const Input = React.forwardRef(({ className, sizeInput, required, id, type, disabled, isValid, isInvalid, isBorderNone, isBackgroundReset, as: Component = 'input', ...props }, ref) => {
-  const { controlId, sizeControl, requiredControl, disabledControl } = useContext(Context);
+function FormInput ({ className, sizeInput, required, id, type, disabled, isValid, isInvalid, isBorderNone, isBackgroundReset, as: Component = 'input', ...props }, ref) {
+  const { controlId, sizeControl, requiredControl, disabledControl } = useContext(FormContext);
   warning(
     controlId == null || !id,
     '`controlId` is ignored on `<Form.Input>` when `id` is specified.',
@@ -98,8 +98,8 @@ const Input = React.forwardRef(({ className, sizeInput, required, id, type, disa
       ref={ref}
     />
   );
-});
-Input.displayName = 'FormInput';
-Input.propTypes = propTypes;
-Input.defaultProps = defaultProps;
-export default Input;
+}
+FormInput.displayName = 'FormInput';
+FormInput.propTypes = propTypes;
+FormInput.defaultProps = defaultProps;
+export default forwardRef(FormInput);

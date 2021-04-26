@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
+import React, { forwardRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import PopperJS from 'popper.js';
 import useCallbackRef from '@restart/hooks/useCallbackRef';
 import useMergedRefs from '@restart/hooks/useMergedRefs';
-import usePopper from '../../utils/usePopper';
-import useRootClose from '../../utils/useRootClose';
-import useWaitForDOMRef from '../../utils/useWaitForDOMRef';
-import Trigger from './Trigger';
+import usePopper from 'utils/usePopper';
+import useRootClose from 'utils/useRootClose';
+import useWaitForDOMRef from 'utils/useWaitForDOMRef';
+import OverlayTrigger from './Trigger';
 
 const propTypes = {
   /**
@@ -86,7 +86,7 @@ const defaultProps = {
   popperConfig: {},
   containerPadding: 8,
 };
-const Overlay = React.forwardRef((props, outerRef) => {
+function Overlay(props, outerRef) {
   const {
     flip,
     placement,
@@ -170,11 +170,11 @@ const Overlay = React.forwardRef((props, outerRef) => {
     );
   }
 
-  return container ? ReactDOM.createPortal(child, container) : null;
-});
+  return container ? createPortal(child, container) : null;
+}
 
 Overlay.displayName = 'Overlay';
 Overlay.propTypes = propTypes;
 Overlay.defaultProps = defaultProps;
-Overlay.Trigger = Trigger;
-export default Overlay;
+Overlay.Trigger = OverlayTrigger;
+export default forwardRef(Overlay);

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Item from './Item';
+import MultiStepsItem from './Item';
 
 const propTypes = {
   /**
@@ -39,7 +39,7 @@ const defaultProps = {
   variant: 'primary',
 };
 
-const MultiSteps = React.forwardRef(({ className, current, currentLabel, children, variant, direction, onChange, as: Component = 'div', ...props }, ref) => {
+function MultiSteps({ className, current, currentLabel, children, variant, direction, onChange, as: Component = 'div', ...props }, ref) {
   const numChildren = React.Children.count(children);
   const modifiedChildren = React.Children.map(children, (child, index) => {
     if (!child) {
@@ -74,10 +74,10 @@ const MultiSteps = React.forwardRef(({ className, current, currentLabel, childre
       {modifiedChildren}
     </Component>
   );
-});
+}
 
 MultiSteps.displayName = 'MultiSteps';
 MultiSteps.defaultProps = defaultProps;
 MultiSteps.propTypes = propTypes;
-MultiSteps.Item = Item;
-export default MultiSteps;
+MultiSteps.Item = MultiStepsItem;
+export default forwardRef(MultiSteps);

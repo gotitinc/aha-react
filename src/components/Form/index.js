@@ -1,12 +1,12 @@
 import React from 'react';
-import Check from './Check';
-import File from './File';
-import Input from './Input';
-import Label from './Label';
-import Feedback from './Feedback';
-import Group from './Group';
-import InputGroup from './InputGroup';
-import Select from './Select';
+import FormCheck from './Check';
+import FormFile from './File';
+import FormInput from './Input';
+import FormLabel from './Label';
+import FormFeedback from './Feedback';
+import FormGroup from './Group';
+import FormInputGroup from './InputGroup';
+import FormSelect from './Select';
 
 
 const Form = React.forwardRef((props, ref) => (
@@ -15,13 +15,13 @@ const Form = React.forwardRef((props, ref) => (
     {...props}
   />
 ));
-Form.Group = Group;
-Form.Check = Check;
-Form.File = File;
-Form.Input = Input;
-Form.InputGroup = InputGroup;
-Form.Label = Label;
-Form.Feedback = Feedback;
+Form.Group = FormGroup;
+Form.Check = FormCheck;
+Form.File = FormFile;
+Form.Input = FormInput;
+Form.InputGroup = FormInputGroup;
+Form.Label = FormLabel;
+Form.Feedback = FormFeedback;
 Form.displayName = 'Form';
-Form.Select = Select;
+Form.Select = FormSelect;
 export default Form;

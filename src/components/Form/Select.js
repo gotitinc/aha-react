@@ -1,9 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, { forwardRef, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import warning from 'warning';
-import Context from './Context';
-import Icon from '../Icon';
+import { FormContext } from 'utils/Context';
+import Icon from 'components/Icon';
 
 const propTypes = {
   /**
@@ -54,8 +54,8 @@ const propTypes = {
 
 const defaultProps = {
 };
-const Select = React.forwardRef(({ className, sizeInput, required, multiple, id, type, disabled, isValid, isInvalid, isBorderNone, isBackgroundReset, as: Component = 'div', ...props }, ref) => {
-  const { controlId, sizeControl, requiredControl, disabledControl } = useContext(Context);
+function FormSelect({ className, sizeInput, required, multiple, id, type, disabled, isValid, isInvalid, isBorderNone, isBackgroundReset, as: Component = 'div', ...props }, ref) {
+  const { controlId, sizeControl, requiredControl, disabledControl } = useContext(FormContext);
   warning(
     controlId == null || !id,
     '`controlId` is ignored on `<Form.Input>` when `id` is specified.',
@@ -112,8 +112,8 @@ const Select = React.forwardRef(({ className, sizeInput, required, multiple, id,
       )}
     </Component>
   );
-});
-Select.displayName = 'FormSelect';
-Select.propTypes = propTypes;
-Select.defaultProps = defaultProps;
-export default Select;
+}
+FormSelect.displayName = 'FormSelect';
+FormSelect.propTypes = propTypes;
+FormSelect.defaultProps = defaultProps;
+export default forwardRef(FormSelect);

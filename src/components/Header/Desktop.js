@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import createBlock from '../../utils/createBlock';
+import createBlock from 'utils/createBlock';
 
 const propTypes = {
   /** Whether or not the Header is visible. */
@@ -13,7 +13,7 @@ const defaultProps = {
   show: true,
 };
 
-const Header = React.forwardRef(({ className, innerClassName, fullWidth, show, children, ...props }, ref) => {
+function Header({ className, innerClassName, fullWidth, show, children, ...props }, ref) {
   if (!show) return null;
   return (
     <div
@@ -40,21 +40,21 @@ const Header = React.forwardRef(({ className, innerClassName, fullWidth, show, c
       </div>
     </div>
   );
-});
+}
 
-const Brand = createBlock('Header-brand u-lineHeightReset u-fontSizeNone u-flexShrink0 u-marginRightSmall lg:u-marginRightMedium xl:u-marginRightLarge');
-const Main = createBlock('Header-main u-flexGrow1 u-flex u-alignItemsCenter');
-const Left = createBlock('Header-left u-flex');
-const Right = createBlock('Header-right u-flex u-alignItemsCenter u-marginLeftAuto');
-const AbsoluteCenter = createBlock('Header-center u-flex u-positionAbsolute u-positionCenter');
+const HeaderBrand = createBlock('Header-brand u-lineHeightReset u-fontSizeNone u-flexShrink0 u-marginRightSmall lg:u-marginRightMedium xl:u-marginRightLarge');
+const HeaderMain = createBlock('Header-main u-flexGrow1 u-flex u-alignItemsCenter');
+const HeaderLeft = createBlock('Header-left u-flex');
+const HeaderRight = createBlock('Header-right u-flex u-alignItemsCenter u-marginLeftAuto');
+const HeaderAbsoluteCenter = createBlock('Header-center u-flex u-positionAbsolute u-positionCenter');
 
-Header.Left = Left;
-Header.AbsoluteCenter = AbsoluteCenter;
-Header.Right = Right;
-Header.Brand = Brand;
-Header.Main = Main;
+Header.Left = HeaderLeft;
+Header.AbsoluteCenter = HeaderAbsoluteCenter;
+Header.Right = HeaderRight;
+Header.Brand = HeaderBrand;
+Header.Main = HeaderMain;
 Header.displayName = 'Header';
 Header.defaultProps = defaultProps;
 Header.propTypes = propTypes;
 
-export default Header;
+export default forwardRef(Header);

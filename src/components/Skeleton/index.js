@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
@@ -33,7 +33,7 @@ const defaultProps = {
 };
 
 
-const Skeleton = React.forwardRef(({ variant, width, height, duration, as: Component = 'div', ...props }, ref) => {
+function Skeleton({ variant, width, height, duration, style, as: Component = 'div', ...props }, ref) {
   const heightStyle = {
     width: width && width,
     height: height && height,
@@ -41,7 +41,7 @@ const Skeleton = React.forwardRef(({ variant, width, height, duration, as: Compo
   };
   const mergeProps = {
     ref,
-    style: { ...props.style, ...heightStyle },
+    style: { ...style, ...heightStyle },
     ...props,
   };
   return (
@@ -54,9 +54,9 @@ const Skeleton = React.forwardRef(({ variant, width, height, duration, as: Compo
       )}
     />
   );
-});
+}
 
 Skeleton.displayName = 'Skeleton';
 Skeleton.propTypes = propTypes;
 Skeleton.defaultProps = defaultProps;
-export default Skeleton;
+export default forwardRef(Skeleton);

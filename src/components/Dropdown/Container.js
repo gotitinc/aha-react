@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React, { forwardRef, useContext } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { elementType } from 'prop-types-extra';
-import usePopper from '../../utils/usePopper';
-import useRootClose from '../../utils/useRootClose';
-import DropdownContext from './Context';
+import usePopper from 'utils/usePopper';
+import useRootClose from 'utils/useRootClose';
+import { DropdownContext } from 'utils/Context';
 
 
 const propTypes = {
@@ -26,7 +26,7 @@ const propTypes = {
 const defaultProps = {
 };
 
-const Container = React.forwardRef(({ additionalStyles, ...props }, ref) => {
+function DropdownContainer ({ additionalStyles, ...props }, ref) {
   const {
     className,
     flip,
@@ -39,7 +39,9 @@ const Container = React.forwardRef(({ additionalStyles, ...props }, ref) => {
   } = props;
   const context = useContext(DropdownContext);
 
+  // eslint-disable-next-line react/destructuring-assignment
   const show = context.show == null ? props.show : context.show;
+  // eslint-disable-next-line react/destructuring-assignment
   const alignRight = context.alignRight == null ? props.alignRight : context.alignRight;
   const handleClose = (e) => {
     if (!context.toggle) return;
@@ -66,6 +68,7 @@ const Container = React.forwardRef(({ additionalStyles, ...props }, ref) => {
     'aria-labelledby': toggleElement && toggleElement.id,
     ...props,
   };
+  // eslint-disable-next-line react/destructuring-assignment
   useRootClose(context.containerElement, handleClose, {
     clickTrigger: rootCloseEvent,
     disabled: !(show),
@@ -89,8 +92,8 @@ const Container = React.forwardRef(({ additionalStyles, ...props }, ref) => {
       {container}
     </Transition>
   );
-});
-Container.displayName = 'DropdownContainer';
-Container.defaultProps = defaultProps;
-Container.propTypes = propTypes;
-export default Container;
+}
+DropdownContainer.displayName = 'DropdownContainer';
+DropdownContainer.defaultProps = defaultProps;
+DropdownContainer.propTypes = propTypes;
+export default forwardRef(DropdownContainer);

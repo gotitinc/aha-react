@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import SlickBase from 'react-slick';
-import createBlock from '../../utils/createBlock';
+import createBlock from 'utils/createBlock';
 
 const propTypes = {
   /**
@@ -21,23 +21,25 @@ const defaultProps = {
   },
 };
 
-const Carousel = React.forwardRef(({ className, dotInside, settings, ...props }, ref) => (
-  <SlickBase
-    {...props}
-    {...settings}
-    ref={ref}
-    className={classNames(
-      'Carousel u-marginBottomMedium',
-      dotInside && 'Carousel--dotsInside',
-      className && className
-    )}
-  />
-));
+function Carousel ({ className, dotInside, settings, ...props }, ref) {
+  return (
+    <SlickBase
+      {...props}
+      {...settings}
+      ref={ref}
+      className={classNames(
+        'Carousel u-marginBottomMedium',
+        dotInside && 'Carousel--dotsInside',
+        className && className
+      )}
+    />
+  );
+}
 
-const Item = createBlock('Carousel-item u-lineHeightReset');
+const CarouselItem = createBlock('Carousel-item u-lineHeightReset');
 
 Carousel.displayName = 'Carousel';
 Carousel.defaultProps = defaultProps;
 Carousel.propTypes = propTypes;
-Carousel.Item = Item;
-export default Carousel;
+Carousel.Item = CarouselItem;
+export default forwardRef(Carousel);

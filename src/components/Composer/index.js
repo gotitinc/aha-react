@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import TextareaAutoSize from 'react-textarea-autosize';
-import Icon from '../Icon';
-import Overlay from '../Overlay';
-import Tooltip from '../Tooltip';
+import Icon from 'components/Icon';
+import Overlay from 'components/Overlay';
+import Tooltip from 'components/Tooltip';
 
 
 const propTypes = {
@@ -54,32 +54,49 @@ const defaultProps = {
   sendButtonIcon: 'send',
 };
 
-const Composer = React.forwardRef(({ className, children, sendButtonIcon, iconLeft, label, number, inputProps, disabledAttachButton, tooltipAttachButton, attachButtonProps, sendButtonProps, disabledSendButton, sendButtonActive, tooltipSendButton, as: Component = 'div', ...props }, ref) => (
-  <Component
-    ref={ref}
-    {...props}
-    className={classNames(
-      'Composer',
-      'u-flex u-alignItemsEnd u-borderTop u-paddingTiny',
-      className && className
-    )}
-  >
-    {!disabledAttachButton && (
+function Composer ({ className, children, sendButtonIcon, iconLeft, label, number, inputProps, disabledAttachButton, tooltipAttachButton, attachButtonProps, sendButtonProps, disabledSendButton, sendButtonActive, tooltipSendButton, as: Component = 'div', ...props }, ref) {
+  return (
+    <Component
+      ref={ref}
+      {...props}
+      className={classNames(
+        'Composer',
+        'u-flex u-alignItemsEnd u-borderTop u-paddingTiny',
+        className && className
+      )}
+    >
+      {!disabledAttachButton && (
 
 
-    <div className="u-flexShrink0 u-marginRightTiny">
-      {tooltipAttachButton ? (
-        <Overlay.Trigger
-          placement="top-start"
-          overlay={props => (
-            <Tooltip id="tooltip-attachButton" {...props}>
-              {typeof (tooltipAttachButton) === 'function'
-                ? tooltipAttachButton()
-                : tooltipAttachButton
+      <div className="u-flexShrink0 u-marginRightTiny">
+        {tooltipAttachButton ? (
+          <Overlay.Trigger
+            placement="top-start"
+            overlay={props => (
+              <Tooltip id="tooltip-attachButton" {...props}>
+                {typeof (tooltipAttachButton) === 'function'
+                  ? tooltipAttachButton()
+                  : tooltipAttachButton
                 }
-            </Tooltip>
-          )}
-        >
+              </Tooltip>
+            )}
+          >
+            <div
+              {...attachButtonProps}
+              className={classNames(
+                'hover:u-backgroundPrimary hover:u-textWhite u-roundedMedium u-flex u-alignItemsCenter u-justifyContentCenter u-cursorPointer'
+              )}
+              style={{
+                width: 42,
+                height: 42,
+              }}
+            >
+              <Icon
+                name="attach"
+              />
+            </div>
+          </Overlay.Trigger>
+        ) : (
           <div
             {...attachButtonProps}
             className={classNames(
@@ -94,50 +111,51 @@ const Composer = React.forwardRef(({ className, children, sendButtonIcon, iconLe
               name="attach"
             />
           </div>
-        </Overlay.Trigger>
-      ) : (
-        <div
-          {...attachButtonProps}
-          className={classNames(
-            'hover:u-backgroundPrimary hover:u-textWhite u-roundedMedium u-flex u-alignItemsCenter u-justifyContentCenter u-cursorPointer'
-          )}
-          style={{
-            width: 42,
-            height: 42,
-          }}
-        >
-          <Icon
-            name="attach"
-          />
-        </div>
+        )}
+      </div>
       )}
-    </div>
-    )}
-    {children || (
-    <TextareaAutoSize
-      {...inputProps}
-      className={classNames(
-        'u-widthFull u-paddingVerticalExtraSmall u-border u-borderTransparent u-textPlaceholder',
-        inputProps.className && inputProps.className
+      {children || (
+      <TextareaAutoSize
+        {...inputProps}
+        className={classNames(
+          'u-widthFull u-paddingVerticalExtraSmall u-border u-borderTransparent u-textPlaceholder',
+          inputProps.className && inputProps.className
+        )}
+        style={{
+          resize: 'none',
+        }}
+      />
       )}
-      style={{
-        resize: 'none',
-      }}
-    />
-    )}
-    {!disabledSendButton && (
-      tooltipSendButton ? (
-        <Overlay.Trigger
-          placement="top-end"
-          overlay={props => (
-            <Tooltip id="tooltip-sendButton" {...props}>
-              {typeof (tooltipSendButton) === 'function'
-                ? tooltipSendButton()
-                : tooltipSendButton
+      {!disabledSendButton && (
+        tooltipSendButton ? (
+          <Overlay.Trigger
+            placement="top-end"
+            overlay={props => (
+              <Tooltip id="tooltip-sendButton" {...props}>
+                {typeof (tooltipSendButton) === 'function'
+                  ? tooltipSendButton()
+                  : tooltipSendButton
                       }
-            </Tooltip>
-          )}
-        >
+              </Tooltip>
+            )}
+          >
+            <div
+              {...sendButtonProps}
+              className={classNames(
+                'u-roundedMedium u-flex u-alignItemsCenter u-justifyContentCenter u-flexShrink0 u-marginLeftTiny',
+                sendButtonActive ? 'hover:u-backgroundPrimary hover:u-textWhite u-textPrimary u-cursorPointer' : 'u-textLight u-cursorNotAllow u-pointerEventsNone'
+              )}
+              style={{
+                width: 42,
+                height: 42,
+              }}
+            >
+              {typeof (sendButtonIcon) === 'function'
+                ? sendButtonIcon()
+                : <Icon name={sendButtonIcon} /> }
+            </div>
+          </Overlay.Trigger>
+        ) : (
           <div
             {...sendButtonProps}
             className={classNames(
@@ -153,29 +171,13 @@ const Composer = React.forwardRef(({ className, children, sendButtonIcon, iconLe
               ? sendButtonIcon()
               : <Icon name={sendButtonIcon} /> }
           </div>
-        </Overlay.Trigger>
-      ) : (
-        <div
-          {...sendButtonProps}
-          className={classNames(
-            'u-roundedMedium u-flex u-alignItemsCenter u-justifyContentCenter u-flexShrink0 u-marginLeftTiny',
-            sendButtonActive ? 'hover:u-backgroundPrimary hover:u-textWhite u-textPrimary u-cursorPointer' : 'u-textLight u-cursorNotAllow u-pointerEventsNone'
-          )}
-          style={{
-            width: 42,
-            height: 42,
-          }}
-        >
-          {typeof (sendButtonIcon) === 'function'
-            ? sendButtonIcon()
-            : <Icon name={sendButtonIcon} /> }
-        </div>
-      )
-    )}
-  </Component>
-));
+        )
+      )}
+    </Component>
+  );
+}
 
 Composer.displayName = 'Composer';
 Composer.defaultProps = defaultProps;
 Composer.propTypes = propTypes;
-export default Composer;
+export default forwardRef(Composer);

@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import React, { forwardRef, useContext } from 'react';
 import classNames from 'classnames';
-import Context from './Context';
-import { messagesVariants } from '../../constants';
+import { MessageContext } from 'utils/Context';
+import messagesVariants from 'constants/messages';
 
 const propTypes = {
 };
@@ -9,8 +9,8 @@ const propTypes = {
 const defaultProps = {
 };
 
-export const Title = React.forwardRef(({ className, children, ...props }, ref) => {
-  const { variant, type } = useContext(Context);
+function MessagesTitle ({ className, children, ...props }, ref) {
+  const { variant, type } = useContext(MessageContext);
   const variantOri = messagesVariants.find(item => item.type === type && item.id === variant);
   return (
     <div
@@ -26,9 +26,9 @@ export const Title = React.forwardRef(({ className, children, ...props }, ref) =
       {children}
     </div>
   );
-});
+}
 
-Title.displayName = 'MessagesTitle';
-Title.propTypes = propTypes;
-Title.defaultProps = defaultProps;
-export default Title;
+MessagesTitle.displayName = 'MessagesTitle';
+MessagesTitle.propTypes = propTypes;
+MessagesTitle.defaultProps = defaultProps;
+export default forwardRef(MessagesTitle);

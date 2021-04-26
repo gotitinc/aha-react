@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { forwardRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createBlock from '../../utils/createBlock';
-import Media from '../Media';
-import Icon from '../Icon';
+import createBlock from 'utils/createBlock';
+import Media from 'components/Media';
+import Icon from 'components/Icon';
 
 const propTypes = {
   /** Custom topic label */
@@ -39,7 +39,7 @@ const defaultProps = {
   additionalLabel: 'ADDITIONAL INFORMATION',
 };
 
-const ProblemInfo = React.forwardRef(({ topicLabel, topicName, descriptionLabel, descriptionValue, action, additionalLabel, additionalValue, src, onClickImage, ...props }, ref) => {
+function ProblemInfo({ topicLabel, topicName, descriptionLabel, descriptionValue, action, additionalLabel, additionalValue, src, onClickImage, ...props }, ref) {
   const [isImgHover, setImgHover] = useState(false);
   return (
     <div
@@ -124,7 +124,7 @@ const ProblemInfo = React.forwardRef(({ topicLabel, topicName, descriptionLabel,
       )}
     </div>
   );
-});
+}
 
 
 const Note = createBlock('QuestionDescription-note u-textCenter u-text200 u-textGray u-paddingTopSmall');
@@ -135,4 +135,4 @@ ProblemInfo.displayName = 'ProblemInfo';
 ProblemInfo.defaultProps = defaultProps;
 ProblemInfo.propTypes = propTypes;
 
-export default ProblemInfo;
+export default forwardRef(ProblemInfo);

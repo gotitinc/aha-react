@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, { forwardRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { useUncontrolled } from 'uncontrollable';
 import useEventCallback from '@restart/hooks/useEventCallback';
 import { elementType } from 'prop-types-extra';
-import Icon from '../Icon';
-import Fade from '../../utils/Fade';
+import Icon from 'components/Icon';
+import Fade from 'utils/Fade';
 
 const propTypes = {
   /** Sets image shape as background. */
@@ -36,7 +36,7 @@ const controllables = {
   show: 'onClose',
 };
 
-const TopBanner = React.forwardRef((uncontrolledProps, ref) => {
+function TopBanner(uncontrolledProps, ref) {
   const {
     className,
     bgImage,
@@ -86,9 +86,9 @@ const TopBanner = React.forwardRef((uncontrolledProps, ref) => {
       )}
     </div>
   );
-});
+}
 
 TopBanner.displayName = 'TopBanner';
 TopBanner.defaultProps = defaultProps;
 TopBanner.propTypes = propTypes;
-export default TopBanner;
+export default forwardRef(TopBanner);

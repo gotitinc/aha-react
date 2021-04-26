@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createBlock from '../../utils/createBlock';
+import createBlock from 'utils/createBlock';
 
 const propTypes = {
   /** Sets the background class of the progress bar. */
@@ -62,29 +62,30 @@ const variantsClassName = {
   },
 };
 
-const Progress = React.forwardRef(({ className, labelClassName, border, striped, animated, now, height, label, variant, as: Component = 'div', ...props }, ref) => (
-  <Component
-    {...props}
-    ref={ref}
-    style={{ height }}
-    className={classNames(
-      'Progress',
-      'u-roundedInfinity u-overflowHidden u-widthFull u-positionRelative',
-      striped && 'Progress--striped',
-      animated && 'Progress--animated',
-      border ? `u-border ${variantsClassName.borderColor[variant]}` : 'u-backgroundUltraLight',
-      className && className
-    )}
-  >
-    <div
+function Progress({ className, labelClassName, border, striped, animated, now, height, label, variant, as: Component = 'div', ...props }, ref) {
+  return (
+    <Component
+      {...props}
+      ref={ref}
+      style={{ height }}
       className={classNames(
-        'Progress-bar',
-        'u-heightFull u-positionRelative u-easeInOut u-duration300 u-transitionAll',
-        variant && variantsClassName.backgroundColor[variant]
+        'Progress',
+        'u-roundedInfinity u-overflowHidden u-widthFull u-positionRelative',
+        striped && 'Progress--striped',
+        animated && 'Progress--animated',
+        border ? `u-border ${variantsClassName.borderColor[variant]}` : 'u-backgroundUltraLight',
+        className && className
       )}
-      style={{ width: `${now}%` }}
     >
-      {label && (
+      <div
+        className={classNames(
+          'Progress-bar',
+          'u-heightFull u-positionRelative u-easeInOut u-duration300 u-transitionAll',
+          variant && variantsClassName.backgroundColor[variant]
+        )}
+        style={{ width: `${now}%` }}
+      >
+        {label && (
         <div className={classNames(
           'u-positionAbsolute u-positionCenter',
           labelClassName && labelClassName,
@@ -93,14 +94,15 @@ const Progress = React.forwardRef(({ className, labelClassName, border, striped,
         >
           {label}
         </div>
-      )}
-    </div>
-  </Component>
-));
+        )}
+      </div>
+    </Component>
+  );
+}
 
-const Group = createBlock('ProgressGroup u-flex u-flexNoWrap');
+const ProgressGroup = createBlock('ProgressGroup u-flex u-flexNoWrap');
 Progress.displayName = 'Progress';
 Progress.defaultProps = defaultProps;
 Progress.propTypes = propTypes;
-Progress.Group = Group;
-export default Progress;
+Progress.Group = ProgressGroup;
+export default forwardRef(Progress);

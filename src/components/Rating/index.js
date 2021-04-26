@@ -1,9 +1,9 @@
-import React, { useRef, useState } from 'react';
+import React, { forwardRef, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Icon from '../Icon';
-import { useIsFocusVisible } from '../../utils/focusVisible';
-import useForkRef from '../../utils/useForkRef';
+import useIsFocusVisible from 'utils/focusVisible';
+import useForkRef from 'utils/useForkRef';
+import Icon from 'components/Icon';
 
 function getDecimalPrecision(num) {
   const decimalPart = num.toString().split('.')[1];
@@ -82,7 +82,7 @@ const defaultProps = {
 };
 
 
-const Rating = React.forwardRef(({ className, readOnly, icon, emptyIcon, value: valueProp2 = null, disabled, max, size, name, onChange, onChangeActive, onMouseLeave, onMouseMove, getLabelText, precision, as: Component = 'span', ...props }, ref) => {
+function Rating ({ className, readOnly, icon, emptyIcon, value: valueProp2 = null, disabled, max, size, name, onChange, onChangeActive, onMouseLeave, onMouseMove, getLabelText, precision, as: Component = 'span', ...props }, ref) {
   const valueProp = roundValueToPrecision(valueProp2, precision);
   const rootRef = useRef();
   const { isFocusVisible, onBlurVisible, ref: focusVisibleRef } = useIsFocusVisible();
@@ -235,14 +235,14 @@ const Rating = React.forwardRef(({ className, readOnly, icon, emptyIcon, value: 
           return (
             <span className="Rating-itemDecimal u-positionRelative" key={itemValue}>
               {items.map(($, indexDecimal) => {
-                const itemDeciamlValue = roundValueToPrecision(
+                const itemDecimalValue = roundValueToPrecision(
                   itemValue - 1 + (indexDecimal + 1) * precision,
                   precision,
                 );
-                return item({ value: itemDeciamlValue }, {
-                  filled: itemDeciamlValue <= value,
-                  hover: itemDeciamlValue <= hover,
-                  checked: itemDeciamlValue === valueProp,
+                return item({ value: itemDecimalValue }, {
+                  filled: itemDecimalValue <= value,
+                  hover: itemDecimalValue <= hover,
+                  checked: itemDecimalValue === valueProp,
                 });
               })}
             </span>
@@ -257,9 +257,9 @@ const Rating = React.forwardRef(({ className, readOnly, icon, emptyIcon, value: 
       })}
     </Component>
   );
-});
+}
 
 Rating.displayName = 'Rating';
 Rating.propTypes = propTypes;
 Rating.defaultProps = defaultProps;
-export default Rating;
+export default forwardRef(Rating);

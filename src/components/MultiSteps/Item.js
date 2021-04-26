@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Icon from '../Icon';
+import Icon from 'components/Icon';
 
 const propTypes = {
   /**
@@ -83,72 +83,73 @@ const variantCSS = {
   },
 };
 
-const Item = React.forwardRef(({ className, isLast, isCompleted, isActive, disabled, direction, variant, onClick, currentLabel, step, title, as: Component = 'div', ...props }, ref) => (
-  <Component
-    ref={ref}
-    {...props}
-    aria-label={title}
-    className={classNames(
-      'MultiSteps-item',
-      'u-positionRelative',
-      direction !== 'vertical' && ' u-textCenter',
-      disabled ? 'u-cursorNotAllow u-pointerEventsNone' : 'u-cursorPointer',
-      (isCompleted || isActive) ? variantCSS[variant].textActive : variantCSS[variant].textDefault,
-      className && className
-    )}
-  >
-    {direction !== 'vertical' && (
-    <div
-      className="u-paddingBottomExtraSmall MultiSteps-label u-hidden lg:u-inlineBlock"
-      onClick={disabled ? null : onClick}
-    >
-      {isActive ? currentLabel : title}
-
-    </div>
-    )}
-    <div
+function MultiStepsItem({ className, isLast, isCompleted, isActive, disabled, direction, variant, onClick, currentLabel, step, title, as: Component = 'div', ...props }, ref) {
+  return (
+    <Component
+      ref={ref}
+      {...props}
+      aria-label={title}
       className={classNames(
+        'MultiSteps-item',
         'u-positionRelative',
-        direction !== 'vertical' && 'u-lineHeightNone',
-        direction === 'vertical' && 'u-flex u-alignItemsCenter',
+        direction !== 'vertical' && ' u-textCenter',
+        disabled ? 'u-cursorNotAllow u-pointerEventsNone' : 'u-cursorPointer',
+        (isCompleted || isActive) ? variantCSS[variant].textActive : variantCSS[variant].textDefault,
+        className && className
       )}
-      onClick={disabled ? null : onClick}
     >
-      <div
-        className={classNames(
-          'MultiSteps-dot',
-          (isCompleted || isActive) ? variantCSS[variant].dotActive : variantCSS[variant].dotDefault,
-          'u-inlineBlock u-roundedCircle u-positionRelative'
-        )}
-      >
-        {isCompleted ? (
-          <Icon name="checkmark" className="u-positionAbsolute u-positionCenter" size="extraSmall" />
-        ) : (
-          <span className="u-positionAbsolute u-positionCenter">{step}</span>
-        )}
-      </div>
       {direction !== 'vertical' && (
-        !isLast && (
-        <div
-          className={classNames(
-            'MultiSteps-line',
-            isCompleted ? variantCSS[variant].backgroundActive : variantCSS[variant].backgroundDefault,
-            'u-widthFull u-positionAbsolute u-positionTop-50 u-positionLeft-50'
-          )}
-        />
-        )
-      )}
-      {direction === 'vertical' && (
       <div
-        className="u-paddingLeftSmall  u-hidden lg:u-inlineBlock"
+        className="u-paddingBottomExtraSmall MultiSteps-label u-hidden lg:u-inlineBlock"
         onClick={disabled ? null : onClick}
       >
         {isActive ? currentLabel : title}
 
       </div>
       )}
-    </div>
-    {
+      <div
+        className={classNames(
+          'u-positionRelative',
+          direction !== 'vertical' && 'u-lineHeightNone',
+          direction === 'vertical' && 'u-flex u-alignItemsCenter',
+        )}
+        onClick={disabled ? null : onClick}
+      >
+        <div
+          className={classNames(
+            'MultiSteps-dot',
+            (isCompleted || isActive) ? variantCSS[variant].dotActive : variantCSS[variant].dotDefault,
+            'u-inlineBlock u-roundedCircle u-positionRelative'
+          )}
+        >
+          {isCompleted ? (
+            <Icon name="checkmark" className="u-positionAbsolute u-positionCenter" size="extraSmall" />
+          ) : (
+            <span className="u-positionAbsolute u-positionCenter">{step}</span>
+          )}
+        </div>
+        {direction !== 'vertical' && (
+          !isLast && (
+          <div
+            className={classNames(
+              'MultiSteps-line',
+              isCompleted ? variantCSS[variant].backgroundActive : variantCSS[variant].backgroundDefault,
+              'u-widthFull u-positionAbsolute u-positionTop-50 u-positionLeft-50'
+            )}
+          />
+          )
+        )}
+        {direction === 'vertical' && (
+        <div
+          className="u-paddingLeftSmall  u-hidden lg:u-inlineBlock"
+          onClick={disabled ? null : onClick}
+        >
+          {isActive ? currentLabel : title}
+
+        </div>
+        )}
+      </div>
+      {
         direction === 'vertical' && (
           !isLast && (
             <div
@@ -161,10 +162,11 @@ const Item = React.forwardRef(({ className, isLast, isCompleted, isActive, disab
           )
         )
       }
-  </Component>
-));
+    </Component>
+  );
+}
 
-Item.displayName = 'MultiStepsItem';
-Item.propTypes = propTypes;
-Item.defaultProps = defaultProps;
-export default Item;
+MultiStepsItem.displayName = 'MultiStepsItem';
+MultiStepsItem.propTypes = propTypes;
+MultiStepsItem.defaultProps = defaultProps;
+export default forwardRef(MultiStepsItem);

@@ -1,8 +1,8 @@
 import { contains } from 'dom-helpers';
-import React, { cloneElement, useState, useRef } from 'react';
+import React, { cloneElement, useState, useRef, forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
-import Overlay from './index';
+import Overlay from 'components/Overlay';
 
 const normalizeDelay = delay => ((delay && typeof delay === 'object') ? delay : { show: delay, hide: delay });
 const triggerType = PropTypes.oneOf(['click', 'hover', 'focus']);
@@ -69,8 +69,8 @@ const defaultProps = {
   hoverOverlay: false,
 };
 
-const Trigger = React.forwardRef(({ trigger, overlay, delay, children, defaultShow, popperConfig, hoverOverlay,
-  ...props }, ref) => {
+function OverlayTrigger({ trigger, overlay, delay, children, defaultShow, popperConfig, hoverOverlay,
+  ...props }, ref) {
   const triggerRef = useRef(ref);
   const [show, setShow] = useState(!!defaultShow);
   const [showTimer, setShowTimer] = useState(null);
@@ -169,8 +169,8 @@ const Trigger = React.forwardRef(({ trigger, overlay, delay, children, defaultSh
       </Overlay>
     </>
   );
-});
-Trigger.displayName = 'OverlayTrigger';
-Trigger.propTypes = propTypes;
-Trigger.defaultProps = defaultProps;
-export default Trigger;
+}
+OverlayTrigger.displayName = 'OverlayTrigger';
+OverlayTrigger.propTypes = propTypes;
+OverlayTrigger.defaultProps = defaultProps;
+export default forwardRef(OverlayTrigger);

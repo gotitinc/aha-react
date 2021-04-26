@@ -1,8 +1,8 @@
-import React, { useMemo } from 'react';
+import React, { forwardRef, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Context from '../Form/Context';
-import { Prev, Next, Ellipsis, PageItem } from './Item';
+import { FormContext } from 'utils/Context';
+import PaginationItem, { PaginationNext, PaginationPrev, PaginationEllipsis } from './Item';
 
 const propTypes = {
   /** PageItem size variants */
@@ -14,10 +14,10 @@ const defaultProps = {
   sizeControl: 'small',
 };
 
-const Pagination = React.forwardRef(({ className, sizeControl, as: Component = 'ul', ...props }, ref) => {
+function Pagination({ className, sizeControl, as: Component = 'ul', ...props }, ref) {
   const context = useMemo(() => ({ sizeControl }), [sizeControl]);
   return (
-    <Context.Provider value={context}>
+    <FormContext.Provider value={context}>
       <Component
         {...props}
         ref={ref}
@@ -27,16 +27,16 @@ const Pagination = React.forwardRef(({ className, sizeControl, as: Component = '
           className && className,
         )}
       />
-    </Context.Provider>
+    </FormContext.Provider>
   );
 }
-);
 
-Pagination.Prev = Prev;
-Pagination.Next = Next;
-Pagination.Ellipsis = Ellipsis;
-Pagination.Item = PageItem;
+
+Pagination.Prev = PaginationPrev;
+Pagination.Next = PaginationNext;
+Pagination.Ellipsis = PaginationEllipsis;
+Pagination.Item = PaginationItem;
 Pagination.displayName = 'Pagination';
 Pagination.propTypes = propTypes;
 Pagination.defaultProps = defaultProps;
-export default Pagination;
+export default forwardRef(Pagination);

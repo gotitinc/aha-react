@@ -1,8 +1,8 @@
-import React, { useMemo, useContext } from 'react';
+import React, { useMemo, useContext, forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { CardContext } from 'utils/Context';
 
-const Context = React.createContext();
 const propTypes = {
   /**
    * When this prop is set, it creates a Card with a Card.Body inside
@@ -35,10 +35,10 @@ const sizesClassName = {
   },
 };
 
-const Card = React.forwardRef(({ className, body, size, children, as: Component = 'div', ...props }, ref) => {
+function Card ({ className, body, size, children, as: Component = 'div', ...props }, ref) {
   const context = useMemo(() => ({ size }), [size]);
   return (
-    <Context.Provider value={context}>
+    <CardContext.Provider value={context}>
       <Component
         ref={ref}
         {...props}
@@ -50,12 +50,12 @@ const Card = React.forwardRef(({ className, body, size, children, as: Component 
       >
         {body ? <CardBody>{children}</CardBody> : children}
       </Component>
-    </Context.Provider>
+    </CardContext.Provider>
   );
-});
+}
 
-const CardBody = React.forwardRef(({ className, as: Component = 'div', ...props }, ref) => {
-  const { size } = useContext(Context);
+function CardBody ({ className, as: Component = 'div', ...props }, ref) {
+  const { size } = useContext(CardContext);
   return (
     <Component
       ref={ref}
@@ -67,9 +67,9 @@ const CardBody = React.forwardRef(({ className, as: Component = 'div', ...props 
       )}
     />
   );
-});
-const CardHeader = React.forwardRef(({ className, as: Component = 'div', ...props }, ref) => {
-  const { size } = useContext(Context);
+}
+function CardHeader ({ className, as: Component = 'div', ...props }, ref) {
+  const { size } = useContext(CardContext);
   return (
     <Component
       ref={ref}
@@ -81,9 +81,10 @@ const CardHeader = React.forwardRef(({ className, as: Component = 'div', ...prop
       )}
     />
   );
-});
-const CardTitle = React.forwardRef(({ className, as: Component = 'div', ...props }, ref) => {
-  const { size } = useContext(Context);
+}
+
+function CardTitle ({ className, as: Component = 'div', ...props }, ref) {
+  const { size } = useContext(CardContext);
   return (
     <Component
       ref={ref}
@@ -95,13 +96,13 @@ const CardTitle = React.forwardRef(({ className, as: Component = 'div', ...props
       )}
     />
   );
-});
+}
 
 
 Card.displayName = 'Card';
 Card.propTypes = propTypes;
 Card.defaultProps = defaultProps;
-Card.Header = CardHeader;
-Card.Title = CardTitle;
-Card.Body = CardBody;
-export default Card;
+Card.Header = forwardRef(CardHeader);
+Card.Title = forwardRef(CardTitle);
+Card.Body = forwardRef(CardBody);
+export default forwardRef(Card);

@@ -1,9 +1,9 @@
-import React, { useMemo } from 'react';
+import React, { forwardRef, useMemo } from 'react';
 import PropTypes, { any } from 'prop-types';
 import classNames from 'classnames';
-import Avatar from '../Avatar';
+import { BubbleChatContext } from 'utils/Context';
+import Avatar from 'components/Avatar';
 import BubbleChatImage from './Image';
-import Context from './Context';
 
 const propTypes = {
   /**
@@ -98,7 +98,7 @@ const typeRadiusClassNames = {
   system: 'u-roundedExtraLarge',
 };
 
-const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant, time, avatar, options, currentOption, onSelectOption, disabledOption, children, onClickText, actionBar, actionBarClassName, textClassName, ...props }, ref) => {
+function BubbleChat ({ className, isTyping, text, type, variant, time, avatar, options, currentOption, onSelectOption, disabledOption, children, onClickText, actionBar, actionBarClassName, textClassName, ...props }, ref) {
   let variantOri = variant;
   if (variant === undefined) {
     if (type === 'inbound') variantOri = 'primary';
@@ -107,7 +107,7 @@ const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant,
   }
   const context = useMemo(() => ({ type }), [type]);
   return (
-    <Context.Provider value={context}>
+    <BubbleChatContext.Provider value={context}>
       <div
         ref={ref}
         {...props}
@@ -252,12 +252,12 @@ const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant,
           )}
         </div>
       </div>
-    </Context.Provider>
+    </BubbleChatContext.Provider>
   );
-});
+}
 
 BubbleChat.Image = BubbleChatImage;
 BubbleChat.displayName = 'BubbleChat';
 BubbleChat.defaultProps = defaultProps;
 BubbleChat.propTypes = propTypes;
-export default BubbleChat;
+export default forwardRef(BubbleChat);

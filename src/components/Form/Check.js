@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
+import React, { forwardRef, useContext } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import warning from 'warning';
-import Context from './Context';
+import { FormContext } from 'utils/Context';
 
 const propTypes = {
   /**
@@ -53,8 +53,8 @@ const defaultProps = {
   type: 'checkbox',
 };
 
-const Check = React.forwardRef(({ className, sizeInput, type, id, label, inline, isValid, isInvalid, disabled, as: Component = 'div', ...props }, ref) => {
-  const { controlId, disabledControl, sizeControl } = useContext(Context);
+function FormCheck({ className, sizeInput, type, id, label, inline, isValid, isInvalid, disabled, as: Component = 'div', ...props }, ref) {
+  const { controlId, disabledControl, sizeControl } = useContext(FormContext);
 
   warning(
     controlId == null || !id,
@@ -102,9 +102,9 @@ const Check = React.forwardRef(({ className, sizeInput, type, id, label, inline,
       </label>
     </Component>
   );
-});
+}
 
-Check.displayName = 'FormCheck';
-Check.defaultProps = defaultProps;
-Check.propTypes = propTypes;
-export default Check;
+FormCheck.displayName = 'FormCheck';
+FormCheck.defaultProps = defaultProps;
+FormCheck.propTypes = propTypes;
+export default forwardRef(FormCheck);

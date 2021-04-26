@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import SliderBase from 'rc-slider';
-import Range from './Range';
-import Handle from './Handle';
+import SliderRange from './Range';
+import SliderHandle from './Handle';
 import createSliderWithTooltip from './createSliderWithTooltip';
 
 const propTypes = {
@@ -22,24 +22,26 @@ const propTypes = {
   vertical: PropTypes.bool,
 };
 
-const Slider = React.forwardRef(({ vertical, variant, ...props }, ref) => (
-  <SliderBase
-    ref={ref}
-    {...props}
-    vertical={vertical}
-    prefixCls="Slider"
-    className={classNames(
-      'u-positionRelative',
-      vertical ? 'u-heightFull u-paddingHorizontalTiny' : 'u-widthFull u-paddingVerticalTiny u-marginBottomLarge',
-      variant && `Slider--${variant}`
-    )}
-  />
-));
+function Slider ({ vertical, variant, ...props }, ref) {
+  return (
+    <SliderBase
+      ref={ref}
+      {...props}
+      vertical={vertical}
+      prefixCls="Slider"
+      className={classNames(
+        'u-positionRelative',
+        vertical ? 'u-heightFull u-paddingHorizontalTiny' : 'u-widthFull u-paddingVerticalTiny u-marginBottomLarge',
+        variant && `Slider--${variant}`
+      )}
+    />
+  );
+}
 
 Slider.displayName = 'Slider';
 Slider.propTypes = propTypes;
 Slider.defaultProps = {};
-Slider.Handle = Handle;
-Slider.Range = Range;
+Slider.Handle = SliderHandle;
+Slider.Range = SliderRange;
 Slider.createSliderWithTooltip = createSliderWithTooltip;
-export default Slider;
+export default forwardRef(Slider);

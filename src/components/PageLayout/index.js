@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import Context from './Context';
+import { PageLayoutContext } from 'utils/Context';
 import PageLayoutHeader from './Header';
 import PageLayoutBody from './Body';
 import PageLayoutFooter from './Footer';
@@ -37,7 +37,7 @@ const PageLayout = React.forwardRef(({ children, className, headerProps, bodyPro
     bodyProps,
     footerProps]);
   return (
-    <Context.Provider value={context}>
+    <PageLayoutContext.Provider value={context}>
       <div
         ref={ref}
         {...props}
@@ -49,7 +49,7 @@ const PageLayout = React.forwardRef(({ children, className, headerProps, bodyPro
       >
         {children}
       </div>
-    </Context.Provider>
+    </PageLayoutContext.Provider>
   );
 });
 

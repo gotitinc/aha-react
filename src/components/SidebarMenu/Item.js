@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React, { forwardRef, useContext } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import SafeAnchor from '../../utils/SafeAnchor';
-import Badge from '../Badge';
-import Icon from '../Icon';
-import SidebarContext from './Context';
+import { SidebarMenuContext } from 'utils/Context';
+import SafeAnchor from 'utils/SafeAnchor';
+import Badge from 'components/Badge';
+import Icon from 'components/Icon';
 
 const propTypes = {
   /** A key that associates the SidebarMenu with it's controlling SidebarMenu.Item.*/
@@ -30,10 +30,10 @@ const propTypes = {
 const defaultProps = {
 };
 
-const Item = React.forwardRef(({ className, disabled, eventKey, children, badge, icon, isSubItem, level, path, size, ...props }, ref) => {
+function SidebarMenuItem({ className, disabled, eventKey, children, badge, icon, isSubItem, level, path, size, ...props }, ref) {
   let active;
 
-  const sideBarContextValue = useContext(SidebarContext);
+  const sideBarContextValue = useContext(SidebarMenuContext);
 
   if (path === sideBarContextValue.current) {
     active = true;
@@ -112,9 +112,9 @@ const Item = React.forwardRef(({ className, disabled, eventKey, children, badge,
       )}
     </div>
   );
-});
+}
 
-Item.defaultProps = defaultProps;
-Item.displayName = 'SidebarMenuItem';
-Item.propTypes = propTypes;
-export default Item;
+SidebarMenuItem.defaultProps = defaultProps;
+SidebarMenuItem.displayName = 'SidebarMenuItem';
+SidebarMenuItem.propTypes = propTypes;
+export default forwardRef(SidebarMenuItem);
