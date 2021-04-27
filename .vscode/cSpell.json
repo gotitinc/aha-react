@@ -23,15 +23,13 @@
         "Doclets",
         "frontmatter",
         "gotitinc",
+        "labelledby",
         "lifecycles",
         "Menlo",
         "monospace",
         "noopener",
         "noreferrer",
-        "tutoruniverse"
+        "tutoruniverse",
+        "Unfocus"
     ]
 }
-// this will ignore anything the node_modules directory
-// the same for this one
-// the same for this one
-// Doesn't currently work due to how the current working directory is determined.

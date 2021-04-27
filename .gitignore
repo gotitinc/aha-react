@@ -114,6 +114,7 @@ dist
 /lib
 /es
 /dist
+/types
 # misc
 .DS_Store
 .env.local

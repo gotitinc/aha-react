@@ -1,0 +1,15 @@
+{
+  "include": ["src/**/*"],
+  "exclude": ["src/index.js"],
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "commonjs",
+    "allowJs": true,
+    "emitDeclarationOnly": true,
+    "noUnusedLocals": true,
+    "esModuleInterop": true,
+    "listFiles": true,
+    "declaration": true,
+    "outFile": "types/index.d.ts"
+  }
+}
