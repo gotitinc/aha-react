@@ -1,9 +1,10 @@
 {
   "include": ["src/**/*"],
-  "exclude": ["src/index.js"],
+  "exclude": ["src/index.js", "src/components/Calender/v2/**/*"],
   "compilerOptions": {
     "target": "ES6",
     "module": "commonjs",
+    "removeComments": true,
     "allowJs": true,
     "emitDeclarationOnly": true,
     "noUnusedLocals": true,
