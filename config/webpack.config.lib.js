@@ -91,6 +91,9 @@ module.exports = {
             '@babel/plugin-syntax-dynamic-import',
             '@babel/plugin-syntax-class-properties',
             '@babel/plugin-syntax-optional-chaining',
+            ["module-resolver", {
+              root: [paths.appSrc]
+            }]
           ],
         },
       },

@@ -2,8 +2,8 @@ import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import warning from 'warning';
+import Icon from 'components/Icon';
 import Context from './Context';
-import Icon from '../Icon';
 
 const propTypes = {
   /**

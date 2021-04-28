@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 import classNames from 'classnames';
 import useMergedRefs from '@restart/hooks/useMergedRefs';
 import PropTypes from 'prop-types';
-import Button from '../Button';
-import Icon from '../Icon';
+import Button from 'components/Button';
+import Icon from 'components/Icon';
 import DropdownContext from './Context';
 import { useToggle } from './Toggle';
 

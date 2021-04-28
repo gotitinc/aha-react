@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import TextareaAutoSize from 'react-textarea-autosize';
-import Icon from '../Icon';
-import Overlay from '../Overlay';
-import Tooltip from '../Tooltip';
+import Icon from 'components/Icon';
+import Overlay from 'components/Overlay';
+import Tooltip from 'components/Tooltip';
 
 
 const propTypes = {

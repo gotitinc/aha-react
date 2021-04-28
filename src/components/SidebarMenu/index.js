@@ -1,10 +1,9 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-
+import createBlock from 'utils/createBlock';
 import Item from './Item';
 import SubMenu from './SubMenu';
-import createBlock from '../../utils/createBlock';
 import SidebarContext from './Context';
 
 const propTypes = {

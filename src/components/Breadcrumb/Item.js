@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import SafeAnchor from '../../utils/SafeAnchor';
+import SafeAnchor from 'components/SafeAnchor';
 
 const propTypes = {
 

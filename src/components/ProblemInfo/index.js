@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createBlock from '../../utils/createBlock';
-import Media from '../Media';
-import Icon from '../Icon';
+import createBlock from 'utils/createBlock';
+import Media from 'components/Media';
+import Icon from 'components/Icon';
 
 const propTypes = {
   /** Custom topic label */

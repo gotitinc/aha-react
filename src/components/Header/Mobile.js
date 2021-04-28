@@ -3,8 +3,8 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { useUncontrolled } from 'uncontrollable';
 import useCallbackRef from '@restart/hooks/useCallbackRef';
-import Icon from '../Icon';
-import createBlock from '../../utils/createBlock';
+import Icon from 'components/Icon';
+import createBlock from 'utils/createBlock';
 
 const propTypes = {
   /** Whether or not the Header is visible. */

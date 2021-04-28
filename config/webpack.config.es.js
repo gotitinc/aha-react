@@ -91,6 +91,9 @@ module.exports = {
           plugins: [
             '@babel/plugin-syntax-optional-chaining',
             '@babel/plugin-syntax-class-properties',
+            ["module-resolver", {
+              root: [paths.appSrc]
+            }]
           ],
           babelrc: false,
         },

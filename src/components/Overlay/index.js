@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import PopperJS from 'popper.js';
 import useCallbackRef from '@restart/hooks/useCallbackRef';
 import useMergedRefs from '@restart/hooks/useMergedRefs';
-import usePopper from '../../utils/usePopper';
-import useRootClose from '../../utils/useRootClose';
-import useWaitForDOMRef from '../../utils/useWaitForDOMRef';
+import usePopper from 'hooks/usePopper';
+import useRootClose from 'hooks/useRootClose';
+import useWaitForDOMRef from 'hooks/useWaitForDOMRef';
 import Trigger from './Trigger';
 
 const propTypes = {

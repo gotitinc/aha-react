@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { icons } from '../../constants';
+import { icons } from 'constants/icons';
 
 const propTypes = {
   /** The icon visual name */

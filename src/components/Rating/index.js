@@ -1,9 +1,9 @@
 import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Icon from '../Icon';
-import { useIsFocusVisible } from '../../utils/focusVisible';
-import useForkRef from '../../utils/useForkRef';
+import useIsFocusVisible from 'hooks/useIsFocusVisible';
+import useForkRef from 'hooks/useForkRef';
+import Icon from 'components/Icon';
 
 function getDecimalPrecision(num) {
   const decimalPart = num.toString().split('.')[1];

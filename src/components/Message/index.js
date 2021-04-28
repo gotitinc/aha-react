@@ -4,13 +4,12 @@ import PropTypes from 'prop-types';
 import { useUncontrolled } from 'uncontrollable';
 import useEventCallback from '@restart/hooks/useEventCallback';
 import { elementType } from 'prop-types-extra';
-
-import Icon from '../Icon';
-import Fade from '../../utils/Fade';
+import createBlock from 'utils/createBlock';
+import { messagesVariants } from 'constants/messages';
+import Icon from 'components/Icon';
+import Fade from 'components/Fade';
 import Context from './Context';
 import Title from './Title';
-import createBlock from '../../utils/createBlock';
-import { messagesVariants } from '../../constants';
 
 const propTypes = {
   /** The Message visual type */

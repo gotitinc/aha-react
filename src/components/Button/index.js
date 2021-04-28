@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import createBlock from 'utils/createBlock';
 import Group from './Group';
 import Context from '../Form/Context';
-import createBlock from '../../utils/createBlock';
 
 const propTypes = {
   /** The Button visual variant */

@@ -1,4 +1,4 @@
-import { PluginType } from '../constants/common';
+import { PluginType } from 'constants/common';
 import AssetPlugin from './AssetPlugin';
 import PluginArray from './PluginArray';
 
