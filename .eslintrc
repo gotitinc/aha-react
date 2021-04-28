@@ -1,12 +1,16 @@
 {
-  "parser": "babel-eslint",
+  "root": true,
+  "parser": "@typescript-eslint/parser",
   "env": {
     "browser": true,
     "node": true,
-    "jquery": true,
     "jest": true
   },
-  "extends": "airbnb",
+  "extends": [
+    "airbnb",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended"
+  ],
   "rules": {
     "jsx-a11y/label-has-associated-control": 0,
     "space-before-function-paren": 0,
@@ -61,11 +65,5 @@
     ],
     "react/no-multi-comp": 0,
     "import/prefer-default-export": 0
-  },
-  "globals": {
-    "zE": true,
-    "log": true,
-    "logToQueue": true,
-    "jsdom": true
   }
 }

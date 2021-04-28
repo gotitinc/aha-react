@@ -2,7 +2,8 @@ import { contains } from 'dom-helpers';
 import React, { cloneElement, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
-import Overlay from './index';
+// eslint-disable-next-line import/no-cycle
+import Overlay from "./index";
 
 const normalizeDelay = delay => ((delay && typeof delay === 'object') ? delay : { show: delay, hide: delay });
 const triggerType = PropTypes.oneOf(['click', 'hover', 'focus']);

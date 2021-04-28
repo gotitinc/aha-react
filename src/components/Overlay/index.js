@@ -7,6 +7,7 @@ import useMergedRefs from '@restart/hooks/useMergedRefs';
 import usePopper from '../../utils/usePopper';
 import useRootClose from '../../utils/useRootClose';
 import useWaitForDOMRef from '../../utils/useWaitForDOMRef';
+// eslint-disable-next-line import/no-cycle
 import Trigger from './Trigger';
 
 const propTypes = {
