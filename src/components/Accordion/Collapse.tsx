@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import AccordionContext from './Context';
 import CollapseBase from '../Collapse';
+import { PrefixPropsWithChildren, PrefixRefForwardingComponent } from '../../utils/helpers';
 
 const propTypes = {
   /**
@@ -12,8 +13,14 @@ const propTypes = {
   children: PropTypes.element.isRequired,
 };
 
-const Collapse = React.forwardRef(
-  ({ children, eventKey, ...props }, ref) => {
+export interface CollapseProps extends PrefixPropsWithChildren {
+    eventKey?: string
+}
+
+export type CollapseType = PrefixRefForwardingComponent<'div',CollapseProps>;
+
+const Collapse: CollapseType = React.forwardRef(
+  ({ children, eventKey, ...props } : CollapseProps, ref) => {
     const contextEventKey = useContext(AccordionContext);
     return (
       <CollapseBase

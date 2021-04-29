@@ -2,6 +2,7 @@ import React, { useContext, cloneElement } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import AccordionContext, { SelectableContext } from './Context';
+import { PrefixPropsWithChildren,PrefixRefForwardingComponent } from '../../utils/helpers';
 
 const propTypes = {
   /**
@@ -13,20 +14,30 @@ const propTypes = {
   /** A callback function for when this component is clicked */
   onClick: PropTypes.func,
 
-  /** Children prop should only contain a single child, and  is enforced as such */
-  children: PropTypes.element.isRequired,
 };
-export function useAccordionToggle(eventKey, onClick) {
+
+type EventHandler = React.EventHandler<React.SyntheticEvent>;
+
+export interface AccordionToggleProps extends PrefixPropsWithChildren {
+    eventKey: string;
+    disabled?: Boolean;
+    onClick: EventHandler;
+    children?: any;
+  }
+
+export type AccordionToggleType = PrefixRefForwardingComponent<'div',AccordionToggleProps>;
+
+export function useAccordionToggle(eventKey: string, onClick: EventHandler) : EventHandler {
   const contextEventKey = useContext(AccordionContext);
   const onSelect = useContext(SelectableContext);
   return (e) => {
     const eventKeyPassed = eventKey === contextEventKey ? null : eventKey;
-    onSelect(eventKeyPassed, e);
+    if (onSelect) onSelect(eventKeyPassed, e);
     if (onClick) onClick(e);
   };
 }
 
-const AccordionToggle = React.forwardRef(({ className, eventKey, onClick, children, disabled, ...props }, ref) => {
+const AccordionToggle : AccordionToggleType = React.forwardRef(({ className, eventKey, onClick, children, disabled, ...props } : AccordionToggleProps, ref) => {
   const onAccordionClick = useAccordionToggle(eventKey, onClick);
   return cloneElement(children, {
     className: classNames(

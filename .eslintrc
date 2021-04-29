@@ -9,13 +9,14 @@
   "extends": [
     "airbnb",
     "eslint:recommended",
-    "plugin:@typescript-eslint/eslint-recommended"
+    "plugin:@typescript-eslint/eslint-recommended",
+    "prettier"
   ],
   "rules": {
     "jsx-a11y/label-has-associated-control": 0,
     "space-before-function-paren": 0,
     "react/prefer-stateless-function": 0,
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx",".ts",".tsx"] }],
     "linebreak-style": 0,
     "global-require": 0,
     "eol-last": 0,
@@ -64,6 +65,7 @@
       }
     ],
     "react/no-multi-comp": 0,
-    "import/prefer-default-export": 0
+    "import/prefer-default-export": 0,
+    "no-unused-vars": "off"
   }
 }

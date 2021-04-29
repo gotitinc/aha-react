@@ -14,11 +14,10 @@ module.exports = {
   appBuildES:  resolveApp(`es`),
   appBuildLib:  resolveApp(`lib`),
   appBuildDist:  resolveApp(`dist`),
-  appIndexJs: resolveApp('src/index.js'),
+  appIndexJs: resolveApp('src/index.ts'),
   appSCSS: resolveApp('scss'),
   appPackageJson: resolveApp('package.json'),
   appSrc: resolveApp('src'),
   yarnLockFile: resolveApp('yarn.lock'),
-  testsSetup: resolveApp('src/setupTests.js'),
   appNodeModules: resolveApp('node_modules'),
 };
