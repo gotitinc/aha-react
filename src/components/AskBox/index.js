@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import createBlock from '../../utils/createBlock';
+import createBlock from 'utils/createBlock';
 
 const propTypes = {
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Form from '../Form';
-import Icon from '../Icon';
-import Button from '../Button';
+import Form from 'components/Form';
+import Icon from 'components/Icon';
+import Button from 'components/Button';
 
 
 const propTypes = {

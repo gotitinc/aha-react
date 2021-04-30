@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { elementType } from 'prop-types-extra';
-import createBlock from '../../utils/createBlock';
+import createBlock from 'utils/createBlock';
+import Fade from 'components/Fade';
 import Header from './Header';
 import Inside from './Inside';
 import ModalContext from './Context';
-import Fade from '../../utils/Fade';
 
 const propTypes = {
   /**

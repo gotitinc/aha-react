@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import CollapseBase from 'components/Collapse';
 import AccordionContext from './Context';
-import CollapseBase from '../Collapse';
 
 const propTypes = {
   /**

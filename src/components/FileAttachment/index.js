@@ -4,10 +4,8 @@ import classNames from 'classnames';
 import { useUncontrolled } from 'uncontrollable';
 import { elementType } from 'prop-types-extra';
 import useEventCallback from '@restart/hooks/useEventCallback';
-
-import Fade from '../../utils/Fade';
-
-import Icon from '../Icon';
+import Fade from 'components/Fade';
+import Icon from 'components/Icon';
 
 const fileTypeMeta = {
   undefined: {

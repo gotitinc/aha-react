@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import Badge from '../Badge';
-import Dropdown from '../Dropdown';
-import Icon from '../Icon';
+import Badge from 'components/Badge';
+import Dropdown from 'components/Dropdown';
+import Icon from 'components/Icon';
 import TopMenuContext from './Context';
 
 const propTypes = {

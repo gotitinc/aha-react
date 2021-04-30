@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import useMergedRefs from '@restart/hooks/useMergedRefs';
-import createChainedFunction from './createChainedFunction';
+import createChainedFunction from 'utils/createChainedFunction';
 
 const propTypes = {
   href: PropTypes.string,

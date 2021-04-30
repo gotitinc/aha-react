@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import PropTypes, { any } from 'prop-types';
 import classNames from 'classnames';
-import Avatar from '../Avatar';
+import Avatar from 'components/Avatar';
 import BubbleChatImage from './Image';
 import Context from './Context';
 

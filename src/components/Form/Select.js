@@ -2,8 +2,8 @@ import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import warning from 'warning';
+import Icon from 'components/Icon';
 import Context from './Context';
-import Icon from '../Icon';
 
 const propTypes = {
   /**
@@ -71,7 +71,7 @@ const Select = React.forwardRef(({ className, sizeInput, required, multiple, id,
         'u-positionRelative u-flex u-overflowHidden',
         sizeInputSet && `FormInput--${sizeInputSet}`,
         sizeInputSet === 'small' && 'u-text200',
-        disabled ? 'u-cursorNotAllow u-textLight u-pointerEventsNone' : 'u-cursorPointer',
+        disabled ? 'is-disabled u-cursorNotAllow u-textLight u-pointerEventsNone' : 'u-cursorPointer',
         isValid && 'is-valid',
         isInvalid && 'is-invalid',
         isBorderNone && 'is-borderNone',

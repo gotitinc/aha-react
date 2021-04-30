@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { PluginType } from '../../constants/common';
-import Plugins from '../../plugins';
+import Plugins from 'plugins';
+import { PluginType } from 'constants/common';
 
 const propTypes = {
   /** The Avatar visual name, should be provide via an AssetPlugin with prefix "avatar" */

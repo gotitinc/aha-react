@@ -11,8 +11,8 @@ import Transition, {
   EXITING,
 } from 'react-transition-group/Transition';
 
-import createChainedFunction from '../../utils/createChainedFunction';
-import triggerBrowserReflow from '../../utils/triggerBrowserReflow';
+import createChainedFunction from 'utils/createChainedFunction';
+import triggerBrowserReflow from 'utils/triggerBrowserReflow';
 
 const MARGINS = {
   height: ['marginTop', 'marginBottom'],

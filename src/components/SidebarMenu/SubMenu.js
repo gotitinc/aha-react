@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import Badge from '../Badge';
-import Icon from '../Icon';
+import Badge from 'components/Badge';
+import Icon from 'components/Icon';
 import SidebarContext from './Context';
 
 const propTypes = {

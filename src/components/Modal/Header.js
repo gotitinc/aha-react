@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import useEventCallback from '@restart/hooks/useEventCallback';
-import Icon from '../Icon';
+import Icon from 'components/Icon';
 import ModalContext from './Context';
 
 

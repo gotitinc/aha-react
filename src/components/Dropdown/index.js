@@ -4,12 +4,12 @@ import { useUncontrolled } from 'uncontrollable';
 import useCallbackRef from '@restart/hooks/useCallbackRef';
 import useForceUpdate from '@restart/hooks/useForceUpdate';
 import PropTypes from 'prop-types';
+import createBlock from 'utils/createBlock';
 import DropButton from './Button';
 import Toggle from './Toggle';
 import Container from './Container';
 import DropdownContext from './Context';
 
-import createBlock from '../../utils/createBlock';
 
 const propTypes = {
   /**

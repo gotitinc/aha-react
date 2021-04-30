@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import createBlock from 'utils/createBlock';
 import Context from './Context';
-import createBlock from '../../utils/createBlock';
 
 const propTypes = {
   /**

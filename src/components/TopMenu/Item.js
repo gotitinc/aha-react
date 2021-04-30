@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import SafeAnchor from '../../utils/SafeAnchor';
-import Badge from '../Badge';
+import SafeAnchor from 'components/SafeAnchor';
+import Badge from 'components/Badge';
 import TopMenuContext from './Context';
 
 const propTypes = {

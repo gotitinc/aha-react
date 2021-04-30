@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Button from '../Button';
-import Icon from '../Icon';
-import SafeAnchor from '../../utils/SafeAnchor';
+import Button from 'components/Button';
+import Icon from 'components/Icon';
+import SafeAnchor from 'components/SafeAnchor';
 
 const propTypes = {
   /** Styles PageItem as active, and renders a `<span>` instead of an `<a>`. */
