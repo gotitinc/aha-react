@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import SafeAnchor from '../../utils/SafeAnchor';
+import { PrefixPropsWithChildren, PrefixRefForwardingComponent } from '../../utils/helpers';
 
 const propTypes = {
 
@@ -28,10 +29,19 @@ const defaultProps = {
 
 };
 
-const Item = React.forwardRef(({ className, children, noHref, position, schema, isLast, ...props }, ref) => {
-  const Component = isLast || noHref ? 'span' : SafeAnchor;
+export interface BreadcrumbItemProps extends PrefixPropsWithChildren {
+  noHref?: string;
+  schema?: Boolean;
+  position?: string;
+  isLast?: Boolean;
+}
+
+export type BreadcrumbItemType = PrefixRefForwardingComponent<React.ElementType, BreadcrumbItemProps>;
+
+const BreadcrumbItem : BreadcrumbItemType = React.forwardRef(({ className, children, noHref, position, schema, isLast, as: Component = 'li', ...props }: BreadcrumbItemProps, ref) => {
+  const LinkComponent = isLast || noHref ? 'span' : SafeAnchor;
   return (
-    <li
+    <Component
       ref={ref}
       className={classNames(
         'Breadcrumb-item',
@@ -53,7 +63,7 @@ const Item = React.forwardRef(({ className, children, noHref, position, schema, 
           <meta itemProp="position" content={position} />
         </React.Fragment>
       ) : (
-        <Component
+        <LinkComponent
           {...props}
           className={classNames(
             !isLast && 'u-textGray',
@@ -61,13 +71,13 @@ const Item = React.forwardRef(({ className, children, noHref, position, schema, 
           )}
         >
           {children}
-        </Component>
+        </LinkComponent>
       )}
-    </li>
+    </Component>
   );
 });
 
-Item.displayName = 'BreadcrumbItem';
-Item.defaultProps = defaultProps;
-Item.propTypes = propTypes;
-export default Item;
+BreadcrumbItem.displayName = 'BreadcrumbItem';
+BreadcrumbItem.defaultProps = defaultProps;
+BreadcrumbItem.propTypes = propTypes;
+export default BreadcrumbItem;

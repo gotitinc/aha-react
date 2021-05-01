@@ -23,7 +23,7 @@ export interface AccordionToggleProps extends PrefixPropsWithChildren {
     disabled?: Boolean;
     onClick: EventHandler;
     children?: any;
-  }
+}
 
 export type AccordionToggleType = PrefixRefForwardingComponent<'div',AccordionToggleProps>;
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import createBlock from '../../utils/createBlock';
+import { PrefixProps, PrefixRefForwardingComponent } from '../../utils/helpers';
 
 const propTypes = {
 
@@ -9,8 +10,18 @@ const defaultProps = {
 
 };
 
-const AskBox = React.forwardRef(({ className, ...props }, ref) => (
-  <div
+export interface AskBoxProps extends PrefixProps {};
+
+export type AskBoxType = PrefixRefForwardingComponent<'div', AskBoxProps> & {
+    Title?: typeof Title,
+    Header?: typeof Header,
+    Body?: typeof Body,
+    Footer?: typeof Footer,
+    Note?: typeof Note
+}
+
+const AskBox : AskBoxType = React.forwardRef(({ className, as: Component = 'div', ...props } : AskBoxProps, ref) => (
+  <Component
     ref={ref}
     {...props}
     className={classNames(

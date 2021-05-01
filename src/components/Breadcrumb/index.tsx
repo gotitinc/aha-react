@@ -1,17 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Item from './Item';
+import BreadcrumbItem from './Item';
+import { PrefixPropsWithChildren, PrefixRefForwardingComponent } from '../../utils/helpers';
 
 const propTypes = {
   /** Enable Structured Data `https://schema.org/BreadcrumbList` */
   schema: PropTypes.bool,
 };
+
 const defaultProps = {
   schema: false,
 };
 
-const Breadcrumb = React.forwardRef(({ className, schema, children, ...props }, ref) => {
+export interface BreadcrumbProps extends PrefixPropsWithChildren {
+    schema?: Boolean;
+}
+
+export type BreadcrumbType = PrefixRefForwardingComponent<'ul', BreadcrumbProps> & {
+    Item?: typeof BreadcrumbItem
+}
+const Breadcrumb : BreadcrumbType = React.forwardRef(({ className, schema, children, as: Component = 'ul', ...props }: BreadcrumbProps, ref) => {
   let schemasList;
   let schemasItem;
   if (schema) {
@@ -26,7 +35,7 @@ const Breadcrumb = React.forwardRef(({ className, schema, children, ...props }, 
     };
   }
   const numChildren = React.Children.count(children);
-  const modifiedChildren = React.Children.map(children, (child, index) => {
+  const modifiedChildren = React.Children.map(children, (child: any, index) => {
     if (!child) {
       return null;
     }
@@ -40,7 +49,7 @@ const Breadcrumb = React.forwardRef(({ className, schema, children, ...props }, 
     );
   });
   return (
-    <ul
+    <Component
       ref={ref}
       {...props}
       {...schemasList}
@@ -50,12 +59,12 @@ const Breadcrumb = React.forwardRef(({ className, schema, children, ...props }, 
       )}
     >
       {modifiedChildren}
-    </ul>
+    </Component>
   );
 });
 
 Breadcrumb.displayName = 'Breadcrumb';
 Breadcrumb.defaultProps = defaultProps;
 Breadcrumb.propTypes = propTypes;
-Breadcrumb.Item = Item;
+Breadcrumb.Item = BreadcrumbItem;
 export default Breadcrumb;

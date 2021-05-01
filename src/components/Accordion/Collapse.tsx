@@ -13,14 +13,14 @@ const propTypes = {
   children: PropTypes.element.isRequired,
 };
 
-export interface CollapseProps extends PrefixPropsWithChildren {
-    eventKey?: string
+export interface AccordionCollapseProps extends PrefixPropsWithChildren {
+  eventKey?: string
 }
 
-export type CollapseType = PrefixRefForwardingComponent<'div',CollapseProps>;
+export type AccordionCollapseType = PrefixRefForwardingComponent<'div', AccordionCollapseProps>;
 
-const Collapse: CollapseType = React.forwardRef(
-  ({ children, eventKey, ...props } : CollapseProps, ref) => {
+const AccordionCollapse: AccordionCollapseType = React.forwardRef(
+  ({ children, eventKey, ...props }: AccordionCollapseProps, ref) => {
     const contextEventKey = useContext(AccordionContext);
     return (
       <CollapseBase
@@ -34,7 +34,7 @@ const Collapse: CollapseType = React.forwardRef(
     );
   },
 );
-Collapse.displayName = 'AccordionCollapse';
-Collapse.defaultProps = {};
-Collapse.propTypes = propTypes;
-export default Collapse;
+AccordionCollapse.displayName = 'AccordionCollapse';
+AccordionCollapse.defaultProps = {};
+AccordionCollapse.propTypes = propTypes;
+export default AccordionCollapse;

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { PrefixPropsWithChildren, PrefixRefForwardingComponent } from '../../utils/helpers';
 
 const propTypes = {
   /** The Badge visual variant */
@@ -57,7 +58,14 @@ const variantsClassName = {
   negative_subtle: 'u-textNegative hover:u-textNegative u-backgroundNegativeLighter',
 };
 
-const Badge = React.forwardRef(({ className, textClassName, variant, as: Component = 'span', ...props }, ref) => (
+export interface BadgeProps extends PrefixPropsWithChildren {
+  textClassName?: string | Function;
+  variant?: string;
+}
+
+export type BadgeType = PrefixRefForwardingComponent<'span', BadgeProps>;
+
+const Badge : BadgeType = React.forwardRef(({ className, textClassName, variant, as: Component = 'span', ...props } : BadgeProps, ref) => (
   <Component
     {...props}
     ref={ref}

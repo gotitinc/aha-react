@@ -7,25 +7,9 @@
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
   },
-  "files.associations": {
-    "*.mdx": "mdx"
-  },
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
-  "cSpell.words": [
-    "Docgen",
-    "Doclet",
-    "Doclets",
-    "Menlo",
-    "astroturf",
-    "frontmatter",
-    "gotitinc",
-    "lifecycles",
-    "monospace",
-    "noopener",
-    "noreferrer",
-    "tutoruniverse"
-  ],
+  "editor.formatOnSave": true,
   "typescript.tsdk": "node_modules/typescript/lib"
 }

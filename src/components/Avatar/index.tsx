@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PluginType } from '../../constants/common';
 import Plugins from '../../plugins';
+import { PrefixProps, PrefixRefForwardingComponent } from '../../utils/helpers';
 
 const propTypes = {
   /** The Avatar visual name, should be provide via an AssetPlugin with prefix "avatar" */
@@ -39,7 +40,19 @@ const defaultProps = {
   alt: 'Avatar',
 };
 
-const Avatar = React.forwardRef(({ className, size, name, src, alt, height, width, text, as: Component = 'div', ...props }, ref) => {
+export interface AvatarProps extends PrefixProps {
+  size?: string;
+  name?: string;
+  src?: string;
+  alt?: string;
+  height?: number;
+  width?: number;
+  text?: string
+}
+
+export type AvatarType = PrefixRefForwardingComponent<'div', AvatarProps>
+
+const Avatar : AvatarType= React.forwardRef(({ className, size, name, src, alt, height, width, text, as: Component = 'div', ...props } : AvatarProps, ref) => {
   let nameOri = name;
   let srcOri = src;
   let textOri = text;

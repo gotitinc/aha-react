@@ -3,7 +3,8 @@ import PropTypes, { any } from 'prop-types';
 import classNames from 'classnames';
 import Avatar from '../Avatar';
 import BubbleChatImage from './Image';
-import Context from './Context';
+import BubbleChatContext from './Context';
+import { PrefixPropsWithChildren, PrefixRefForwardingComponent } from '../../utils/helpers';
 
 const propTypes = {
   /**
@@ -69,6 +70,7 @@ const propTypes = {
 
 const defaultProps = {
   type: 'inbound',
+  disabledOption: false,
 };
 
 const variantTextClassNames = {
@@ -98,8 +100,29 @@ const typeRadiusClassNames = {
   system: 'u-roundedExtraLarge',
 };
 
-const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant, time, avatar, options, currentOption, onSelectOption, disabledOption, children, onClickText, actionBar, actionBarClassName, textClassName, ...props }, ref) => {
-  let variantOri = variant;
+export interface BubbleChatProps extends PrefixPropsWithChildren {
+  isTyping?: boolean;
+  text?: string;
+  type?: string;
+  variant?: string;
+  time?: any;
+  avatar?: string | Function;
+  options?: Array<{id: string |  number, name: string}>;
+  currentOption?: string | number;
+  onSelectOption?: Function;
+  disabledOption: boolean;
+  onClickText?: Function;
+  actionBar?: any;
+  actionBarClassName?: string | Array<string>;
+  textClassName?: string | Array<string>;
+}
+
+export type BubbleChatType = PrefixRefForwardingComponent<'div', BubbleChatProps> &{
+  Image?: typeof BubbleChatImage
+}
+
+const BubbleChat : BubbleChatType  = React.forwardRef(({ className, isTyping, text, type, variant, time, avatar, options, currentOption, onSelectOption, disabledOption, children, onClickText, actionBar, actionBarClassName, textClassName, as: Component = 'div', ...props } : BubbleChatProps, ref) => {
+  let variantOri = variant || '';
   if (variant === undefined) {
     if (type === 'inbound') variantOri = 'primary';
     else if (type === 'outbound') variantOri = 'light';
@@ -107,8 +130,8 @@ const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant,
   }
   const context = useMemo(() => ({ type }), [type]);
   return (
-    <Context.Provider value={context}>
-      <div
+    <BubbleChatContext.Provider value={context}>
+      <Component
         ref={ref}
         {...props}
         className={classNames(
@@ -187,7 +210,7 @@ const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant,
                         variantOri && variantClassNames[variantOri],
 
                       )}
-                      onClick={onClickText}
+                      onClick={() => onClickText && onClickText()}
                     >
                       {text}
                     </div>
@@ -205,7 +228,7 @@ const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant,
                           handleClick = null;
                         } else {
                           cn = 'u-backgroundWhite hover:u-backgroundLightest u-textPrimary u-cursorPointer';
-                          handleClick = () => onSelectOption(option.id);
+                          handleClick = () => onSelectOption && onSelectOption(option.id);
                         }
 
                         return (
@@ -251,8 +274,8 @@ const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant,
             </div>
           )}
         </div>
-      </div>
-    </Context.Provider>
+      </Component>
+    </BubbleChatContext.Provider>
   );
 });
 
