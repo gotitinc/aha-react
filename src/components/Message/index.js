@@ -103,6 +103,7 @@ const Message = React.forwardRef((uncontrolledProps, ref) => {
               dismissButtonHover ? 'u-opacityReset' : 'u-opacityHalf',
               variantOri.textClassName
             )}
+            data-testid="message-close"
           />
         </div>
       )}
