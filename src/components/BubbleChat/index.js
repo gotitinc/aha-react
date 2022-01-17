@@ -65,10 +65,15 @@ const propTypes = {
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string),
   ]),
+  avatarPosition: PropTypes.oneOf([
+    'top',
+    'bottom',
+  ]),
 };
 
 const defaultProps = {
   type: 'inbound',
+  avatarPosition: 'top',
 };
 
 const variantTextClassNames = {
@@ -98,7 +103,7 @@ const typeRadiusClassNames = {
   system: 'u-roundedExtraLarge',
 };
 
-const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant, time, avatar, options, currentOption, onSelectOption, disabledOption, children, onClickText, actionBar, actionBarClassName, textClassName, ...props }, ref) => {
+const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant, time, avatar, options, currentOption, onSelectOption, disabledOption, children, onClickText, actionBar, actionBarClassName, textClassName, avatarPosition, ...props }, ref) => {
   let variantOri = variant;
   if (variant === undefined) {
     if (type === 'inbound') variantOri = 'primary';
@@ -149,9 +154,10 @@ const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant,
 
   const renderAvatar = (type = 'outbound') => (
     <div className={
-      type === 'outbound'
-        ? 'u-flexShrink0 u-marginRightExtraSmall u-alignSelfEnd'
-        : 'u-flexShrink0 u-marginLeftExtraSmall u-alignSelfEnd'
+      classNames(
+        type === 'outbound' ? 'u-marginRightExtraSmall' : 'u-marginLeftExtraSmall',
+        avatarPosition === 'top' ? 'u-alignSelfStart' : 'u-alignSelfEnd',
+      )
     }
     >
       {typeof (avatar) === 'function'
