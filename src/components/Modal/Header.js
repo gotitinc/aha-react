@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import useEventCallback from '@restart/hooks/useEventCallback';
-import Icon from '../Icon';
+import Icon from 'components/Icon';
 import ModalContext from './Context';
 
 
@@ -39,6 +39,7 @@ const Header = React.forwardRef(({ className, children, closeButton, onHide, ...
           onMouseEnter={() => setCloseHover(closeHover => !closeHover)}
           onMouseLeave={() => setCloseHover(closeHover => !closeHover)}
           onClick={handleClick}
+          data-testid="modal-close-button"
         >
           <Icon
             name="close"

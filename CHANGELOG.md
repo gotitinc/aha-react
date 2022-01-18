@@ -1,3 +1,19 @@
+## Release 2.0.3 - January 18, 2022
+### Fixed
+* Code base: use absolute imports, rearrange hooks and utils
+* TopMenu: TopMenu-itemAfter of TopMenu-subMenu has wrong position (need CSS changes)
+* Toast: Upgrade from `react-toastify@6` to version `7.0.4` to fix issue:
+  - `pauseOnFocusLoss` is not applied to windows already unfocused. [Ref](https://github.com/fkhadra/react-toastify/issues/541)
+* BubbleChat: map text className from `variantTextClassNames` using variant (like `variantClassNames`)
+* Form/Select: add missing `is-disabled` className on disabled
+### Added
+* Icons: `shapes`, `return`, `umbrella`, `game`, `tagCloud`, `one`, `two`, `three`, `four`, `five`, `six`, `seven`, `eight`, `nine`, `ten`
+* Message: add test-id `[data-testid="message-close"]`
+* Modal/Header: add test-id `[data-testid="modal-close-button"]`
+### Updated
+* react-toastify to fixed version
+* Support React 17
+
 ## Release 2.0.2 - January 18, 2021
 ### Fixed
 * Button: modified variant `secondary`, fixed ActionBar

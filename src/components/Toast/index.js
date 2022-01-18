@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ToastContainer as ToastContainerBase, toast as toastBase } from 'react-toastify';
-import Icon from '../Icon';
+import Icon from 'components/Icon';
 
 const propTypes = {
   /**

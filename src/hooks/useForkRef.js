@@ -1,6 +1,6 @@
 //fork react-overlays/src/useForkRef.js
 import React from 'react';
-import setRef from './setRef';
+import setRef from '../utils/setRef';
 
 export default function useForkRef(refA, refB) {
   /**

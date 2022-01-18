@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import DateRangePickerBase from '@wojtekmaj/react-daterange-picker/dist/entry.nostyle';
-import Icon from '../Icon';
-import Context from '../Form/Context';
+import Icon from 'components/Icon';
+import Context from 'components/Form/Context';
 
 const DateRangePicker = React.forwardRef(({ className, noClearIcon, size, ...props }, ref) => {
   const { sizeControl } = useContext(Context);

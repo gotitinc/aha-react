@@ -6,8 +6,7 @@ import Transition, {
   ENTERED,
   ENTERING,
 } from 'react-transition-group/Transition';
-// import onEnd from 'dom-helpers/transitionEnd';
-import triggerBrowserReflow from './triggerBrowserReflow';
+import triggerBrowserReflow from 'utils/triggerBrowserReflow';
 
 const propTypes = {
   /**

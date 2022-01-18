@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Context from '../Form/Context';
+import Context from 'components/Form/Context';
 
 const propTypes = {
   /**

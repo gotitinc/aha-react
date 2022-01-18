@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { elementType } from 'prop-types-extra';
-import usePopper from '../../utils/usePopper';
-import useRootClose from '../../utils/useRootClose';
+import usePopper from 'hooks/usePopper';
+import useRootClose from 'hooks/useRootClose';
 import DropdownContext from './Context';
 
 

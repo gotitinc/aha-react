@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import classNames from 'classnames';
+import { messagesVariants } from 'constants/messages';
 import Context from './Context';
-import { messagesVariants } from '../../constants';
 
 const propTypes = {
 };
