@@ -110,6 +110,7 @@ const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant,
 
   const renderTime = () => (
     <>
+      {/* Empty <div /> to occupy the bottom left corner of grid template */}
       {type !== 'inbound' && <div />}
       <div
         className={classNames(
@@ -123,6 +124,7 @@ const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant,
       >
         {time}
       </div>
+      {/* Empty <div /> to occupy the bottom right corner of grid template */}
       {type === 'inbound' && <div />}
     </>
   );
@@ -185,6 +187,7 @@ const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant,
           }}
         >
           {(type !== 'inbound' && avatar) && renderAvatar('outbound')}
+          {/* Empty <div /> to occupy the top left corner of grid template */}
           {(type !== 'inbound' && !avatar) && <div />}
 
           <div className={classNames(
@@ -273,6 +276,7 @@ const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant,
           </div>
 
           {((type !== 'outbound' && type !== 'system') && avatar) && renderAvatar('inbound')}
+          {/* Empty <div /> to occupy the top right corner of grid template */}
           {((type !== 'outbound' && type !== 'system') && !avatar) && <div />}
 
           {time && renderTime()}
