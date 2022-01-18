@@ -10,10 +10,12 @@ const BubbleChatImage = React.forwardRef(({ className, ...props }, ref) => {
       ref={ref}
       className={classNames(
         'BubbleChat-image',
-        'u-marginBottomTiny',
         (type === 'inbound') && 'u-textRight',
         className && className
       )}
+      style={{
+        lineHeight: 0,
+      }}
     >
       <img {...props} className="u-roundedMedium u-border u-maxWidthFull" alt="" />
     </div>
