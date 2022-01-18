@@ -65,15 +65,10 @@ const propTypes = {
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string),
   ]),
-  avatarPosition: PropTypes.oneOf([
-    'top',
-    'bottom',
-  ]),
 };
 
 const defaultProps = {
   type: 'inbound',
-  avatarPosition: 'top',
 };
 
 const variantTextClassNames = {
@@ -97,13 +92,13 @@ const typeThemeClassNames = {
   system: '',
 };
 
-const getTypeRadiusClassNames = avatarPosition => ({
+const typeRadiusClassNames = {
   inbound: 'u-roundedExtraLarge u-roundedBottomRightNone',
-  outbound: `u-roundedExtraLarge ${avatarPosition === 'top' ? 'u-roundedTopLeftNone' : 'u-roundedBottomLeftNone'}`,
+  outbound: 'u-roundedExtraLarge u-roundedBottomLeftNone',
   system: 'u-roundedExtraLarge',
-});
+};
 
-const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant, time, avatar, options, currentOption, onSelectOption, disabledOption, children, onClickText, actionBar, actionBarClassName, textClassName, avatarPosition, ...props }, ref) => {
+const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant, time, avatar, options, currentOption, onSelectOption, disabledOption, children, onClickText, actionBar, actionBarClassName, textClassName, ...props }, ref) => {
   let variantOri = variant;
   if (variant === undefined) {
     if (type === 'inbound') variantOri = 'primary';
@@ -135,7 +130,7 @@ const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant,
   const renderTyping = () => (
     <div className={classNames(
       'u-overflowHidden',
-      type && getTypeRadiusClassNames(avatarPosition)[type]
+      type && typeRadiusClassNames[type]
     )}
     >
       <div
@@ -156,7 +151,7 @@ const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant,
     <div className={
       classNames(
         type === 'outbound' ? 'u-marginRightExtraSmall' : 'u-marginLeftExtraSmall',
-        avatarPosition === 'top' ? 'u-alignSelfStart' : 'u-alignSelfEnd',
+        'u-alignSelfEnd',
       )
     }
     >
@@ -218,7 +213,7 @@ const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant,
                       )}
                       <div className={classNames(
                         'u-overflowHidden u-flexInline u-flexColumn',
-                        type && getTypeRadiusClassNames(avatarPosition)[type]
+                        type && typeRadiusClassNames[type]
                       )}
                       >
                         <div
