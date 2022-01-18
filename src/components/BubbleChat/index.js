@@ -97,11 +97,11 @@ const typeThemeClassNames = {
   system: '',
 };
 
-const typeRadiusClassNames = {
+const getTypeRadiusClassNames = avatarPosition => ({
   inbound: 'u-roundedExtraLarge u-roundedBottomRightNone',
-  outbound: 'u-roundedExtraLarge  u-roundedBottomLeftNone',
+  outbound: `u-roundedExtraLarge ${avatarPosition === 'top' ? 'u-roundedTopLeftNone' : 'u-roundedBottomLeftNone'}`,
   system: 'u-roundedExtraLarge',
-};
+});
 
 const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant, time, avatar, options, currentOption, onSelectOption, disabledOption, children, onClickText, actionBar, actionBarClassName, textClassName, avatarPosition, ...props }, ref) => {
   let variantOri = variant;
@@ -135,7 +135,7 @@ const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant,
   const renderTyping = () => (
     <div className={classNames(
       'u-overflowHidden',
-      type && typeRadiusClassNames[type]
+      type && getTypeRadiusClassNames(avatarPosition)[type]
     )}
     >
       <div
@@ -218,7 +218,7 @@ const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant,
                       )}
                       <div className={classNames(
                         'u-overflowHidden u-flexInline u-flexColumn',
-                        type && typeRadiusClassNames[type]
+                        type && getTypeRadiusClassNames(avatarPosition)[type]
                       )}
                       >
                         <div
