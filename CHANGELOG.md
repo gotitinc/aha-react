@@ -1,3 +1,7 @@
+## Release 2.0.4 - Unreleased
+### Fixed
+* BubbleChat: Use bottom alignment for avatar
+* BubbleChat.Image: Set `lineHeight` to `0` to make image in the same baseline with avatar
 ## Release 2.0.3 - January 18, 2022
 ### Fixed
 * Code base: use absolute imports, rearrange hooks and utils
