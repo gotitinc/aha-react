@@ -94,7 +94,7 @@ const typeThemeClassNames = {
 
 const typeRadiusClassNames = {
   inbound: 'u-roundedExtraLarge u-roundedBottomRightNone',
-  outbound: 'u-roundedExtraLarge  u-roundedBottomLeftNone',
+  outbound: 'u-roundedExtraLarge u-roundedBottomLeftNone',
   system: 'u-roundedExtraLarge',
 };
 
@@ -105,7 +105,65 @@ const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant,
     else if (type === 'outbound') variantOri = 'light';
     else if (type === 'system') variantOri = 'primaryLight';
   }
+
   const context = useMemo(() => ({ type }), [type]);
+
+  const renderTime = () => (
+    <>
+      {/* Empty <div /> to occupy the bottom left corner of grid template */}
+      {type !== 'inbound' && <div />}
+      <div
+        className={classNames(
+          'BubbleChat-time',
+          'u-text100 u-textLight u-marginTopTiny',
+          (type === 'inbound' && children) && 'u-textRight'
+        )}
+        style={{
+          ...(type === 'inbound' ? { justifySelf: 'flex-end' } : {}),
+        }}
+      >
+        {time}
+      </div>
+      {/* Empty <div /> to occupy the bottom right corner of grid template */}
+      {type === 'inbound' && <div />}
+    </>
+  );
+
+  const renderTyping = () => (
+    <div className={classNames(
+      'u-overflowHidden',
+      type && typeRadiusClassNames[type]
+    )}
+    >
+      <div
+        className={classNames(
+          'BubbleChat-typing',
+          'u-paddingExtraSmall u-positionRelative',
+          type && typeThemeClassNames[type],
+          variantOri && variantTextClassNames[variantOri],
+          variantOri && variantClassNames[variantOri],
+        )}
+      >
+        <div className="BubbleChat-typingContext u-positionRelative u-fontSizeNone" style={{ width: 32, height: 10 }} />
+      </div>
+    </div>
+  );
+
+  const renderAvatar = (type = 'outbound') => (
+    <div className={
+      classNames(
+        type === 'outbound' ? 'u-marginRightExtraSmall' : 'u-marginLeftExtraSmall',
+        'u-alignSelfEnd',
+      )
+    }
+    >
+      {typeof (avatar) === 'function'
+        ? avatar()
+        : <Avatar name={avatar} size="small" />
+      }
+    </div>
+  );
+
   return (
     <Context.Provider value={context}>
       <div
@@ -118,139 +176,110 @@ const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant,
           className && className
         )}
       >
-        <div className={classNames(
-          'BubbleChat-container',
-          'u-flex',
-          (type === 'inbound') && 'u-justifyContentEnd u-marginLeftAuto',
-        )}
-        >
-          {(avatar && type !== 'inbound') && (
-            <div className="u-flexShrink0 u-marginRightExtraSmall u-marginTopExtraSmall">
-              {
-                typeof (avatar) === 'function' ? avatar() : <Avatar name={avatar} size="small" />
-              }
-            </div>
+        <div
+          className={classNames(
+            'BubbleChat-container',
+            (type === 'inbound') && 'u-justifyContentEnd u-marginLeftAuto',
           )}
+          style={{
+            display: 'grid',
+            gridTemplateColumns: type === 'inbound' ? '1fr auto' : 'auto 1fr',
+          }}
+        >
+          {(type !== 'inbound' && avatar) && renderAvatar('outbound')}
+          {/* Empty <div /> to occupy the top left corner of grid template */}
+          {(type !== 'inbound' && !avatar) && <div />}
 
           <div className={classNames(
             'BubbleChat-context',
             'u-flex u-flexColumn',
-            children && 'u-widthFull',
+            children && 'u-maxWidthFull',
             (type === 'inbound' && !avatar) && 'u-marginLeftMedium',
             (type === 'inbound' && !children) && 'u-alignItemsEnd'
           )}
           >
             <React.Fragment>
-              {isTyping && (
-              <div className={classNames(
-                'u-overflowHidden',
-                type && typeRadiusClassNames[type]
-              )}
-              >
-                <div
-                  className={classNames(
-                    'BubbleChat-typing',
-                    'u-paddingExtraSmall u-positionRelative',
-                    type && typeThemeClassNames[type],
-                    variantOri && variantTextClassNames[variantOri],
-                    variantOri && variantClassNames[variantOri],
-                  )}
-                >
-                  <div className="BubbleChat-typingContext u-positionRelative u-fontSizeNone" style={{ width: 32, height: 10 }} />
-                </div>
-              </div>
-              )}
+              {isTyping && renderTyping()}
               {!isTyping && (
-              <React.Fragment>
-                {children || (
-                <div className="u-positionRelative">
-                  {actionBar && (
-                    <div className={classNames(
-                      'u-positionAbsolute u-positionTop u-marginTopTiny u-marginHorizontalExtraSmall',
-                      type === 'inbound' ? 'u-positionRight-100' : 'u-positionLeft-100',
-                      actionBarClassName && actionBarClassName,
-                    )}
-                    >
-                      {actionBar}
-                    </div>
-                  )}
-                  <div className={classNames(
-                    'u-overflowHidden u-flexInline u-flexColumn',
-                    type && typeRadiusClassNames[type]
-                  )}
-                  >
-                    <div
-                      className={classNames(
-                        'BubbleChat-text',
-                        'u-paddingVerticalExtraSmall u-paddingHorizontalSmall u-textPreLine',
-                        type && typeThemeClassNames[type],
-                        ((variantOri === 'primary' || variantOri === 'dark' || variantOri === 'transparentDark') && textClassName) ? textClassName : variantTextClassNames[variantOri],
-                        variantOri && variantClassNames[variantOri],
-
+                <React.Fragment>
+                  {children || (
+                    <div className="u-positionRelative">
+                      {actionBar && (
+                        <div className={classNames(
+                          'u-positionAbsolute u-positionTop u-marginTopTiny u-marginHorizontalExtraSmall',
+                          type === 'inbound' ? 'u-positionRight-100' : 'u-positionLeft-100',
+                          actionBarClassName && actionBarClassName,
+                        )}
+                        >
+                          {actionBar}
+                        </div>
                       )}
-                      onClick={onClickText}
-                    >
-                      {text}
-                    </div>
-                    {options && (
-                    <div className="u-flex u-flexColumn u-border u-borderUltraLight u-roundedBottomExtraLarge u-text200 u-overflowHidden">
-                      {options.map((option, idx) => {
-                        let cn;
-                        let handleClick;
+                      <div className={classNames(
+                        'u-overflowHidden u-flexInline u-flexColumn',
+                        type && typeRadiusClassNames[type]
+                      )}
+                      >
+                        <div
+                          className={classNames(
+                            'BubbleChat-text',
+                            'u-paddingVerticalExtraSmall u-paddingHorizontalSmall u-textPreLine',
+                            type && typeThemeClassNames[type],
+                            ((variantOri === 'primary' || variantOri === 'dark' || variantOri === 'transparentDark') && textClassName) ? textClassName : variantTextClassNames[variantOri],
+                            variantOri && variantClassNames[variantOri],
 
-                        if (option.id === currentOption) {
-                          cn = `u-backgroundPrimary ${textClassName || 'u-textWhite'} ${disabledOption ? 'u-cursorNotAllow' : ''}`;
-                          handleClick = null;
-                        } else if (disabledOption) {
-                          cn = 'u-backgroundLighter u-textGray u-cursorNotAllow';
-                          handleClick = null;
-                        } else {
-                          cn = 'u-backgroundWhite hover:u-backgroundLightest u-textPrimary u-cursorPointer';
-                          handleClick = () => onSelectOption(option.id);
-                        }
+                          )}
+                          onClick={onClickText}
+                        >
+                          {text}
+                        </div>
+                        {options && (
+                          <div className="u-flex u-flexColumn u-border u-borderUltraLight u-roundedBottomExtraLarge u-text200 u-overflowHidden">
+                            {options.map((option, idx) => {
+                              let cn;
+                              let handleClick;
 
-                        return (
-                          <button
-                            key={option.id}
-                            type="button"
-                            disabled={disabledOption}
-                            onClick={handleClick}
-                            className={classNames(
-                              'u-paddingExtraSmall u-transitionColors u-easeInOut u-duration150 u-textCenter',
-                              (idx !== 0) ? 'u-borderTop u-borderBottomNone u-borderLeftNone u-borderRightNone u-borderUltraLight' : 'u-borderNone',
-                              cn,
-                            )}
-                          >
-                            {option.name}
-                          </button>
-                        );
-                      })}
+                              if (option.id === currentOption) {
+                                cn = `u-backgroundPrimary ${textClassName || 'u-textWhite'} ${disabledOption ? 'u-cursorNotAllow' : ''}`;
+                                handleClick = null;
+                              } else if (disabledOption) {
+                                cn = 'u-backgroundLighter u-textGray u-cursorNotAllow';
+                                handleClick = null;
+                              } else {
+                                cn = 'u-backgroundWhite hover:u-backgroundLightest u-textPrimary u-cursorPointer';
+                                handleClick = () => onSelectOption(option.id);
+                              }
+
+                              return (
+                                <button
+                                  key={option.id}
+                                  type="button"
+                                  disabled={disabledOption}
+                                  onClick={handleClick}
+                                  className={classNames(
+                                    'u-paddingExtraSmall u-transitionColors u-easeInOut u-duration150 u-textCenter',
+                                    (idx !== 0) ? 'u-borderTop u-borderBottomNone u-borderLeftNone u-borderRightNone u-borderUltraLight' : 'u-borderNone',
+                                    cn,
+                                  )}
+                                >
+                                  {option.name}
+                                </button>
+                              );
+                            })}
+                          </div>
+                        )}
+                      </div>
                     </div>
-                    )}
-                  </div>
-                </div>
-                )}
-                {time && (
-                <div className={classNames(
-                  'BubbleChat-time',
-                  'u-text100 u-textLight u-marginTopTiny',
-                  (type === 'inbound' && children) && 'u-textRight'
-                )}
-                >
-                  {time}
-                </div>
-                )}
-              </React.Fragment>
+                  )}
+                </React.Fragment>
               )}
             </React.Fragment>
           </div>
-          {(avatar && (type !== 'outbound' && type !== 'system')) && (
-            <div className="u-flexShrink0 u-marginLeftExtraSmall u-marginTopExtraSmall">
-              {
-              typeof (avatar) === 'function' ? avatar() : <Avatar name={avatar} size="small" />
-            }
-            </div>
-          )}
+
+          {((type !== 'outbound' && type !== 'system') && avatar) && renderAvatar('inbound')}
+          {/* Empty <div /> to occupy the top right corner of grid template */}
+          {((type !== 'outbound' && type !== 'system') && !avatar) && <div />}
+
+          {time && renderTime()}
         </div>
       </div>
     </Context.Provider>
