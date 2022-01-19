@@ -130,10 +130,14 @@ const BubbleChat = React.forwardRef(({ className, isTyping, text, type, variant,
   );
 
   const renderTyping = () => (
-    <div className={classNames(
-      'u-overflowHidden',
-      type && typeRadiusClassNames[type]
-    )}
+    <div
+      className={classNames(
+        'u-overflowHidden',
+        type && typeRadiusClassNames[type]
+      )}
+      style={{
+        width: 'fit-content',
+      }}
     >
       <div
         className={classNames(
