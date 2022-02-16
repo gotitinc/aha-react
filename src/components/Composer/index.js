@@ -83,10 +83,12 @@ const Composer = React.forwardRef(({ className, children, sendButtonIcon, iconLe
             {...attachButtonProps}
             className={classNames(
               'hover:u-backgroundPrimary hover:u-textWhite u-roundedMedium u-flex u-alignItemsCenter u-justifyContentCenter u-cursorPointer',
+              attachButtonProps.className && attachButtonProps.className,
             )}
             style={{
               width: 42,
               height: 42,
+              ...attachButtonProps.style,
             }}
           >
             <Icon
@@ -99,10 +101,12 @@ const Composer = React.forwardRef(({ className, children, sendButtonIcon, iconLe
           {...attachButtonProps}
           className={classNames(
             'hover:u-backgroundPrimary hover:u-textWhite u-roundedMedium u-flex u-alignItemsCenter u-justifyContentCenter u-cursorPointer',
+            attachButtonProps.className && attachButtonProps.className,
           )}
           style={{
             width: 42,
             height: 42,
+            ...attachButtonProps.style,
           }}
         >
           <Icon
@@ -121,6 +125,7 @@ const Composer = React.forwardRef(({ className, children, sendButtonIcon, iconLe
       )}
       style={{
         resize: 'none',
+        ...inputProps.style,
       }}
     />
     )}
@@ -141,10 +146,12 @@ const Composer = React.forwardRef(({ className, children, sendButtonIcon, iconLe
             className={classNames(
               'u-roundedMedium u-flex u-alignItemsCenter u-justifyContentCenter u-flexShrink0 u-marginLeftTiny',
               sendButtonActive ? 'hover:u-backgroundPrimary hover:u-textWhite u-textPrimary u-cursorPointer' : 'u-textLight u-cursorNotAllow u-pointerEventsNone',
+              sendButtonProps.className && sendButtonProps.className,
             )}
             style={{
               width: 42,
               height: 42,
+              ...sendButtonProps.style,
             }}
           >
             {typeof (sendButtonIcon) === 'function'
@@ -158,10 +165,12 @@ const Composer = React.forwardRef(({ className, children, sendButtonIcon, iconLe
           className={classNames(
             'u-roundedMedium u-flex u-alignItemsCenter u-justifyContentCenter u-flexShrink0 u-marginLeftTiny',
             sendButtonActive ? 'hover:u-backgroundPrimary hover:u-textWhite u-textPrimary u-cursorPointer' : 'u-textLight u-cursorNotAllow u-pointerEventsNone',
+            sendButtonProps.className && sendButtonProps.className,
           )}
           style={{
             width: 42,
             height: 42,
+            ...sendButtonProps.style,
           }}
         >
           {typeof (sendButtonIcon) === 'function'
