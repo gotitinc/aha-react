@@ -49,8 +49,9 @@ const propTypes = {
 const defaultProps = {
 };
 
-const Container = React.forwardRef(({ additionalStyles, ...props }, ref) => {
+const Container = React.forwardRef((props, ref) => {
   const {
+    additionalStyles,
     as: Component = 'div',
     flip,
     children,
