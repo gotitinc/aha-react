@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-props-no-spreading */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -5,7 +7,6 @@ import TextareaAutoSize from 'react-textarea-autosize';
 import Icon from 'components/Icon';
 import Overlay from 'components/Overlay';
 import Tooltip from 'components/Tooltip';
-
 
 const propTypes = {
   /**
@@ -61,29 +62,27 @@ const Composer = React.forwardRef(({ className, children, sendButtonIcon, iconLe
     className={classNames(
       'Composer',
       'u-flex u-alignItemsEnd u-borderTop u-paddingTiny',
-      className && className
+      className && className,
     )}
   >
     {!disabledAttachButton && (
-
 
     <div className="u-flexShrink0 u-marginRightTiny">
       {tooltipAttachButton ? (
         <Overlay.Trigger
           placement="top-start"
-          overlay={props => (
+          overlay={(props) => (
             <Tooltip id="tooltip-attachButton" {...props}>
               {typeof (tooltipAttachButton) === 'function'
                 ? tooltipAttachButton()
-                : tooltipAttachButton
-                }
+                : tooltipAttachButton}
             </Tooltip>
           )}
         >
           <div
             {...attachButtonProps}
             className={classNames(
-              'hover:u-backgroundPrimary hover:u-textWhite u-roundedMedium u-flex u-alignItemsCenter u-justifyContentCenter u-cursorPointer'
+              'hover:u-backgroundPrimary hover:u-textWhite u-roundedMedium u-flex u-alignItemsCenter u-justifyContentCenter u-cursorPointer',
             )}
             style={{
               width: 42,
@@ -99,7 +98,7 @@ const Composer = React.forwardRef(({ className, children, sendButtonIcon, iconLe
         <div
           {...attachButtonProps}
           className={classNames(
-            'hover:u-backgroundPrimary hover:u-textWhite u-roundedMedium u-flex u-alignItemsCenter u-justifyContentCenter u-cursorPointer'
+            'hover:u-backgroundPrimary hover:u-textWhite u-roundedMedium u-flex u-alignItemsCenter u-justifyContentCenter u-cursorPointer',
           )}
           style={{
             width: 42,
@@ -118,7 +117,7 @@ const Composer = React.forwardRef(({ className, children, sendButtonIcon, iconLe
       {...inputProps}
       className={classNames(
         'u-widthFull u-paddingVerticalExtraSmall u-border u-borderTransparent u-textPlaceholder',
-        inputProps.className && inputProps.className
+        inputProps.className && inputProps.className,
       )}
       style={{
         resize: 'none',
@@ -129,12 +128,11 @@ const Composer = React.forwardRef(({ className, children, sendButtonIcon, iconLe
       tooltipSendButton ? (
         <Overlay.Trigger
           placement="top-end"
-          overlay={props => (
+          overlay={(props) => (
             <Tooltip id="tooltip-sendButton" {...props}>
               {typeof (tooltipSendButton) === 'function'
                 ? tooltipSendButton()
-                : tooltipSendButton
-                      }
+                : tooltipSendButton}
             </Tooltip>
           )}
         >
@@ -142,7 +140,7 @@ const Composer = React.forwardRef(({ className, children, sendButtonIcon, iconLe
             {...sendButtonProps}
             className={classNames(
               'u-roundedMedium u-flex u-alignItemsCenter u-justifyContentCenter u-flexShrink0 u-marginLeftTiny',
-              sendButtonActive ? 'hover:u-backgroundPrimary hover:u-textWhite u-textPrimary u-cursorPointer' : 'u-textLight u-cursorNotAllow u-pointerEventsNone'
+              sendButtonActive ? 'hover:u-backgroundPrimary hover:u-textWhite u-textPrimary u-cursorPointer' : 'u-textLight u-cursorNotAllow u-pointerEventsNone',
             )}
             style={{
               width: 42,
@@ -159,7 +157,7 @@ const Composer = React.forwardRef(({ className, children, sendButtonIcon, iconLe
           {...sendButtonProps}
           className={classNames(
             'u-roundedMedium u-flex u-alignItemsCenter u-justifyContentCenter u-flexShrink0 u-marginLeftTiny',
-            sendButtonActive ? 'hover:u-backgroundPrimary hover:u-textWhite u-textPrimary u-cursorPointer' : 'u-textLight u-cursorNotAllow u-pointerEventsNone'
+            sendButtonActive ? 'hover:u-backgroundPrimary hover:u-textWhite u-textPrimary u-cursorPointer' : 'u-textLight u-cursorNotAllow u-pointerEventsNone',
           )}
           style={{
             width: 42,
