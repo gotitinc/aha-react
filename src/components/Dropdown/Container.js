@@ -59,6 +59,7 @@ const Container = React.forwardRef(({ additionalStyles, ...props }, ref) => {
     rootCloseEvent,
     shouldUsePopper = true,
     transition: Transition,
+    ...restProps
   } = props;
   const context = useContext(DropdownContext);
 
@@ -87,7 +88,7 @@ const Container = React.forwardRef(({ additionalStyles, ...props }, ref) => {
     ref: setContainer,
     style: { ...popper.styles, ...additionalStyles },
     'aria-labelledby': toggleElement && toggleElement.id,
-    ...props,
+    ...restProps,
   };
   useRootClose(context.containerElement, handleClose, {
     clickTrigger: rootCloseEvent,
