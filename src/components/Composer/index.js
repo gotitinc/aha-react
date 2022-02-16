@@ -71,7 +71,7 @@ const Composer = React.forwardRef(({ className, children, sendButtonIcon, iconLe
       {tooltipAttachButton ? (
         <Overlay.Trigger
           placement="top-start"
-          overlay={(props) => (
+          overlay={props => (
             <Tooltip id="tooltip-attachButton" {...props}>
               {typeof (tooltipAttachButton) === 'function'
                 ? tooltipAttachButton()
@@ -133,7 +133,7 @@ const Composer = React.forwardRef(({ className, children, sendButtonIcon, iconLe
       tooltipSendButton ? (
         <Overlay.Trigger
           placement="top-end"
-          overlay={(props) => (
+          overlay={props => (
             <Tooltip id="tooltip-sendButton" {...props}>
               {typeof (tooltipSendButton) === 'function'
                 ? tooltipSendButton()
