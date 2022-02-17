@@ -98,7 +98,7 @@ const Container = React.forwardRef((props, ref) => {
   const container = (
     <Component
       ref={ref}
-      {...containerProps} // eslint-disable-line react/jsx-props-no-spreading
+      {...containerProps}
       className={classNames(
         'Dropdown-container',
         'u-zIndexDropdownContainer u-backgroundWhite u-roundedMedium u-border u-positionAbsolute u-textLeft u-positionLeft u-marginVerticalTiny',
@@ -110,7 +110,6 @@ const Container = React.forwardRef((props, ref) => {
   );
   if (!Transition) return show ? container : null;
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
     <Transition unmountOnExit ref={ref} {...props} in={show}>
       {container}
     </Transition>
