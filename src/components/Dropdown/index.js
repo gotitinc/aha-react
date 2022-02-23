@@ -89,6 +89,18 @@ const Dropdown = React.forwardRef((uncontrolledProps, ref) => {
 
   const toggle = useCallback(
     (event) => {
+      // In React 17, when there is a tooltip and a dropdown on the same page,
+      // the dropdown works fine until the tooltip is triggered, usually by
+      // hovering on a target. Afterwards, the dropdown will not open as
+      // expected.
+      //
+      // For some reason, this `toggle` function is called twice in that case,
+      // closing the container immediately after opening it. Stopping event
+      // propagation prevents that issue.
+      //
+      // Note: `event` can be a React Synthetic event or `false` (when clicking
+      // outside the dropdown)
+      event?.stopPropagation?.();
       onToggle(!show, event);
     },
     [onToggle, show],
