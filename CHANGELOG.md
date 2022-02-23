@@ -2,6 +2,7 @@
 ### Fixed
 * BubbleChat: Use bottom alignment for avatar
 * BubbleChat.Image: Set `lineHeight` to `0` to make image in the same baseline with avatar
+* Dropdown: Fix an issue that prevents container from opening, after triggering an overlay on the same page
 * Dropdown.Container: Correct extra props that are passed to internal `div`, so incompatible props (such as `popperConfig`) are excluded
 * Composer: Allow passing `className` and `style` to `attachButtonProps`, `inputProps`, and `sendButtonProps`
 
