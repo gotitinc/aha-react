@@ -40,6 +40,7 @@ const Header = React.forwardRef(({ className, children, closeButton, onHide, ...
           onMouseLeave={() => setCloseHover(closeHover => !closeHover)}
           onClick={handleClick}
           data-testid="modal-close-button"
+          aria-label="Close modal"
         >
           <Icon
             name="close"
