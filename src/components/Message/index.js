@@ -90,21 +90,19 @@ const Message = React.forwardRef((uncontrolledProps, ref) => {
       {children}
       {dismissible && (
         <div
-          className="Message-button u-marginRightSmall u-marginTopSmall"
+          onMouseEnter={() => setDismissButtonHover(dismissButtonHover => !dismissButtonHover)}
+          onMouseLeave={() => setDismissButtonHover(dismissButtonHover => !dismissButtonHover)}
+          onClick={handleClose}
+          className={classNames(
+            'Message-button u-marginRightSmall u-marginTopSmall',
+            dismissButtonHover ? 'u-opacityReset' : 'u-opacityHalf',
+            variantOri.textClassName
+          )}
+          data-testid="message-close"
+          role="button"
+          aria-label="dismiss alert"
         >
-          <Icon
-            name="close"
-            size="tiny"
-            onMouseEnter={() => setDismissButtonHover(dismissButtonHover => !dismissButtonHover)}
-            onMouseLeave={() => setDismissButtonHover(dismissButtonHover => !dismissButtonHover)}
-            onClick={handleClose}
-            className={classNames(
-              'u-cursorPointer',
-              dismissButtonHover ? 'u-opacityReset' : 'u-opacityHalf',
-              variantOri.textClassName
-            )}
-            data-testid="message-close"
-          />
+          <Icon name="close" size="tiny" />
         </div>
       )}
     </div>
