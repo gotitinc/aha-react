@@ -1,11 +1,12 @@
 > 1%
 ie >= 8
-edge >= 15
+edge >= 16
 ie_mob >= 10
-ff >= 45
-chrome >= 45
-safari >= 7
-opera >= 23
-ios >= 7
-android >= 4
+ff >= 52
+chrome >= 57
+safari >= 10.1
+opera >= 44
+ios >= 10.3
+and_uc >= 12.12
+and_chr >= 97
 bb >= 10
