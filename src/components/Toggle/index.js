@@ -13,6 +13,8 @@ const propTypes = {
   textLabelOn: PropTypes.string,
   /** Custom label for the off-state */
   textLabelOff: PropTypes.string,
+  /** Custom aria label for accessibility */
+  ariaLabel: PropTypes.string,
 };
 
 const defaultProps = {
