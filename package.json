@@ -1,6 +1,6 @@
 {
   "name": "@ahaui/react",
-  "version": "2.0.4-alpha.4",
+  "version": "2.0.4-alpha.5",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
@@ -72,7 +72,7 @@
     "webpack-node-externals": "1.7.2"
   },
   "peerDependencies": {
-    "@ahaui/css": "^2.0.4",
+    "@ahaui/css": "^2",
     "react": "^16.9.0 || 17.x",
     "react-dom": "^16.9.0 || 17.x"
   },
