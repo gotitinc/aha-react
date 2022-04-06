@@ -72,7 +72,7 @@
     "webpack-node-externals": "1.7.2"
   },
   "peerDependencies": {
-    "@ahaui/css": "^2.0.4",
+    "@ahaui/css": "^2",
     "react": "^16.9.0 || 17.x",
     "react-dom": "^16.9.0 || 17.x"
   },
