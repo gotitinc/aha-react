@@ -86,7 +86,7 @@ const Button = React.forwardRef(({ className, variant, textClassName, children, 
       ref={ref}
       {...props}
       className={classNames(
-        'Button u-flexInline u-justifyContentCenter u-alignItemsCenter u-textDecorationNone u-roundedMedium',
+        'Button u-flexInline u-justifyContentCenter u-alignItemsCenter u-textDecorationNone u-roundedMedium u-fontMedium',
         variant && variantsClassName[variant],
         variant !== 'link' && 'hover:u-textDecorationNone',
         sizeOri && `Button--${sizeOri}`,

@@ -13,6 +13,8 @@ const propTypes = {
   textLabelOn: PropTypes.string,
   /** Custom label for the off-state */
   textLabelOff: PropTypes.string,
+  /** Custom aria label for accessibility */
+  ariaLabel: PropTypes.string,
 };
 
 const defaultProps = {
@@ -21,9 +23,10 @@ const defaultProps = {
   nonLabel: false,
   textLabelOn: 'On',
   textLabelOff: 'Off',
+  ariaLabel: 'Toggle',
 };
 
-const Toggle = React.forwardRef(({ className, checked, disabled, nonLabel, textLabelOn, textLabelOff, as: Component = 'button', ...props }, ref) => (
+const Toggle = React.forwardRef(({ className, checked, disabled, nonLabel, textLabelOn, textLabelOff, ariaLabel, as: Component = 'button', ...props }, ref) => (
   <div
     className={classNames(
       'u-flexInline u-alignItemsCenter',
@@ -39,6 +42,7 @@ const Toggle = React.forwardRef(({ className, checked, disabled, nonLabel, textL
         checked && 'checked u-backgroundPrimary',
         disabled && 'is-disabled u-cursorNotAllow u-pointerEventsNone',
       )}
+      aria-label={ariaLabel}
       // data-label-on={!nonLabel ? textLabelOn : undefined}
       // data-label-off={!nonLabel ? textLabelOff : undefined}
       disabled={(Component === 'button') ? disabled : undefined}
