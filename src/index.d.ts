@@ -5,7 +5,7 @@
 
 declare module '@ahaui/react' {
   import React from 'react';
-  import { ReactNodeLike } from 'prop-types';
+  import { any, ReactNodeLike } from 'prop-types';
   import { CalendarProps as ReactCalendarProps } from 'react-calendar';
   import { DatePickerProps as ReactDatePickerProps } from 'react-date-picker';
   import { Settings as SlickSettingsProps } from 'react-slick';
@@ -1032,6 +1032,7 @@ declare module '@ahaui/react' {
     nonLabel?: boolean;
     textLabelOn?: string;
     textLabelOff?: string;
+    ariaLabel?: string;
   }
   export const Toggle: React.FC<ToggleProps>;
 
