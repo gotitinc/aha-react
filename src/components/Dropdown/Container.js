@@ -6,36 +6,61 @@ import usePopper from 'hooks/usePopper';
 import useRootClose from 'hooks/useRootClose';
 import DropdownContext from './Context';
 
-
 const propTypes = {
+  /**
+   * Custom style
+   */
+  additionalStyles: PropTypes.object,
   /**
    * You can use a custom element type for this component.
    * @default div
-   * */
+   */
   as: PropTypes.elementType,
   /**
+   * Custom className
+   */
+  className: PropTypes.string,
+  /**
+   * Popper's `flip` modifier config.
+   * @see https://popper.js.org/docs/v2/modifiers/flip/
+   */
+  flip: PropTypes.boolean,
+  /**
    * A set of popper options and props passed directly to react-popper's Popper component.
+   * @default {}
    */
   popperConfig: PropTypes.object,
-  /** A `react-transition-group` Transition component used to animate the Message on dismissal. */
+  /**
+   * The DOM event name (click, mousedown, etc) that will close the dropdown
+   * @default click
+   */
+  rootCloseEvent: PropTypes.string,
+  /**
+   * Whether PopperJS should be used
+   * @default true
+   */
+  shouldUsePopper: PropTypes.bool,
+  /**
+   * A `react-transition-group` Transition component used to animate the Message on dismissal.
+   */
   transition: elementType,
-  /** Custom style  */
-  additionalStyles: PropTypes.object,
 };
 
 const defaultProps = {
 };
 
-const Container = React.forwardRef(({ additionalStyles, ...props }, ref) => {
+const Container = React.forwardRef((props, ref) => {
   const {
-    className,
-    flip,
-    rootCloseEvent,
-    children,
-    popperConfig = {},
+    additionalStyles,
     as: Component = 'div',
+    flip,
+    children,
+    className,
+    popperConfig = {},
+    rootCloseEvent,
     shouldUsePopper = true,
     transition: Transition,
+    ...restProps
   } = props;
   const context = useContext(DropdownContext);
 
@@ -64,7 +89,7 @@ const Container = React.forwardRef(({ additionalStyles, ...props }, ref) => {
     ref: setContainer,
     style: { ...popper.styles, ...additionalStyles },
     'aria-labelledby': toggleElement && toggleElement.id,
-    ...props,
+    ...restProps,
   };
   useRootClose(context.containerElement, handleClose, {
     clickTrigger: rootCloseEvent,
@@ -77,7 +102,7 @@ const Container = React.forwardRef(({ additionalStyles, ...props }, ref) => {
       className={classNames(
         'Dropdown-container',
         'u-zIndexDropdownContainer u-backgroundWhite u-roundedMedium u-border u-positionAbsolute u-textLeft u-positionLeft u-marginVerticalTiny',
-        className && className
+        className && className,
       )}
     >
       {children}
