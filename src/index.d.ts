@@ -596,7 +596,7 @@ declare module '@ahaui/react' {
   };
 
   export interface IconProps {
-    name: IconType;
+    name?: IconType;
     size?:
       | 'tiny'
       | 'extraSmall'
@@ -1092,8 +1092,31 @@ declare module '@ahaui/react' {
     _?: RootCloseProps,
   );
 
-  // TODO: Add more types @namdaoduy
-  // Plugins
-  // AssetPlugin
-  // PluginArray
+  declare class AssetPlugin extends Plugin {
+    constructor(param: {
+      prefix: 'avatar' | 'logo' | 'emptyState';
+      assets: Record<string, any>;
+    });
+    type: 'asset';
+    prefix: 'avatar' | 'logo' | 'emptyState';
+    assets: Record<string, any>;
+    validateAssets(assets: Record<string, any>);
+    getAsset() : undefined;
+    getAsset(assetName: string) : any;
+    getAsset(prefix: string, assetName: string) : any;
+  }
+
+  declare class PluginArray<T = Plugin> extends Array<T> {
+    traverseCall(methodName: string, ...args: any[]): any;
+  }
+
+  declare class PluginsType {
+    plugins: PluginArray;
+    validatePlugin(plugin: Plugin);
+    loadPlugin(plugin: Plugin);
+    getPlugins();
+    getPlugins(type: string);
+  }
+
+  export const Plugins: PluginsType;
 }
