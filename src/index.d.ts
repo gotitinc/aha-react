@@ -1,4 +1,4 @@
-// Type definitions for @ahaui/react v2.0.3
+// Type definitions for @ahaui/react v2.0.4
 // Project: https://github.com/gotitinc/aha-react
 // Definitions by: KyleTV <https://github.com/tinhvqbk>
 // TypeScript Version: 3.3
@@ -227,7 +227,7 @@ declare module '@ahaui/react' {
     alt?: string;
     width?: number;
     height?: number;
-    as: React.ElementType;
+    as?: React.ElementType;
   }
 
   export const Avatar: React.FC<AvatarProps>;
@@ -268,7 +268,7 @@ declare module '@ahaui/react' {
   export interface BubbleChatImageProps extends BasicProps {}
 
   export interface BubbleChatProps extends BasicProps {
-    isTyping: boolean;
+    isTyping?: boolean;
     text?: string;
     type?: 'inbound' | 'outbound' | 'system';
     variant?:
@@ -278,14 +278,14 @@ declare module '@ahaui/react' {
       | 'dark'
       | 'transparentDark'
       | 'transparentLight';
-    avatar: string | FuncType;
+    avatar?: string | FuncType;
     time?: string | FuncType;
     options?: OptionType;
     currentOption?: string | number;
     onSelectOption?: (_: string | number) => void;
     disabledOption?: boolean;
     onClickText?: () => void;
-    textClassName: string | string[];
+    textClassName?: string | string[];
     actionBar?: React.ReactNode;
     actionBarClassName?: string | string[];
   }
@@ -505,7 +505,7 @@ declare module '@ahaui/react' {
     as?: React.ElementType;
   }
   export interface FormFeedbackProps extends BasicProps {
-    type?: 'valid' | 'invalid';
+    type: 'valid' | 'invalid';
     visible?: boolean;
     as?: React.ElementType;
   }
@@ -701,7 +701,7 @@ declare module '@ahaui/react' {
     rootCloseDisabled?: boolean;
   }
   export interface OverlayTriggerProps extends OverlayBasicProps {
-    trigger: TriggerType | TriggerType[];
+    trigger?: TriggerType | TriggerType[];
     delay?: number | { show: number; hide: number };
     hoverOverlay?: boolean;
     defaultShow?: boolean;
