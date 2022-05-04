@@ -19,6 +19,9 @@ declare module '@ahaui/react' {
     style?: React.CSSProperties;
     children?: React.ReactNode;
   }
+  export interface BasicWithAsProps extends BasicProps {
+    as?: React.ElementType;
+  }
   export type TriggerType = 'click' | 'hover' | 'focus';
   export type InputSize = 'small' | 'medium' | 'large';
   export type IconType =
@@ -214,7 +217,7 @@ declare module '@ahaui/react' {
     Note: React.FC<BasicProps>;
   };
 
-  export interface AvatarProps extends BasicProps {
+  export interface AvatarProps extends BasicWithAsProps {
     name: string;
     size:
       | 'extraSmall'
@@ -229,12 +232,11 @@ declare module '@ahaui/react' {
     alt?: string;
     width?: number;
     height?: number;
-    as?: React.ElementType;
   }
 
   export const Avatar: React.FC<AvatarProps>;
 
-  export interface BadgeProps extends BasicProps {
+  export interface BadgeProps extends BasicWithAsProps {
     variant?:
       | 'default'
       | 'white'
@@ -250,7 +252,6 @@ declare module '@ahaui/react' {
       | 'negative'
       | 'negative_subtle';
     textClassName?: string;
-    as?: React.ElementType;
   }
   export const Badge: React.FC<BadgeProps>;
   export interface BreadcrumbItemProps extends BasicProps {
@@ -295,13 +296,12 @@ declare module '@ahaui/react' {
     Image: React.FC<BubbleChatImageProps>;
   };
 
-  export interface ButtonGroupProps extends BasicProps {
+  export interface ButtonGroupProps extends BasicWithAsProps {
     sizeControl?: InputSize;
     disabledControl?: boolean;
-    as?: React.ElementType;
   }
   export const ButtonGroup: React.FC<ButtonGroupProps>;
-  export interface ButtonProps extends BasicProps {
+  export interface ButtonProps extends BasicWithAsProps {
     variant?:
       | 'primary'
       | 'primary_outline'
@@ -321,7 +321,6 @@ declare module '@ahaui/react' {
     nonUppercase?: boolean;
     onlyIcon?: boolean;
     textClassName?: string;
-    as?: React.ElementType;
   }
   export const Button: React.FC<ButtonProps> & {
     Icon: React.FC<BasicProps>;
@@ -386,14 +385,14 @@ declare module '@ahaui/react' {
   }
   export const TimePicker: React.FC<TimePickerProps>;
 
-  export interface CardProps extends BasicProps {
+  export interface CardProps extends BasicWithAsProps {
     body?: boolean;
     size?: InputSize;
   }
   export const Card: React.FC<CardProps> & {
-    Header: React.FC<BasicProps>;
-    Title: React.FC<BasicProps>;
-    Body: React.FC<BasicProps>;
+    Header: React.FC<BasicWithAsProps>;
+    Title: React.FC<BasicWithAsProps>;
+    Body: React.FC<BasicWithAsProps>;
   };
 
   export interface CarouselProps extends BasicProps {
@@ -401,7 +400,7 @@ declare module '@ahaui/react' {
     settings?: SlickSettingsProps;
   }
   export const Carousel: React.FC<CarouselProps> & {
-    Item: React.FC<BasicProps>;
+    Item: React.FC<BasicWithAsProps>;
   };
 
   export interface ChatBoxListProps extends BasicProps {
@@ -457,12 +456,10 @@ declare module '@ahaui/react' {
   }
   export const Counter: React.FC<CounterProps>;
 
-  export interface DropdownButtonProps extends BasicProps {
-    as?: React.ElementType;
+  export interface DropdownButtonProps extends BasicWithAsProps {
     caret?: Pick<IconProps, 'size'>;
   }
-  export interface DropdownContainerProps extends BasicProps {
-    as?: React.ElementType;
+  export interface DropdownContainerProps extends BasicWithAsProps {
     popperConfig?: PopperOptions;
     additionalStyles?: React.CSSProperties;
     flip?: boolean;
@@ -472,8 +469,7 @@ declare module '@ahaui/react' {
   export interface DropdownToggleProps extends BasicProps {
     disabled?: boolean;
   }
-  export interface DropdownProps extends BasicProps {
-    as?: React.ElementType;
+  export interface DropdownProps extends BasicWithAsProps {
     drop?: 'up' | 'down' | 'left' | 'right';
     flip?: boolean;
     show?: boolean;
@@ -506,8 +502,8 @@ declare module '@ahaui/react' {
     height?: number;
   }
   export const EmptyState: React.FC<EmptyStateProps> & {
-    Heading: React.FC<BasicProps>;
-    Description: React.FC<BasicProps>;
+    Heading: React.FC<BasicWithAsProps>;
+    Description: React.FC<BasicWithAsProps>;
   };
 
   export interface FadeProps extends BasicProps {
@@ -544,7 +540,7 @@ declare module '@ahaui/react' {
   }
   export const FileAttachment: React.FC<FileAttachmentProps>;
 
-  export interface FormCheckProps extends BasicProps {
+  export interface FormCheckProps extends BasicWithAsProps {
     type?: 'checkbox' | 'radio' | 'checkbox_button';
     id?: string;
     label?: string | FuncType;
@@ -552,16 +548,13 @@ declare module '@ahaui/react' {
     isValid?: boolean;
     isInvalid?: boolean;
     sizeInput: InputSize;
-    as?: React.ElementType;
   }
-  export interface FormFeedbackProps extends BasicProps {
+  export interface FormFeedbackProps extends BasicWithAsProps {
     type: 'valid' | 'invalid';
     visible?: boolean;
-    as?: React.ElementType;
   }
-  export interface FormFileProps extends BasicProps {
+  export interface FormFileProps extends BasicWithAsProps {
     id?: string;
-    as?: React.ElementType;
     sizeInput?: InputSize;
     fileName?: string;
     browseText?: string;
@@ -571,13 +564,12 @@ declare module '@ahaui/react' {
     isBackgroundReset?: boolean;
     placeholder?: string;
   }
-  export interface FormGroupProps extends BasicProps {
-    as?: React.ElementType;
+  export interface FormGroupProps extends BasicWithAsProps {
     controlId?: string;
     sizeControl?: InputSize;
     requiredControl?: boolean;
   }
-  export interface FormInputProps extends BasicProps {
+  export interface FormInputProps extends BasicWithAsProps {
     type?: string;
     value?: string | number;
     id?: string;
@@ -589,7 +581,6 @@ declare module '@ahaui/react' {
     isInvalid?: boolean;
     isBorderNone?: boolean;
     isBackgroundReset?: boolean;
-    as?: React.ElementType;
   }
   export interface FormLabelProps extends BasicProps {
     sizeLabel?: InputSize;
@@ -617,18 +608,18 @@ declare module '@ahaui/react' {
     InputGroup: React.FC<BasicProps>;
     Select: React.FC<FormSelectProps>;
   };
-  export interface HeaderProps extends BasicProps {
+  export interface HeaderProps extends BasicWithAsProps {
     show?: boolean;
     innerClassName?: string;
     fullWidth?: boolean;
   }
 
   export const Header: React.FC<HeaderProps> & {
-    Left: React.FC<BasicProps>;
-    AbsoluteCenter: React.FC<BasicProps>;
-    Right: React.FC<BasicProps>;
-    Main: React.FC<BasicProps>;
-    Brand: React.FC<BasicProps>;
+    Left: React.FC<BasicWithAsProps>;
+    AbsoluteCenter: React.FC<BasicWithAsProps>;
+    Right: React.FC<BasicWithAsProps>;
+    Main: React.FC<BasicWithAsProps>;
+    Brand: React.FC<BasicWithAsProps>;
   };
 
   export interface HeaderMobileProps extends BasicProps {
@@ -677,9 +668,8 @@ declare module '@ahaui/react' {
   }
   export const Logo: React.FC<LogoProps>;
 
-  export interface MediaProps extends BasicProps {
+  export interface MediaProps extends BasicWithAsProps {
     aspectRatio?: 'square' | 'classic' | 'wide' | 'cinema';
-    as?: React.ElementType;
     src?: string;
     width?: number;
     height?: number;
@@ -694,9 +684,9 @@ declare module '@ahaui/react' {
     onClose?: () => void;
   }
   export const Message: React.FC<MessageProps> & {
-    Content: React.FC<BasicProps>;
-    Container: React.FC<BasicProps>;
-    Title: React.FC<BasicProps>;
+    Content: React.FC<BasicWithAsProps>;
+    Container: React.FC<BasicWithAsProps>;
+    Title: React.FC<BasicWithAsProps>;
   };
 
   export interface ModalHeaderProps extends BasicProps {
@@ -770,15 +760,15 @@ declare module '@ahaui/react' {
     Trigger: React.FC<OverlayTriggerProps>;
   };
 
-  export interface PageLayoutProps extends BasicProps {
+  export interface PageLayoutProps extends BasicWithAsProps {
     headerProps?: object;
     footerProps?: object;
     bodyProps?: object;
   }
   export const PageLayout: React.FC<PageLayoutProps> & {
-    Header: React.FC<BasicProps>;
-    Footer: React.FC<BasicProps>;
-    Body: React.FC<BasicProps>;
+    Header: React.FC<BasicWithAsProps>;
+    Footer: React.FC<BasicWithAsProps>;
+    Body: React.FC<BasicWithAsProps>;
   };
 
   export interface PaginationItemProps extends BasicProps {
