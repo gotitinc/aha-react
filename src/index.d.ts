@@ -3,6 +3,8 @@
 // Definitions by: KyleTV <https://github.com/tinhvqbk>
 // TypeScript Version: 3.3
 
+import { TextareaAutosizeProps } from 'react-textarea-autosize';
+
 declare module '@ahaui/react' {
   import React from 'react';
   import { any, ReactNodeLike } from 'prop-types';
@@ -11,7 +13,7 @@ declare module '@ahaui/react' {
   import { Settings as SlickSettingsProps } from 'react-slick';
   import { PopperOptions, Placement as PopperPlacement } from 'popper.js';
   import { toast as toastBase } from 'react-toastify';
-
+  import { TransitionActions } from 'react-transition-group/Transition';
   export interface BasicProps {
     className?: string;
     style?: React.CSSProperties;
@@ -247,7 +249,7 @@ declare module '@ahaui/react' {
       | 'information_subtle'
       | 'negative'
       | 'negative_subtle';
-    textClassName: string | string[];
+    textClassName?: string;
     as?: React.ElementType;
   }
   export const Badge: React.FC<BadgeProps>;
@@ -269,7 +271,7 @@ declare module '@ahaui/react' {
 
   export interface BubbleChatProps extends BasicProps {
     isTyping?: boolean;
-    text?: string;
+    text?: string | React.ReactNode;
     type?: 'inbound' | 'outbound' | 'system';
     variant?:
       | 'light'
@@ -280,14 +282,14 @@ declare module '@ahaui/react' {
       | 'transparentLight';
     avatar?: string | FuncType;
     time?: string | FuncType;
-    options?: OptionType;
+    options?: OptionType[];
     currentOption?: string | number;
     onSelectOption?: (_: string | number) => void;
     disabledOption?: boolean;
     onClickText?: () => void;
-    textClassName?: string | string[];
+    textClassName?: string;
     actionBar?: React.ReactNode;
-    actionBarClassName?: string | string[];
+    actionBarClassName?: string;
   }
   export const BubbleChat: React.FC<BubbleChatProps> & {
     Image: React.FC<BubbleChatImageProps>;
@@ -318,7 +320,7 @@ declare module '@ahaui/react' {
     disabled?: boolean;
     nonUppercase?: boolean;
     onlyIcon?: boolean;
-    textClassName?: string | string[];
+    textClassName?: string;
     as?: React.ElementType;
   }
   export const Button: React.FC<ButtonProps> & {
@@ -334,8 +336,49 @@ declare module '@ahaui/react' {
 
   export interface DatePickerProps extends ReactDatePickerProps {
     className?: string;
+    noClearIcon?: boolean;
+    size?: Pick<IconProps, 'size'>;
+    version?: 1 | 2;
+    calendarClassName?: string | string[];
   }
   export const DatePicker: React.FC<DatePickerProps>;
+
+  export interface DateRangePickerProps {
+    className?: string | string[];
+    noClearIcon?: boolean;
+    size?: Pick<IconProps, 'size'>;
+    autoFocus?: boolean;
+    calendarAriaLabel?: string;
+    calendarClassName?: string | string[];
+    clearAriaLabel?: string;
+    closeCalendar?: boolean;
+    dayAriaLabel?: string;
+    dayPlaceholder?: string;
+    disabled?: boolean;
+    disableCalendar?: boolean;
+    format?: string;
+    isOpen?: boolean;
+    locale?: string;
+    maxDate?: Pick<CalendarProps, 'maxDate'>;
+    minDate?: Pick<CalendarProps, 'minDate'>;
+    maxDetail?: Pick<CalendarProps, 'maxDetail'>;
+    minDetail?: Pick<CalendarProps, 'minDetail'>;
+    monthAriaLabel?: string;
+    monthPlaceholder?: string;
+    name?: string;
+    nativeInputAriaLabel?: string;
+    onCalendarClose?: () => void;
+    onCalendarOpen?: () => void;
+    onChange?: Pick<CalendarProps, 'onChange'>;
+    openCalendarOnFocus?: boolean;
+    rangeDivider?: string;
+    required?: boolean;
+    showLeadingZeros?: boolean;
+    value?: Pick<CalendarProps, 'value'>;
+    yearAriaLabel?: string;
+    yearPlaceholder?: string;
+  }
+  export const DateRangePicker: React.FC<DateRangePickerProps>;
 
   export interface TimePickerProps extends BasicProps {
     noClearIcon?: boolean;
@@ -374,15 +417,18 @@ declare module '@ahaui/react' {
   };
 
   export interface CollapseProps extends BasicProps {
-    eventKey: string;
+    eventKey?: string;
     timeout?: number;
     dimension?: 'height' | 'width' | FuncType;
-    getDimensionValue: FuncType;
+    getDimensionValue?: (dimension: Pick<CollapseProps,'dimension'>, elem: React.ReactElement) => number;
   }
   export const Collapse: React.FC<CollapseProps>;
 
+  export interface ComposerInputProps extends TextareaAutosizeProps {
+    className?: string;
+  }
   export interface ComposerProps extends BasicProps {
-    inputProps?: object;
+    inputProps?: ComposerInputProps;
     attachButtonProps?: object;
     sendButtonProps?: object;
     sendButtonActive?: boolean;
@@ -390,7 +436,7 @@ declare module '@ahaui/react' {
     disabledAttachButton?: boolean;
     tooltipAttachButton?: string | FuncType;
     tooltipSendButton?: string | FuncType;
-    sendButtonIcon?: string | FuncType;
+    sendButtonIcon?: IconType | FuncType;
   }
   export const Composer: React.FC<ComposerProps>;
 
@@ -407,18 +453,21 @@ declare module '@ahaui/react' {
 
     label?: string | FuncType;
     number?: string | FuncType;
-    iconLeft?: string | FuncType;
+    iconLeft?: IconType | FuncType;
   }
   export const Counter: React.FC<CounterProps>;
 
   export interface DropdownButtonProps extends BasicProps {
     as?: React.ElementType;
-    caret?: boolean;
+    caret?: Pick<IconProps, 'size'>;
   }
   export interface DropdownContainerProps extends BasicProps {
     as?: React.ElementType;
     popperConfig?: PopperOptions;
     additionalStyles?: React.CSSProperties;
+    flip?: boolean;
+    shouldUsePopper?: boolean;
+    rootCloseEvent?: string;
   }
   export interface DropdownToggleProps extends BasicProps {
     disabled?: boolean;
@@ -467,12 +516,12 @@ declare module '@ahaui/react' {
     unmountOnExit?: boolean;
     appear?: boolean;
     timeout?: number;
-    onEnter?: () => void;
-    onEntering?: () => void;
-    onEntered?: () => void;
-    onExit?: () => void;
-    onExiting?: () => void;
-    onExited?: () => void;
+    onEnter?: Pick<TransitionActions, 'onEnter'>;
+    onEntering?: Pick<TransitionActions, 'onEntering'>;
+    onEntered?: Pick<TransitionActions, 'onEntered'>;
+    onExit?: Pick<TransitionActions, 'onExit'>;
+    onExiting?: Pick<TransitionActions, 'onExiting'>;
+    onExited?: Pick<TransitionActions, 'onExited'>;
   }
   export const Fade: React.FC<FadeProps>;
 
@@ -491,12 +540,13 @@ declare module '@ahaui/react' {
     closeButton?: boolean;
     actionLeft?: FuncType;
     actionRight?: FuncType;
+    fileName?: string;
   }
   export const FileAttachment: React.FC<FileAttachmentProps>;
 
   export interface FormCheckProps extends BasicProps {
     type?: 'checkbox' | 'radio' | 'checkbox_button';
-    id: string;
+    id?: string;
     label?: string | FuncType;
     inline?: boolean;
     isValid?: boolean;
@@ -510,7 +560,7 @@ declare module '@ahaui/react' {
     as?: React.ElementType;
   }
   export interface FormFileProps extends BasicProps {
-    id: string;
+    id?: string;
     as?: React.ElementType;
     sizeInput?: InputSize;
     fileName?: string;
@@ -530,7 +580,7 @@ declare module '@ahaui/react' {
   export interface FormInputProps extends BasicProps {
     type?: string;
     value?: string | number;
-    id: string;
+    id?: string;
     disabled?: boolean;
     required?: boolean;
     readOnly?: boolean;
@@ -544,11 +594,11 @@ declare module '@ahaui/react' {
   export interface FormLabelProps extends BasicProps {
     sizeLabel?: InputSize;
     required?: boolean;
-    htmlFor: string;
+    htmlFor?: string;
   }
   export interface FormSelectProps extends BasicProps {
     value?: string | number;
-    id: string;
+    id?: string;
     disabled?: boolean;
     required?: boolean;
     sizeInput?: InputSize;
@@ -697,7 +747,7 @@ declare module '@ahaui/react' {
     popperConfig?: PopperOptions;
     placement?: PopperPlacement;
     rootClose?: boolean;
-    rootCloseEvent?: 'click' | 'mousedown';
+    rootCloseEvent?: string;
     rootCloseDisabled?: boolean;
   }
   export interface OverlayTriggerProps extends OverlayBasicProps {
@@ -954,7 +1004,7 @@ declare module '@ahaui/react' {
       | 'information_subtle'
       | 'negative'
       | 'negative_subtle';
-    textClassName?: string | string[];
+    textClassName?: string;
   }
   export const Tag: React.FC<TagProps>;
 
